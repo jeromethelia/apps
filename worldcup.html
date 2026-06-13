@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 FIFA World Cup — Full Schedule</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f3; color: #111; font-size: 14px; }
+  h1 { font-size: 20px; font-weight: 600; padding: 1.25rem 1rem 0.25rem; }
+  .subtitle { font-size: 13px; color: #666; padding: 0 1rem 1rem; }
+  .legend { display: flex; gap: 12px; padding: 0 1rem 1rem; flex-wrap: wrap; }
+  .legend span { font-size: 12px; display: flex; align-items: center; gap: 5px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .controls { display: flex; flex-wrap: wrap; gap: 6px; padding: 0.75rem 1rem; background: #fff; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 20; }
+  .filter-btn { font-size: 12px; font-weight: 500; padding: 5px 12px; border: 1px solid #ccc; border-radius: 20px; background: transparent; color: #555; cursor: pointer; }
+  .filter-btn.active { background: #001f7a; color: #fff; border-color: #001f7a; }
+  .section-header { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.08em; padding: 1rem 1rem 0.4rem; background: #f5f5f3; border-top: 1px solid #e5e5e5; margin-top: 4px; }
+  .section-header:first-of-type { border-top: none; margin-top: 0; }
+  .day-label { font-size: 12px; font-weight: 600; color: #444; padding: 0.6rem 1rem 0.2rem; background: #f5f5f3; }
+  .match-row { display: grid; grid-template-columns: 62px 46px 1fr 88px; align-items: center; gap: 8px; padding: 7px 1rem; --row-bg: #fff; background: var(--row-bg); border-bottom: 1px solid #f0f0f0; }
+  .match-row:last-child { border-bottom: none; }
+  .match-row.watch { --row-bg: #f0f6ff; }
+  .match-row.predicted .matchup-main { color: #555; font-style: italic; }
+  
+  
+  
+  .time { font-size: 13px; font-weight: 600; color: #111; white-space: nowrap; }
+  .channel { font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 4px; text-align: center; }
+  .fox { background: #001f7a; color: #fff; }
+  .fs1 { background: #e0e0e0; color: #333; }
+  .matchup-main { font-size: 13px; line-height: 1.3; }
+  .matchup-sub { font-size: 11px; color: #888; margin-top: 1px; display: flex; align-items: center; gap: 5px; }
+  .metlife-badge { font-size: 10px; font-weight: 600; background: #001f7a; color: #fff; padding: 1px 5px; border-radius: 3px; }
+  .predicted-badge { font-size: 10px; color: #888; font-style: italic; }
+  .venue { font-size: 11px; color: #777; text-align: right; line-height: 1.3; }
+  .no-results { color: #999; font-size: 14px; padding: 2rem 1rem; text-align: center; }
+  @media (max-width: 520px) {
+    .match-row { grid-template-columns: 58px 40px 1fr 70px; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<h1>2026 FIFA World Cup</h1>
+<p class="subtitle" style="font-weight:600;color:#444;">Jerome Update — June 8, 2026 · 10:00 AM</p>
+<p class="subtitle">All 104 matches · Jun 11 – Jul 19, 2026 · All times ET · <em>Italic = predicted matchup</em></p>
+
+<div class="legend">
+  <span><span class="dot" style="background:#001f7a"></span> FOX</span>
+  <span><span class="dot" style="background:#bbb"></span> FS1</span>
+  <span><span class="dot" style="background:#f0f6ff;border:1px solid #99b"></span> Games to watch</span>
+</div>
+
+<div class="controls">
+  <button class="filter-btn active" onclick="filterSection('all',this)">All 104</button>
+  <button class="filter-btn" onclick="filterSection('knockout',this)">Knockout rounds</button>
+  <button class="filter-btn" onclick="filterSection('watch',this)">Games to watch</button>
+</div>
+
+<div id="schedule"></div>
+
+<script>
+const data = [
+  {s:"Group stage",d:"Thu Jun 11",t:"3:00 PM",ch:"FOX",m:"Mexico vs South Africa",g:"Group A",v:"Mexico City"},
+  {s:"Group stage",d:"Thu Jun 11",t:"10:00 PM",ch:"FS1",m:"South Korea vs Czechia",g:"Group A",v:"Guadalajara"},
+  {s:"Group stage",d:"Fri Jun 12",t:"3:00 PM",ch:"FOX",m:"Canada vs Bosnia & Herzegovina",g:"Group B",v:"Toronto"},
+  {s:"Group stage",d:"Fri Jun 12",t:"9:00 PM",ch:"FOX",m:"USA vs Paraguay",g:"Group D",v:"Los Angeles",usa:1},
+  {s:"Group stage",d:"Sat Jun 13",t:"3:00 PM",ch:"FOX",m:"Qatar vs Switzerland",g:"Group B",v:"San Francisco"},
+  {s:"Group stage",d:"Sat Jun 13",t:"6:00 PM",ch:"FS1",m:"Brazil vs Morocco",g:"Group C",v:"MetLife",ml:1},
+  {s:"Group stage",d:"Sat Jun 13",t:"9:00 PM",ch:"FS1",m:"Haiti vs Scotland",g:"Group C",v:"Boston"},
+  {s:"Group stage",d:"Sat Jun 13",t:"12:00 AM",ch:"FOX",m:"Australia vs Türkiye",g:"Group D",v:"Vancouver"},
+  {s:"Group stage",d:"Sun Jun 14",t:"1:00 PM",ch:"FOX",m:"Germany vs Curaçao",g:"Group E",v:"Houston"},
+  {s:"Group stage",d:"Sun Jun 14",t:"4:00 PM",ch:"FOX",m:"Netherlands vs Japan",g:"Group F",v:"Dallas"},
+  {s:"Group stage",d:"Sun Jun 14",t:"7:00 PM",ch:"FS1",m:"Ivory Coast vs Ecuador",g:"Group E",v:"Philadelphia"},
+  {s:"Group stage",d:"Sun Jun 14",t:"10:00 PM",ch:"FS1",m:"Sweden vs Tunisia",g:"Group F",v:"Monterrey"},
+  {s:"Group stage",d:"Mon Jun 15",t:"12:00 PM",ch:"FOX",m:"Spain vs Cape Verde",g:"Group H",v:"Atlanta"},
+  {s:"Group stage",d:"Mon Jun 15",t:"3:00 PM",ch:"FOX",m:"Belgium vs Egypt",g:"Group G",v:"Seattle"},
+  {s:"Group stage",d:"Mon Jun 15",t:"6:00 PM",ch:"FS1",m:"Saudi Arabia vs Uruguay",g:"Group H",v:"Miami"},
+  {s:"Group stage",d:"Mon Jun 15",t:"9:00 PM",ch:"FS1",m:"Iran vs New Zealand",g:"Group G",v:"Los Angeles"},
+  {s:"Group stage",d:"Tue Jun 16",t:"3:00 PM",ch:"FOX",m:"France vs Senegal",g:"Group I",v:"MetLife",ml:1},
+  {s:"Group stage",d:"Tue Jun 16",t:"6:00 PM",ch:"FOX",m:"Iraq vs Norway",g:"Group I",v:"Boston"},
+  {s:"Group stage",d:"Tue Jun 16",t:"9:00 PM",ch:"FOX",m:"Argentina vs Algeria",g:"Group J",v:"Kansas City"},
+  {s:"Group stage",d:"Tue Jun 16",t:"12:00 AM",ch:"FS1",m:"Austria vs Jordan",g:"Group J",v:"San Francisco"},
+  {s:"Group stage",d:"Wed Jun 17",t:"1:00 PM",ch:"FOX",m:"Portugal vs Congo DR",g:"Group K",v:"Houston"},
+  {s:"Group stage",d:"Wed Jun 17",t:"4:00 PM",ch:"FOX",m:"England vs Croatia",g:"Group L",v:"Dallas"},
+  {s:"Group stage",d:"Wed Jun 17",t:"7:00 PM",ch:"FS1",m:"Ghana vs Panama",g:"Group L",v:"Toronto"},
+  {s:"Group stage",d:"Wed Jun 17",t:"10:00 PM",ch:"FS1",m:"Uzbekistan vs Colombia",g:"Group K",v:"Mexico City"},
+  {s:"Group stage",d:"Thu Jun 18",t:"12:00 PM",ch:"FOX",m:"Czechia vs South Africa",g:"Group A",v:"Atlanta"},
+  {s:"Group stage",d:"Thu Jun 18",t:"3:00 PM",ch:"FOX",m:"Switzerland vs Bosnia & Herzegovina",g:"Group B",v:"Los Angeles"},
+  {s:"Group stage",d:"Thu Jun 18",t:"6:00 PM",ch:"FS1",m:"Canada vs Qatar",g:"Group B",v:"Vancouver"},
+  {s:"Group stage",d:"Thu Jun 18",t:"9:00 PM",ch:"FOX",m:"Mexico vs South Korea",g:"Group A",v:"Guadalajara"},
+  {s:"Group stage",d:"Fri Jun 19",t:"3:00 PM",ch:"FOX",m:"USA vs Australia",g:"Group D",v:"Seattle",usa:1},
+  {s:"Group stage",d:"Fri Jun 19",t:"6:00 PM",ch:"FOX",m:"Scotland vs Morocco",g:"Group C",v:"Boston"},
+  {s:"Group stage",d:"Fri Jun 19",t:"9:00 PM",ch:"FOX",m:"Brazil vs Haiti",g:"Group C",v:"Philadelphia"},
+  {s:"Group stage",d:"Fri Jun 19",t:"12:00 AM",ch:"FS1",m:"Türkiye vs Paraguay",g:"Group D",v:"San Francisco"},
+  {s:"Group stage",d:"Sat Jun 20",t:"1:00 PM",ch:"FOX",m:"Netherlands vs Sweden",g:"Group F",v:"Houston"},
+  {s:"Group stage",d:"Sat Jun 20",t:"4:00 PM",ch:"FOX",m:"Germany vs Ivory Coast",g:"Group E",v:"Toronto"},
+  {s:"Group stage",d:"Sat Jun 20",t:"8:00 PM",ch:"FS1",m:"Ecuador vs Curaçao",g:"Group E",v:"Kansas City"},
+  {s:"Group stage",d:"Sat Jun 20",t:"12:00 AM",ch:"FS1",m:"Tunisia vs Japan",g:"Group F",v:"Monterrey"},
+  {s:"Group stage",d:"Sun Jun 21",t:"12:00 PM",ch:"FOX",m:"Spain vs Saudi Arabia",g:"Group H",v:"Atlanta"},
+  {s:"Group stage",d:"Sun Jun 21",t:"3:00 PM",ch:"FS1",m:"Belgium vs Iran",g:"Group G",v:"Los Angeles"},
+  {s:"Group stage",d:"Sun Jun 21",t:"6:00 PM",ch:"FS1",m:"Uruguay vs Cape Verde",g:"Group H",v:"Miami"},
+  {s:"Group stage",d:"Sun Jun 21",t:"9:00 PM",ch:"FS1",m:"New Zealand vs Egypt",g:"Group G",v:"Vancouver"},
+  {s:"Group stage",d:"Mon Jun 22",t:"1:00 PM",ch:"FOX",m:"Argentina vs Austria",g:"Group J",v:"Dallas"},
+  {s:"Group stage",d:"Mon Jun 22",t:"5:00 PM",ch:"FOX",m:"France vs Iraq",g:"Group I",v:"Philadelphia"},
+  {s:"Group stage",d:"Mon Jun 22",t:"8:00 PM",ch:"FOX",m:"Norway vs Senegal",g:"Group I",v:"MetLife",ml:1},
+  {s:"Group stage",d:"Mon Jun 22",t:"11:00 PM",ch:"FS1",m:"Jordan vs Algeria",g:"Group J",v:"San Francisco"},
+  {s:"Group stage",d:"Tue Jun 23",t:"1:00 PM",ch:"FOX",m:"Portugal vs Uzbekistan",g:"Group K",v:"Houston"},
+  {s:"Group stage",d:"Tue Jun 23",t:"4:00 PM",ch:"FOX",m:"England vs Ghana",g:"Group L",v:"Boston"},
+  {s:"Group stage",d:"Tue Jun 23",t:"7:00 PM",ch:"FOX",m:"Panama vs Croatia",g:"Group L",v:"Toronto"},
+  {s:"Group stage",d:"Tue Jun 23",t:"10:00 PM",ch:"FS1",m:"Colombia vs Congo DR",g:"Group K",v:"Guadalajara"},
+  {s:"Group stage",d:"Wed Jun 24",t:"3:00 PM",ch:"FOX",m:"Switzerland vs Canada",g:"Group B",v:"Vancouver"},
+  {s:"Group stage",d:"Wed Jun 24",t:"3:00 PM",ch:"FS1",m:"Bosnia & Herzegovina vs Qatar",g:"Group B",v:"Seattle"},
+  {s:"Group stage",d:"Wed Jun 24",t:"6:00 PM",ch:"FOX",m:"Brazil vs Scotland",g:"Group C",v:"Miami"},
+  {s:"Group stage",d:"Wed Jun 24",t:"6:00 PM",ch:"FS1",m:"Morocco vs Haiti",g:"Group C",v:"Atlanta"},
+  {s:"Group stage",d:"Wed Jun 24",t:"9:00 PM",ch:"FOX",m:"Czechia vs Mexico",g:"Group A",v:"Mexico City"},
+  {s:"Group stage",d:"Wed Jun 24",t:"9:00 PM",ch:"FS1",m:"South Africa vs South Korea",g:"Group A",v:"Monterrey"},
+  {s:"Group stage",d:"Thu Jun 25",t:"4:00 PM",ch:"FOX",m:"Ecuador vs Germany",g:"Group E",v:"MetLife",ml:1},
+  {s:"Group stage",d:"Thu Jun 25",t:"4:00 PM",ch:"FS1",m:"Curaçao vs Ivory Coast",g:"Group E",v:"Philadelphia"},
+  {s:"Group stage",d:"Thu Jun 25",t:"7:00 PM",ch:"FOX",m:"Tunisia vs Netherlands",g:"Group F",v:"Kansas City"},
+  {s:"Group stage",d:"Thu Jun 25",t:"7:00 PM",ch:"FS1",m:"Japan vs Sweden",g:"Group F",v:"Dallas"},
+  {s:"Group stage",d:"Thu Jun 25",t:"10:00 PM",ch:"FOX",m:"USA vs Türkiye",g:"Group D",v:"Los Angeles",usa:1},
+  {s:"Group stage",d:"Thu Jun 25",t:"10:00 PM",ch:"FS1",m:"Paraguay vs Australia",g:"Group D",v:"San Francisco"},
+  {s:"Group stage",d:"Fri Jun 26",t:"3:00 PM",ch:"FOX",m:"Norway vs France",g:"Group I",v:"Boston"},
+  {s:"Group stage",d:"Fri Jun 26",t:"3:00 PM",ch:"FS1",m:"Senegal vs Iraq",g:"Group I",v:"Toronto"},
+  {s:"Group stage",d:"Fri Jun 26",t:"8:00 PM",ch:"FOX",m:"Uruguay vs Spain",g:"Group H",v:"Guadalajara"},
+  {s:"Group stage",d:"Fri Jun 26",t:"8:00 PM",ch:"FS1",m:"Cape Verde vs Saudi Arabia",g:"Group H",v:"Houston"},
+  {s:"Group stage",d:"Fri Jun 26",t:"11:00 PM",ch:"FOX",m:"New Zealand vs Belgium",g:"Group G",v:"Vancouver"},
+  {s:"Group stage",d:"Fri Jun 26",t:"11:00 PM",ch:"FS1",m:"Egypt vs Iran",g:"Group G",v:"Seattle"},
+  {s:"Group stage",d:"Sat Jun 27",t:"5:00 PM",ch:"FOX",m:"Panama vs England",g:"Group L",v:"MetLife",ml:1},
+  {s:"Group stage",d:"Sat Jun 27",t:"5:00 PM",ch:"FS1",m:"Croatia vs Ghana",g:"Group L",v:"Philadelphia"},
+  {s:"Group stage",d:"Sat Jun 27",t:"7:30 PM",ch:"FOX",m:"Colombia vs Portugal",g:"Group K",v:"Miami"},
+  {s:"Group stage",d:"Sat Jun 27",t:"7:30 PM",ch:"FS1",m:"Congo DR vs Uzbekistan",g:"Group K",v:"Atlanta"},
+  {s:"Group stage",d:"Sat Jun 27",t:"10:00 PM",ch:"FOX",m:"Jordan vs Argentina",g:"Group J",v:"Dallas"},
+  {s:"Group stage",d:"Sat Jun 27",t:"10:00 PM",ch:"FS1",m:"Algeria vs Austria",g:"Group J",v:"Kansas City"},
+  {s:"Round of 32",d:"Sun Jun 28",t:"3:00 PM",ch:"FOX",m:"predicted: South Korea vs Switzerland",g:"M73",v:"Los Angeles",p:1},
+  {s:"Round of 32",d:"Mon Jun 29",t:"1:00 PM",ch:"FOX",m:"predicted: Brazil vs Tunisia",g:"M76",v:"Houston",p:1},
+  {s:"Round of 32",d:"Mon Jun 29",t:"4:30 PM",ch:"FOX",m:"predicted: Germany vs Sweden",g:"M74",v:"Boston",p:1},
+  {s:"Round of 32",d:"Mon Jun 29",t:"9:00 PM",ch:"FOX",m:"predicted: Netherlands vs Scotland",g:"M75",v:"Monterrey",p:1},
+  {s:"Round of 32",d:"Tue Jun 30",t:"1:00 PM",ch:"FOX",m:"predicted: Ivory Coast vs Norway",g:"M78",v:"Dallas",p:1},
+  {s:"Round of 32",d:"Tue Jun 30",t:"5:00 PM",ch:"FOX",m:"predicted: France vs Uruguay",g:"M77",v:"MetLife",ml:1,p:1},
+  {s:"Round of 32",d:"Tue Jun 30",t:"9:00 PM",ch:"FOX",m:"predicted: Mexico vs Senegal",g:"M79",v:"Mexico City",p:1},
+  {s:"Round of 32",d:"Wed Jul 1",t:"12:00 PM",ch:"FOX",m:"predicted: England vs Algeria",g:"M80",v:"Atlanta",p:1},
+  {s:"Round of 32",d:"Wed Jul 1",t:"4:00 PM",ch:"FS1",m:"predicted: Belgium vs Iraq",g:"M82",v:"Seattle",p:1},
+  {s:"Round of 32",d:"Wed Jul 1",t:"8:00 PM",ch:"FOX",m:"predicted: USA vs Austria",g:"M81",v:"San Francisco",p:1,usa:1},
+  {s:"Round of 32",d:"Thu Jul 2",t:"3:00 PM",ch:"FOX",m:"predicted: Spain vs Austria",g:"M84",v:"Los Angeles",p:1},
+  {s:"Round of 32",d:"Thu Jul 2",t:"7:00 PM",ch:"FOX",m:"predicted: Colombia vs Croatia",g:"M83",v:"Toronto",p:1},
+  {s:"Round of 32",d:"Thu Jul 2",t:"11:00 PM",ch:"FS1",m:"predicted: Canada vs Japan",g:"M85",v:"Vancouver",p:1},
+  {s:"Round of 32",d:"Fri Jul 3",t:"2:00 PM",ch:"FOX",m:"predicted: Morocco vs Türkiye",g:"M88",v:"Dallas",p:1},
+  {s:"Round of 32",d:"Fri Jul 3",t:"6:00 PM",ch:"FOX",m:"predicted: Argentina vs Cape Verde",g:"M86",v:"Miami",p:1},
+  {s:"Round of 32",d:"Fri Jul 3",t:"9:30 PM",ch:"FOX",m:"predicted: Portugal vs Ghana",g:"M87",v:"Kansas City",p:1},
+  {s:"Round of 16",d:"Sat Jul 4",t:"1:00 PM",ch:"FOX",m:"predicted: Germany vs Netherlands",g:"M90",v:"Houston",p:1},
+  {s:"Round of 16",d:"Sat Jul 4",t:"5:00 PM",ch:"FOX",m:"predicted: England vs USA",g:"M89",v:"Philadelphia",p:1,usa:1},
+  {s:"Round of 16",d:"Sun Jul 5",t:"4:00 PM",ch:"FOX",m:"predicted: France vs Brazil",g:"M91",v:"MetLife",ml:1,p:1},
+  {s:"Round of 16",d:"Sun Jul 5",t:"8:00 PM",ch:"FOX",m:"predicted: Argentina vs Spain",g:"M92",v:"Mexico City",p:1},
+  {s:"Round of 16",d:"Mon Jul 6",t:"3:00 PM",ch:"FOX",m:"predicted: Portugal vs Belgium",g:"M93",v:"Dallas",p:1},
+  {s:"Round of 16",d:"Mon Jul 6",t:"5:00 PM",ch:"FOX",m:"predicted: Japan vs Ivory Coast",g:"M94",v:"Seattle",p:1},
+  {s:"Round of 16",d:"Tue Jul 7",t:"12:00 PM",ch:"FOX",m:"predicted: Morocco vs Colombia",g:"M95",v:"Atlanta",p:1},
+  {s:"Round of 16",d:"Tue Jul 7",t:"4:00 PM",ch:"FOX",m:"predicted: Mexico vs South Korea",g:"M96",v:"Vancouver",p:1},
+  {s:"Quarterfinals",d:"Thu Jul 9",t:"4:00 PM",ch:"FOX",m:"predicted: England vs Germany",g:"QF1",v:"Boston",p:1},
+  {s:"Quarterfinals",d:"Fri Jul 10",t:"3:00 PM",ch:"FOX",m:"predicted: France vs Argentina",g:"QF2",v:"Los Angeles",p:1},
+  {s:"Quarterfinals",d:"Sat Jul 11",t:"5:00 PM",ch:"FOX",m:"predicted: Portugal vs Morocco",g:"QF3",v:"Miami",p:1},
+  {s:"Quarterfinals",d:"Sat Jul 11",t:"9:00 PM",ch:"FOX",m:"predicted: Mexico vs Japan",g:"QF4",v:"Kansas City",p:1},
+  {s:"Semifinals",d:"Tue Jul 14",t:"3:00 PM",ch:"FOX",m:"predicted: France vs England",g:"SF1",v:"Dallas",p:1},
+  {s:"Semifinals",d:"Wed Jul 15",t:"3:00 PM",ch:"FOX",m:"predicted: Portugal vs Mexico",g:"SF2",v:"Atlanta",p:1},
+  {s:"Third-place match",d:"Sat Jul 18",t:"5:00 PM",ch:"FOX",m:"predicted: England vs Mexico",g:"3rd place",v:"Miami",p:1},
+  {s:"Final ⭐",d:"Sun Jul 19",t:"3:00 PM",ch:"FOX",m:"predicted: France vs Portugal",g:"FINAL",v:"MetLife",ml:1,p:1},
+];
+
+
+
+let activeFilter = 'all';
+
+function filterSection(f, btn) {
+  activeFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function isWatchGame(matchup) {
+  const clean = matchup.replace(/^predicted:\s*/i, '');
+
+  // Favorite teams from the earlier highlight list.
+  const favoriteTeamPattern = /\b(France|Portugal|Mexico|Japan|Ivory Coast)\b/;
+  if (favoriteTeamPattern.test(clean)) return true;
+
+  // Extra hand-picked "most fun" matches.
+  const extraWatchGames = [
+    "Brazil vs Morocco",
+    "Netherlands vs Japan",
+    "USA vs Türkiye",
+    "France vs Uruguay",
+    "Mexico vs Senegal",
+    "France vs Brazil",
+    "France vs Argentina",
+    "France vs England",
+    "Portugal vs Colombia",
+    "France vs Portugal"
+  ];
+
+  return extraWatchGames.includes(clean);
+}
+
+function render() {
+  let rows = data;
+  if (activeFilter === 'knockout') rows = data.filter(r => r.s !== 'Group stage');
+  if (activeFilter === 'watch') rows = data.filter(r => isWatchGame(r.m));
+
+  const el = document.getElementById('schedule');
+  if (!rows.length) {
+    el.innerHTML = '<p class="no-results">No matches for this filter.</p>';
+    return;
+  }
+
+  let html = '';
+  let lastSection = '', lastDay = '';
+
+  rows.forEach(r => {
+    if (r.s !== lastSection) {
+      html += `<div class="section-header">${r.s}</div>`;
+      lastSection = r.s;
+      lastDay = '';
+    }
+
+    if (r.d !== lastDay) {
+      html += `<div class="day-label">${r.d}</div>`;
+      lastDay = r.d;
+    }
+
+    const predBadge = r.p ? '<span class="predicted-badge">predicted</span>' : '';
+    const watch = isWatchGame(r.m);
+
+    html += `<div class="match-row${watch ? ' watch' : ''}${r.p ? ' predicted' : ''}">
+      <span class="time">${r.t}</span>
+      <span class="channel ${r.ch === 'FOX' ? 'fox' : 'fs1'}">${r.ch}</span>
+      <span>
+        <div class="matchup-main">${r.m}</div>
+        <div class="matchup-sub">${r.g} ${predBadge}</div>
+      </span>
+      <span class="venue">${r.v}</span>
+    </div>`;
+  });
+
+  el.innerHTML = html;
+}
+
+render();
+</script>
+</body>
+</html>

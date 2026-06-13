@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NYC Summer 2026 — Jerome's Guide</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #1a1710;
+    --paper: #f5f0e8;
+    --cream: #ede8dc;
+    --gold: #c8a84b;
+    --rust: #b85c3a;
+    --teal: #2e6b6b;
+    --muted: #7a7468;
+    --border: rgba(26,23,16,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2rem 2rem 1.5rem;
+    border-bottom: 3px solid var(--gold);
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+  header h1 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+  header p {
+    margin-top: 0.4rem;
+    font-size: 12px;
+    color: rgba(245,240,232,0.6);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* LEGEND */
+  .legend {
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 2rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .legend span { display: flex; align-items: center; gap: 4px; }
+
+  /* TABS */
+  .tab-bar {
+    background: var(--ink);
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.25rem;
+    background: transparent;
+    color: rgba(245,240,232,0.5);
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .tab-btn:hover { color: var(--paper); }
+  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* PANELS */
+  .tab-panel { display: none; padding: 1.5rem 2rem 3rem; }
+  .tab-panel.active { display: block; }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin: 1.5rem 0 0.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.3rem;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .section-header span {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* SERIES GRID */
+  .series-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+    margin-top: 1rem;
+  }
+  .series-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .series-card.full-width { grid-column: 1 / -1; max-width: 680px; }
+  .card-head {
+    padding: 10px 14px 8px;
+    border-bottom: 1px solid var(--border);
+    background: var(--cream);
+  }
+  .card-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-bottom: 5px;
+  }
+  .tag-free { background: #d4edda; color: #1a5c2a; }
+  .tag-mixed { background: #fff3cd; color: #7a5500; }
+  .tag-special { background: #d1ecf1; color: #0c5460; }
+  .tag-indie { background: #e8d5f0; color: #4a1a6a; }
+  .tag-lunatico { background: #fde8d8; color: #7a2e0a; }
+
+  .card-head h3 { font-size: 13px; font-weight: 500; color: var(--ink); margin: 0 0 2px; }
+  .card-head p { font-size: 11px; color: var(--muted); }
+
+  /* SHOW ROWS */
+  .show-row {
+    display: grid;
+    grid-template-columns: 70px 1fr auto;
+    gap: 8px;
+    align-items: start;
+    padding: 7px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .show-row:last-child { border-bottom: none; }
+  .show-date { font-size: 11px; font-weight: 500; color: var(--muted); padding-top: 2px; }
+  .show-info { flex: 1; }
+  .show-artist { font-size: 13px; color: var(--ink); line-height: 1.35; }
+  .show-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .show-meta { font-size: 11px; color: var(--teal); font-style: italic; margin-top: 2px; }
+  .show-price {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    white-space: nowrap;
+    text-align: right;
+    padding-top: 2px;
+  }
+  .show-price.free { color: var(--teal); font-weight: 600; }
+  .show-price.sold-out { color: var(--rust); }
+
+  /* BADGES */
+  .badges { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 3px; }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+  .b-free { background: #d4edda; color: #1a5c2a; }
+  .b-rsvp { background: #d1ecf1; color: #0c5460; }
+  .b-ticket { background: #fff3cd; color: #7a5500; }
+  .b-love { font-size: 12px; }
+  .b-like { font-size: 12px; }
+  .b-kid { font-size: 12px; }
+
+  /* SECTION LABELS inside card */
+  .week-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 5px 14px 2px;
+    border-bottom: 1px solid var(--border);
+    background: var(--cream);
+  }
+
+  /* CARD FOOTER */
+  .card-foot {
+    padding: 7px 14px;
+    border-top: 1px solid var(--border);
+    background: var(--cream);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .card-foot a { color: var(--teal); text-decoration: none; }
+  .card-foot a:hover { text-decoration: underline; }
+
+  /* INTRO TEXT */
+  .intro { font-size: 12px; color: var(--muted); margin-bottom: 0.5rem; }
+  .legend-row {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    font-size: 12px; color: var(--muted);
+    margin-bottom: 1rem; padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .note { font-size: 12px; color: var(--muted); margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid var(--border); }
+
+  /* STANDALONE LIST for picked concerts */
+  .picks-list { margin-top: 1rem; }
+  .picks-month {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold);
+    margin: 1.5rem 0 0.5rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .picks-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 90px 80px;
+    gap: 8px;
+    align-items: start;
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--border);
+  }
+  .picks-row:last-child { border-bottom: none; }
+  .p-date { font-size: 12px; font-weight: 500; color: var(--muted); padding-top: 1px; }
+  .p-main { }
+  .p-artist { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .p-venue { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .p-note { font-size: 11px; color: var(--teal); font-style: italic; margin-top: 2px; }
+  .p-time { font-size: 11px; color: var(--muted); padding-top: 2px; }
+  .p-price { font-size: 12px; font-weight: 500; text-align: right; padding-top: 2px; }
+  .p-price.free { color: var(--teal); }
+  .p-price.sold-out { color: var(--rust); }
+  .icons { letter-spacing: 2px; }
+
+
+  /* PARENTS NIGHT OUT */
+  .pno-wrap { margin-top: 1rem; }
+  .pno-key { display:flex; flex-wrap:wrap; gap:6px; margin:.7rem 0 1rem; }
+  .pno-key span, .status-chip { font-size:10px; background:white; border:1px solid var(--border); border-radius:999px; padding:2px 7px; color:var(--muted); }
+  .pno-table { width:100%; border-collapse:collapse; background:white; border:1px solid var(--border); font-size:12px; }
+  .pno-table th { background:var(--cream); color:var(--muted); text-transform:uppercase; letter-spacing:.08em; font-size:10px; text-align:left; padding:7px 8px; border-bottom:1px solid var(--border); }
+  .pno-table td { padding:8px; border-bottom:1px solid var(--border); vertical-align:top; }
+  .pno-table tr:last-child td { border-bottom:none; }
+  .pno-title { font-weight:600; font-size:13px; color:var(--ink); }
+  .pno-desc { color:var(--muted); font-size:11px; line-height:1.35; margin-top:2px; }
+  .pno-links a, .show-artist a { color:var(--teal); text-decoration:none; }
+  .pno-links a:hover, .show-artist a:hover { text-decoration:underline; }
+  .pno-badges { font-size:15px; letter-spacing:2px; white-space:nowrap; }
+  .pno-good { color:var(--teal); font-weight:600; }
+  .pno-warn { color:var(--rust); font-weight:600; }
+  .pno-section { font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--gold); margin:1.5rem 0 .5rem; border-bottom:1px solid var(--border); padding-bottom:.25rem; }
+  @media (max-width: 850px) {
+    .pno-table, .pno-table thead, .pno-table tbody, .pno-table th, .pno-table td, .pno-table tr { display:block; }
+    .pno-table thead { display:none; }
+    .pno-table tr { border-bottom:1px solid var(--border); padding:8px 0; }
+    .pno-table td { border:none; padding:4px 12px; }
+    .pno-table td::before { content:attr(data-label); display:block; font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 1.25rem 1rem 1rem; }
+    header h1 { font-size: 1.5rem; }
+    .tab-panel { padding: 1rem 1rem 2rem; }
+    .picks-row { grid-template-columns: 70px 1fr 60px; }
+    .p-time { display: none; }
+    .legend { padding: 0.5rem 1rem; }
+    .series-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<header>
+<h1>NYC Summer <em>2026</em></h1>
+<p>Jerome's guide — concerts · movies · theater · museums · kid days</p>
+</header>
+<div class="legend">
+<span>❤️ you'll love it</span>
+<span>💚 you'll like it</span>
+<span>🧒 kid-friendly</span>
+<span>⚠️ check availability</span>
+<span>🍕 food included</span><span>🤖 STEAM</span><span>🌧 indoor</span></div>
+<nav class="tab-bar" role="tablist">
+<button class="tab-btn active" onclick="showTab('picks',this)">Your Picks</button>
+<button class="tab-btn" onclick="showTab('summerstage',this)">SummerStage</button>
+<button class="tab-btn" onclick="showTab('bric',this)">BRIC Brooklyn!</button>
+<button class="tab-btn" onclick="showTab('bryant',this)">Bryant Park</button>
+<button class="tab-btn" onclick="showTab('lunatico',this)">LunÀtico</button>
+<button class="tab-btn" onclick="showTab('movies',this)">Movies</button>
+<button class="tab-btn" onclick="showTab('theater',this)">Theater</button>
+<button class="tab-btn" onclick="showTab('momi',this)">MoMI</button>
+<button class="tab-btn" onclick="showTab('parentsnight',this)">Parents' Night Out</button><button class="tab-btn" onclick="showTab('museums',this)">Museums + Kids</button></nav>
+<!-- ═══════════════════════════════════════════════════
+     TAB 1 — YOUR PICKS
+═══════════════════════════════════════════════════ -->
+<div class="tab-panel active" id="tab-picks">
+<div class="legend-row">
+<span>❤️ love   💚 like   🧒 kid-friendly</span>
+</div>
+<div class="picks-list">
+<div class="picks-month">June</div>
+<div class="picks-row">
+<div class="p-date">Wed Jun 17</div>
+<div class="p-main">
+<div class="p-artist">Combo Chimbita <span class="icons">💚</span></div>
+<div class="p-venue">The Rooftop, Elsewhere — Bushwick, Brooklyn</div>
+<div class="p-note">Colombian psych-cumbia. Afro-Caribbean psychedelia meets booming drums.</div>
+</div>
+<div class="p-time">7:00 PM · 16+</div>
+<div class="p-price">~$25</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Thu Jun 18</div>
+<div class="p-main">
+<div class="p-artist">Alan Sparhawk / Circuit des Yeux / POLIÇA <span class="icons">❤️</span></div>
+<div class="p-venue">Ruins at Knockdown Center — Maspeth, Queens</div>
+<div class="p-note">Alan Sparhawk of Low + Haley Fohr's singular avant-vocals + POLIÇA. Outdoor. Rain or shine.</div>
+</div>
+<div class="p-time">Outdoor</div>
+<div class="p-price">$38</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Thu Jun 18</div>
+<div class="p-main">
+<div class="p-artist">Pinback <span class="icons">❤️</span></div>
+<div class="p-venue">Rockaway Hotel — Far Rockaway, Queens</div>
+<div class="p-note">On your list. Intricate indie rock, Rob Crow harmonies. Rare NYC appearance.</div>
+</div>
+<div class="p-time">TBA</div>
+<div class="p-price">$45</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Sat Jun 20</div>
+<div class="p-main">
+<div class="p-artist">Wilco w/ Yo La Tengo <span class="icons">❤️</span></div>
+<div class="p-venue">Forest Hills Stadium — Forest Hills, Queens</div>
+<div class="p-note">Wilco is on your list. Yo La Tengo as opener. Outdoor stadium. Possible onstage collaboration.</div>
+</div>
+<div class="p-time">6:00 PM</div>
+<div class="p-price">from ~$75</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Tue Jun 23</div>
+<div class="p-main">
+<div class="p-artist">of Montreal <span class="icons">💚</span></div>
+<div class="p-venue">Webster Hall — East Village, Manhattan</div>
+<div class="p-note">David Byrne/Afrobeat-adjacent glam psych-pop. 16+ show.</div>
+</div>
+<div class="p-time">8:00 PM · 16+</div>
+<div class="p-price">TBA</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Wed Jun 24</div>
+<div class="p-main">
+<div class="p-artist">The Breeders w/ Violet Grohl <span class="icons">💚</span></div>
+<div class="p-venue">The Rooftop at Pier 17 — Seaport, Manhattan</div>
+<div class="p-note">Kim Deal. Rooftop with Brooklyn Bridge views. Rain or shine.</div>
+</div>
+<div class="p-time">Doors 6pm · Show 7pm</div>
+<div class="p-price">~$45+</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Wed Jun 24</div>
+<div class="p-main">
+<div class="p-artist">Black Country, New Road + Horsegirl <span class="icons">💚 🧒</span></div>
+<div class="p-venue">SummerStage, Central Park — Manhattan</div>
+<div class="p-note">Free outdoor. Post-rock chamber-pop. Good for kids — earlier, daytime energy.</div>
+</div>
+<div class="p-time">TBA · RSVP req.</div>
+<div class="p-price free">Free</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Thu Jun 25</div>
+<div class="p-main">
+<div class="p-artist">Tortoise <span class="icons">❤️</span></div>
+<div class="p-venue">Ruins at Knockdown Center — Maspeth, Queens</div>
+<div class="p-note">On your list. Chicago post-rock/jazz/krautrock institution. New album <em>Touch</em>. Don't miss.</div>
+</div>
+<div class="p-time">Outdoor</div>
+<div class="p-price">$48</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Thu Jun 26</div>
+<div class="p-main">
+<div class="p-artist">Laurie Anderson: Republic of Love w/ Sexmob <span class="icons">❤️ 🧒</span></div>
+<div class="p-venue">SummerStage, Central Park — Manhattan</div>
+<div class="p-note">On your list. A genuinely rare free outdoor show from a legend.</div>
+</div>
+<div class="p-time">TBA · RSVP req.</div>
+<div class="p-price free">Free</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Thu Jun 26</div>
+<div class="p-main">
+<div class="p-artist">Moldy Peaches (acoustic) <span class="icons">💚</span></div>
+<div class="p-venue">Carnegie Hall — Midtown, Manhattan</div>
+<div class="p-note">Adam Green + Kimya Dawson unplugged at Carnegie. Genuinely odd and charming.</div>
+</div>
+<div class="p-time">TBA</div>
+<div class="p-price">TBA</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Sun Jun 28</div>
+<div class="p-main">
+<div class="p-artist">The Budos Band w/ Delicate Steve <span class="icons">❤️</span></div>
+<div class="p-venue">Rockaway Hotel — Far Rockaway, Queens</div>
+<div class="p-note">Daptone's Afrobeat instrumental outfit. Squarely your zone.</div>
+</div>
+<div class="p-time">TBA</div>
+<div class="p-price">$45</div>
+</div>
+<div class="picks-month">July</div>
+<div class="picks-row">
+<div class="p-date">Wed Jul 1</div>
+<div class="p-main">
+<div class="p-artist">SHABAKA w/ Kokoroko + Omar + Lovie <span class="icons">❤️ 🧒</span></div>
+<div class="p-venue">SummerStage, Central Park — Manhattan</div>
+<div class="p-note">One of the most important jazz voices alive + London Afrobeat jazz. Free outdoor.</div>
+</div>
+<div class="p-time">TBA · RSVP req.</div>
+<div class="p-price free">Free</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Thu Jul 2</div>
+<div class="p-main">
+<div class="p-artist">St. Vincent w/ NY Philharmonic <span class="icons">💚</span></div>
+<div class="p-venue">Lincoln Center — Upper West Side, Manhattan</div>
+<div class="p-note">Annie Clark with a full orchestra. Unusual and likely stunning.</div>
+</div>
+<div class="p-time">TBA</div>
+<div class="p-price">TBA</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Sat Jul 4</div>
+<div class="p-main">
+<div class="p-artist">Hot Chip DJ set <span class="icons">💚</span></div>
+<div class="p-venue">Good Room — Greenpoint, Brooklyn</div>
+<div class="p-note">Four Tet / LCD-adjacent danceable electronics on the 4th.</div>
+</div>
+<div class="p-time">Late night</div>
+<div class="p-price">TBA</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Tue Jul 7</div>
+<div class="p-main">
+<div class="p-artist">The Smile (Thom Yorke + Jonny Greenwood) <span class="icons">❤️</span></div>
+<div class="p-venue">Forest Hills Stadium — Forest Hills, Queens</div>
+<div class="p-note">Both on your list. Jazz-influenced Radiohead offshoot. Outdoor stadium.</div>
+</div>
+<div class="p-time">TBA</div>
+<div class="p-price">TBA</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Wed Jul 8</div>
+<div class="p-main">
+<div class="p-artist">Spoon w/ Ratboys + Bodega <span class="icons">❤️ 🧒</span></div>
+<div class="p-venue">SummerStage, Central Park — Manhattan</div>
+<div class="p-note">Spoon is on your list. Free outdoor show is a gift.</div>
+</div>
+<div class="p-time">TBA · RSVP req.</div>
+<div class="p-price free">Free</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Wed–Thu Jul 8–9</div>
+<div class="p-main">
+<div class="p-artist">Flying Lotus with Live Band <span class="icons">❤️</span></div>
+<div class="p-venue">Blue Note Jazz Club — Greenwich Village, Manhattan</div>
+<div class="p-note">Two shows per night (8pm + 10:30pm). 20th anniversary of his debut. Rare intimate live band setting.</div>
+</div>
+<div class="p-time">8pm &amp; 10:30pm</div>
+<div class="p-price sold-out">SOLD OUT ⚠️</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Thu Jul 9</div>
+<div class="p-main">
+<div class="p-artist">Sun Kil Moon <span class="icons">💚</span></div>
+<div class="p-venue">Sony Hall — Midtown, Manhattan</div>
+<div class="p-note">Mark Kozelek. Nick Cave / Cat Power emotional register.</div>
+</div>
+<div class="p-time">TBA</div>
+<div class="p-price">~$50</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Fri–Sat Jul 10–11</div>
+<div class="p-main">
+<div class="p-artist">No Fun Festival — Lee Ranaldo, Zeena Parkins, Nate Wooley, NIKA + more <span class="icons">💚</span></div>
+<div class="p-venue">Roulette — Boerum Hill, Brooklyn</div>
+<div class="p-note">Noise/experimental. John Zorn / Fred Frith / Aphex Twin adjacency. Zeena Parkins is essential.</div>
+</div>
+<div class="p-time">TBA each night</div>
+<div class="p-price">$25/night</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Sun Jul 12</div>
+<div class="p-main">
+<div class="p-artist">Bilal / GENA / DJ Tara <span class="icons">❤️ 🧒</span></div>
+<div class="p-venue">Herbert Von King Park — Bed-Stuy, Brooklyn</div>
+<div class="p-note">Bilal is one of the most gifted neo-soul voices of his generation. Free outdoor in Bed-Stuy.</div>
+</div>
+<div class="p-time">TBA</div>
+<div class="p-price free">Free</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Thu Jul 16</div>
+<div class="p-main">
+<div class="p-artist">Mavis Staples w/ Brother Wallace <span class="icons">❤️ 🧒</span></div>
+<div class="p-venue">SummerStage, Central Park — Manhattan</div>
+<div class="p-note">Living legend. Gospel-soul-funk. Free outdoor. Take the kid.</div>
+</div>
+<div class="p-time">TBA · RSVP req.</div>
+<div class="p-price free">Free</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Fri Jul 17</div>
+<div class="p-main">
+<div class="p-artist">De La Soul / Pete Rock <span class="icons">💚 🧒</span></div>
+<div class="p-venue">Flushing Meadows Corona Park — Queens</div>
+<div class="p-note">Golden era hip-hop. Free outdoor. Great for kids.</div>
+</div>
+<div class="p-time">TBA · RSVP req.</div>
+<div class="p-price free">Free</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Tue Jul 21</div>
+<div class="p-main">
+<div class="p-artist">Bob Dylan w/ Lucinda Williams &amp; Jimmie Vaughan <span class="icons">❤️</span></div>
+<div class="p-venue">Forest Hills Stadium — Forest Hills, Queens</div>
+<div class="p-note">On your list. Dylan at Forest Hills — historically resonant; he played there in 1965. First return in 10 years.</div>
+</div>
+<div class="p-time">6:00 PM</div>
+<div class="p-price">from ~$135</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Thu Jul 23</div>
+<div class="p-main">
+<div class="p-artist">Allah-Las <span class="icons">❤️</span></div>
+<div class="p-venue">White Eagle Hall — Jersey City, NJ</div>
+<div class="p-note">On your list. LA surf-psych with a hazy 60s Californian vibe. Intimate venue. 18+</div>
+</div>
+<div class="p-time">TBA · 18+</div>
+<div class="p-price">TBA</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Thu Jul 23</div>
+<div class="p-main">
+<div class="p-artist">Kurt Vile and the Violators <span class="icons">💚</span></div>
+<div class="p-venue">Brooklyn Paramount — Downtown Brooklyn</div>
+<div class="p-note">Hazy sprawling guitar rock in the Wilco / Richard Thompson zone.</div>
+</div>
+<div class="p-time">TBA</div>
+<div class="p-price">TBA</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Thu Jul 23</div>
+<div class="p-main">
+<div class="p-artist">Downtown Boys <span class="icons">💚</span></div>
+<div class="p-venue">Baby's All Right — Williamsburg, Brooklyn</div>
+<div class="p-note">Bilingual punk-funk with saxophone. X / Sleater-Kinney edge. Cheap.</div>
+</div>
+<div class="p-time">TBA</div>
+<div class="p-price">$20</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Fri Jul 25</div>
+<div class="p-main">
+<div class="p-artist">Man Man w/ Death Valley Girls <span class="icons">💚</span></div>
+<div class="p-venue">Music Hall of Williamsburg — Williamsburg, Brooklyn</div>
+<div class="p-note">Man Man is eccentric art-rock with Tom Waits DNA; Death Valley Girls does heavy psych.</div>
+</div>
+<div class="p-time">TBA</div>
+<div class="p-price">TBA</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Tue Jul 28</div>
+<div class="p-main">
+<div class="p-artist">Tomahawk w/ Melvins <span class="icons">💚</span></div>
+<div class="p-venue">Brooklyn Steel — Williamsburg, Brooklyn</div>
+<div class="p-note">Mike Patton + Melvins. Primus / Fuzz / noise-rock side of your taste.</div>
+</div>
+<div class="p-time">TBA</div>
+<div class="p-price">TBA</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Wed–Thu Jul 29–30</div>
+<div class="p-main">
+<div class="p-artist">Kamasi Washington <span class="icons">❤️</span></div>
+<div class="p-venue">Music Hall of Williamsburg — Williamsburg, Brooklyn</div>
+<div class="p-note">On your list. Epic spiritual jazz with funk and soul. Essential live experience. 18+ both nights.</div>
+</div>
+<div class="p-time">Doors 7pm · Show 8pm · 18+</div>
+<div class="p-price">from ~$100</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Wed–Thu Jul 30–31</div>
+<div class="p-main">
+<div class="p-artist">Metric / Broken Social Scene / Stars <span class="icons">💚</span></div>
+<div class="p-venue">Brooklyn Paramount — Downtown Brooklyn</div>
+<div class="p-note">Broken Social Scene has the sprawling Godspeed/Wilco warmth. Great Canadian indie trifecta.</div>
+</div>
+<div class="p-time">TBA</div>
+<div class="p-price">TBA</div>
+</div>
+<div class="picks-row">
+<div class="p-date">Fri Jul 31</div>
+<div class="p-main">
+<div class="p-artist">Shonen Knife <span class="icons">💚</span></div>
+<div class="p-venue">Le Poisson Rouge — Greenwich Village, Manhattan</div>
+<div class="p-note">Japanese pop-punk legends. Joyful, beloved by Cobain. Violent Femmes / TMBG fun side.</div>
+</div>
+<div class="p-time">TBA</div>
+<div class="p-price">$25</div>
+</div>
+</div><!-- end picks-list -->
+</div>
+<!-- ═══════════════════════════════════════════════════
+     TAB 2 — SUMMERSTAGE
+═══════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-summerstage">
+<p class="intro">Capital One City Parks Foundation SummerStage — 40th Anniversary · Free and ticketed shows at Rumsey Playfield, Central Park + 12 borough parks. Most free shows require advance RSVP.</p>
+<div class="series-grid">
+<div class="series-card full-width">
+<div class="card-head">
+<div class="card-tag tag-mixed">40th anniversary · June–August</div>
+<h3>SummerStage — Central Park + Borough Parks</h3>
+<p>Rumsey Playfield, E. 71st St &amp; East Drive, Central Park</p>
+</div>
+<div class="week-label">June</div>
+<div class="show-row">
+<div class="show-date">Jun 10</div>
+<div class="show-info"><div class="show-artist">Ledisi for Dinah / Spilata / DJ Kultured Child <span class="icons">💚</span></div><div class="show-sub">Blue Note Jazz Festival. Opening Night.</div><div class="badges"><span class="badge b-rsvp">Free · RSVP</span></div></div>
+<div class="show-price free">Free</div>
+</div>
+<div class="show-row">
+<div class="show-date">Jun 24</div>
+<div class="show-info"><div class="show-artist">Black Country, New Road / Horsegirl / Sharp Pins <span class="icons">💚 🧒</span></div><div class="show-sub">Post-rock chamber-pop from the UK with Horsegirl’s cool Chicago indie crunch.</div><div class="badges"><span class="badge b-rsvp">Free · RSVP</span></div></div>
+<div class="show-price free">Free</div>
+</div>
+<div class="show-row">
+<div class="show-date">Jun 26</div>
+<div class="show-info"><div class="show-artist">Laurie Anderson: Republic of Love w/ Sexmob <span class="icons">❤️ 🧒</span></div><div class="show-sub">Spoken word, violin, electronics, and downtown wit from a genuine NYC avant-garde legend.</div><div class="badges"><span class="badge b-rsvp">Free · RSVP</span></div></div>
+<div class="show-price free">Free</div>
+</div>
+<div class="week-label">July</div>
+<div class="show-row">
+<div class="show-date">Jul 1</div>
+<div class="show-info"><div class="show-artist">SHABAKA / Kokoroko / Omar / Lovie <span class="icons">❤️ 🧒</span></div><div class="show-sub">Shabaka Hutchings meets London Afro-jazz via Kokoroko; probably one of the summer’s best free nights.</div><div class="badges"><span class="badge b-rsvp">Free · RSVP</span></div></div>
+<div class="show-price free">Free</div>
+</div>
+<div class="show-row">
+<div class="show-date">Jul 8</div>
+<div class="show-info"><div class="show-artist">Spoon / Ratboys / Bodega <span class="icons">❤️ 🧒</span></div><div class="show-sub">A top-tier Austin indie-rock band with Ratboys and Bodega — sharp songs, great outdoor bill.</div><div class="badges"><span class="badge b-ticket">Ticketed benefit</span></div></div>
+<div class="show-price">Ticketed</div>
+</div>
+<div class="show-row">
+<div class="show-date">Jul 11</div>
+<div class="show-info"><div class="show-artist">Max B / MIKE with The Band of the Century <span class="icons">💚</span></div><div class="show-sub">Herbert Von King Park, Bed-Stuy</div><div class="badges"><span class="badge b-rsvp">Free · RSVP</span></div></div>
+<div class="show-price free">Free</div>
+</div>
+<div class="show-row">
+<div class="show-date">Jul 12</div>
+<div class="show-info"><div class="show-artist">Bilal / GENA / DJ Tara <span class="icons">❤️ 🧒</span></div><div class="show-sub">Herbert Von King Park, Bed-Stuy</div><div class="badges"><span class="badge b-rsvp">Free · RSVP</span></div></div>
+<div class="show-price free">Free</div>
+</div>
+<div class="show-row">
+<div class="show-date">Jul 16</div>
+<div class="show-info"><div class="show-artist">Mavis Staples / Brother Wallace <span class="icons">❤️ 🧒</span></div><div class="show-sub">Gospel, soul, civil rights history, and a voice that still cuts straight through.</div><div class="badges"><span class="badge b-rsvp">Free · RSVP</span></div></div>
+<div class="show-price free">Free</div>
+</div>
+<div class="show-row">
+<div class="show-date">Jul 17</div>
+<div class="show-info"><div class="show-artist">De La Soul / Pete Rock <span class="icons">💚 🧒</span></div><div class="show-sub">Flushing Meadows Corona Park</div><div class="badges"><span class="badge b-rsvp">Free · RSVP</span></div></div>
+<div class="show-price free">Free</div>
+</div>
+<div class="show-row">
+<div class="show-date">Jul 29</div>
+<div class="show-info"><div class="show-artist">Julieta Venegas / Lasso <span class="icons">💚</span></div><div class="show-sub">w/ LAMC and The Latin Recording Academy</div><div class="badges"><span class="badge b-rsvp">Free · RSVP</span></div></div>
+<div class="show-price free">Free</div>
+</div>
+<div class="show-row">
+<div class="show-date">Jul 30</div>
+<div class="show-info"><div class="show-artist">UBB 40th: BreakBeat Lou / Lord Finesse / Diamond D / Grand Puba / Sadat X / Nice &amp; Smooth + more <span class="icons">💚</span></div><div class="show-sub">Ultimate Breaks &amp; Beats celebration with legendary hip-hop DJs and MCs.</div><div class="badges"><span class="badge b-rsvp">Free · RSVP</span></div></div>
+<div class="show-price free">Free</div>
+</div>
+<div class="week-label">August</div>
+<div class="show-row">
+<div class="show-date">Aug 1</div>
+<div class="show-info"><div class="show-artist">Trueno / Milo J / J Noa <span class="icons">💚</span></div><div class="show-sub">Argentine rap star Trueno headlines a Latin hip-hop bill with Milo J and J Noa.</div><div class="badges"><span class="badge b-rsvp">Free · RSVP</span></div></div>
+<div class="show-price free">Free</div>
+</div>
+<div class="show-row">
+<div class="show-date">Aug 6</div>
+<div class="show-info"><div class="show-artist">Andrew Bird with Wordless Music Orchestra <span class="icons">❤️ 🧒</span></div><div class="show-sub">Whistling, violin loops, elegant songwriting, and orchestral arrangements under the trees.</div><div class="badges"><span class="badge b-rsvp">Free · RSVP</span></div></div>
+<div class="show-price free">Free</div>
+</div>
+<div class="show-row">
+<div class="show-date">Aug 19</div>
+<div class="show-info"><div class="show-artist">Simple Plan / 3OH!3 / Bowling for Soup</div><div class="show-sub">Pop-punk nostalgia night — not subtle, but likely very fun for the right crowd.</div><div class="badges"><span class="badge b-ticket">Ticketed benefit</span></div></div>
+<div class="show-price">Ticketed</div>
+</div>
+<div class="show-row">
+<div class="show-date">Aug 23</div>
+<div class="show-info"><div class="show-artist">Angélique Kidjo / DJ Freshy K <span class="icons">❤️ 🧒</span></div><div class="show-sub">Beninese powerhouse singer; Afrobeat, funk, global pop, and huge all-ages energy.</div><div class="badges"><span class="badge b-rsvp">Free · RSVP</span></div></div>
+<div class="show-price free">Free</div>
+</div>
+<div class="show-row">
+<div class="show-date">Aug 28–30</div>
+<div class="show-info"><div class="show-artist">Charlie Parker Jazz Festival: Jazz at Lincoln Center Orch. / Joshua Redman / Ravi Coltrane <span class="icons">❤️ 🧒</span></div><div class="show-sub">Multi-day free jazz weekend anchored by major contemporary and legacy players.</div><div class="badges"><span class="badge b-rsvp">Free · RSVP</span></div></div>
+<div class="show-price free">Free</div>
+</div>
+<div class="card-foot"><span>RSVP required for most free shows</span><a href="https://cityparksfoundation.org/summerstage/" target="_blank">cityparksfoundation.org ↗</a></div>
+</div>
+</div>
+</div>
+<!-- ═══════════════════════════════════════════════════
+     TAB 3 — BRIC BROOKLYN
+═══════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-bric">
+<p class="intro">BRIC Celebrate Brooklyn! — 47th year · Theme: "Radical Joy" · Lena Horne Bandshell, Prospect Park · June 4–September 19 · Most shows free. Three ticketed benefit nights.</p>
+<div class="series-grid">
+<div class="series-card full-width">
+<div class="card-head">
+<div class="card-tag tag-free">All ages · June–September</div>
+<h3>BRIC Celebrate Brooklyn! — Lena Horne Bandshell, Prospect Park</h3>
+<p>RSVP encouraged · rain or shine · beer &amp; wine on site</p>
+</div>
+<div class="week-label">June</div>
+<div class="show-row"><div class="show-date">Thu Jun 4</div><div class="show-info"><div class="show-artist">Sheila E. / Leon Knight / DJ Spinna <span class="icons">❤️ 🧒</span></div><div class="show-sub">Opening Night</div><div class="badges"><span class="badge b-free">Free</span></div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Sat Jun 13</div><div class="show-info"><div class="show-artist">Antibalas + Family Day <span class="icons">❤️ 🧒</span></div><div class="show-sub">Brooklyn Afrobeat institution plus Family Day activities — very strong Sasha option.</div><div class="badges"><span class="badge b-free">Free</span></div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Fri Jun 19</div><div class="show-info"><div class="show-artist">Juneteenth: Infinity Song / Annie and the Caldwells / Victory Boyd <span class="icons">💚 🧒</span></div><div class="show-sub">Gospel, soul, and family harmonies for BRIC’s Juneteenth celebration.</div><div class="badges"><span class="badge b-free">Free</span></div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Fri Jun 26</div><div class="show-info"><div class="show-artist">Patti LaBelle <span class="icons">💚 🧒</span></div><div class="show-sub">Classic soul and R&amp;B legend; ticketed benefit night at the Bandshell.</div><div class="badges"><span class="badge b-ticket">Ticketed benefit</span></div></div><div class="show-price">Ticketed</div></div>
+<div class="week-label">July</div>
+<div class="show-row"><div class="show-date">Fri Jul 10</div><div class="show-info"><div class="show-artist">Habibi Festival: EMEL / Mai Elgizouli / Nesrine / Yacine Boulares <span class="icons">❤️ 🧒</span></div><div class="show-sub">Arabic, North African, and diasporic sounds — beautiful, expansive, and family-friendly.</div><div class="badges"><span class="badge b-free">Free</span></div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Sat Jul 18</div><div class="show-info"><div class="show-artist">Royel Otis <span class="icons">💚</span></div><div class="show-sub">Australian indie-pop with breezy guitars and a young summer-festival feel.</div><div class="badges"><span class="badge b-ticket">Ticketed benefit</span></div></div><div class="show-price">Ticketed</div></div>
+<div class="week-label">August</div>
+<div class="show-row"><div class="show-date">Fri Aug 7</div><div class="show-info"><div class="show-artist">DakhaBrakha / Yeison Landero / Sally Baby's Silver Dollars <span class="icons">❤️ 🧒</span></div><div class="show-sub">Ukrainian “ethno-chaos” quartet plus Colombian cumbia roots — a terrific global bill.</div><div class="badges"><span class="badge b-free">Free</span></div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Sat Aug 8</div><div class="show-info"><div class="show-artist">BRIC Celebrates Aaliyah: One in a Million <span class="icons">💚 🧒</span></div><div class="show-sub">Aaliyah tribute night with DJs and vocalists revisiting her R&amp;B legacy.</div><div class="badges"><span class="badge b-free">Free</span></div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Fri Aug 14</div><div class="show-info"><div class="show-artist">Lyricist Lounge 35th Anniversary <span class="icons">💚</span></div><div class="show-sub">Celebration of the long-running NYC hip-hop showcase and freestyle institution.</div><div class="badges"><span class="badge b-free">Free</span></div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Sat Aug 15</div><div class="show-info"><div class="show-artist">Yola / Dom Flemons / Cleo Reed — Americana Night <span class="icons">💚 🧒</span></div><div class="show-sub">Country-soul, blues, and roots music with serious vocal firepower.</div><div class="badges"><span class="badge b-free">Free</span></div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Fri Aug 21</div><div class="show-info"><div class="show-artist">Sasha Velour's NightGowns <span class="icons">💚</span></div><div class="show-sub">Drag, performance art, music, and theatrical spectacle from a Brooklyn icon.</div><div class="badges"><span class="badge b-free">Free</span></div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Fri Aug 28</div><div class="show-info"><div class="show-artist">Common (Harry Belafonte Fellowship night) <span class="icons">💚 🧒</span></div><div class="show-sub">Thoughtful Chicago hip-hop on BRIC’s Harry Belafonte Fellowship night.</div><div class="badges"><span class="badge b-free">Free</span></div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Sat Aug 29</div><div class="show-info"><div class="show-artist">Dominican Night at the Bandshell <span class="icons">💚 🧒</span></div><div class="show-sub">Merengue, bachata, dembow, and community celebration at the Bandshell.</div><div class="badges"><span class="badge b-free">Free</span></div></div><div class="show-price free">Free</div></div>
+<div class="week-label">September</div>
+<div class="show-row"><div class="show-date">Sat Sep 19</div><div class="show-info"><div class="show-artist">Liz Phair &amp; Sleater-Kinney: The Flannel and The Fury 2026 <span class="icons">❤️</span></div><div class="show-sub">90s indie-rock double bill: sharp songwriting, guitar bite, and Gen X catharsis.</div><div class="badges"><span class="badge b-ticket">Ticketed benefit</span></div></div><div class="show-price">Ticketed</div></div>
+<div class="card-foot"><span>RSVP encouraged · 486 Halsey St adjacent · bricartsmedia.org</span><a href="https://bricartsmedia.org/celebrate-brooklyn/" target="_blank">bricartsmedia.org ↗</a></div>
+</div>
+</div>
+</div>
+<!-- ═══════════════════════════════════════════════════
+     TAB 4 — BRYANT PARK
+═══════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-bryant">
+<p class="intro">Bryant Park, Midtown Manhattan — Two free series running all summer. No RSVP required for either. Free blanket lending for Picnic Performances.</p>
+<div class="series-grid">
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-free">Fridays · 7pm · All free</div>
+<h3>Picnic Performances — presented by Bank of America</h3>
+<p>Bryant Park lawn · no RSVP · free blanket lending</p>
+</div>
+<div class="show-row"><div class="show-date">Fri Jun 12</div><div class="show-info"><div class="show-artist">Pedrito Martin <span class="icons">💚 🧒</span></div><div class="show-sub">Cuban percussion and dance-floor energy for an easy Friday picnic night.</div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Fri Jul 3</div><div class="show-info"><div class="show-artist">The Knights (chamber orchestra) <span class="icons">💚 🧒</span></div><div class="show-sub">American influences in true "Knightsian" fashion</div></div><div class="show-price free">Free · 7pm</div></div>
+<div class="show-row"><div class="show-date">Fri Jul 10</div><div class="show-info"><div class="show-artist">Aisha Jackson <span class="icons">🧒</span></div><div class="show-sub">Broadway vocalist — The Great Gatsby, Wonderful Town</div></div><div class="show-price free">Free · 7pm</div></div>
+<div class="show-row"><div class="show-date">Fri Jul 17</div><div class="show-info"><div class="show-artist">Nathan and the Zydeco Cha Chas <span class="icons">💚 🧒</span></div><div class="show-sub">Louisiana accordion-driven party music — very kid-friendly, very hard to resist.</div></div><div class="show-price free">Free · 7pm</div></div>
+<div class="show-row"><div class="show-date">Fri Jul 24</div><div class="show-info"><div class="show-artist">NYC Ska Orchestra <span class="icons">💚 🧒</span></div><div class="show-sub">Big-band ska and reggae with horns; fun, rhythmic, and easy for kids.</div></div><div class="show-price free">Free · 7pm</div></div>
+<div class="show-row"><div class="show-date">Fri Jul 31</div><div class="show-info"><div class="show-artist">El Laberinto del Coco <span class="icons">💚 🧒</span></div><div class="show-sub">Puerto Rican bomba, plena, and Afro-Caribbean grooves for a great lawn night.</div></div><div class="show-price free">Free · 7pm</div></div>
+<div class="show-row"><div class="show-date">Aug–Sep</div><div class="show-info"><div class="show-artist">Additional Fridays through Sep 4 (acts TBA) <span class="icons">🧒</span></div><div class="show-sub">Bryant Park usually fills late-summer Fridays with accessible, all-ages music.</div></div><div class="show-price free">Free · 7pm</div></div>
+<div class="card-foot"><span>Lawn opens earlier for picnicking · food vendors on site</span><a href="https://bryantpark.org/activities/picnic-performances" target="_blank">bryantpark.org ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-free">Mondays · ~8pm · All free</div>
+<h3>Summer Film Festival</h3>
+<p>Bryant Park lawn · no RSVP · lawn opens 5pm</p>
+</div>
+<div class="show-row"><div class="show-date">Jul 13–Sep 14</div><div class="show-info"><div class="show-artist">Classic films every Monday <span class="icons">🧒</span></div><div class="show-sub">Full schedule TBA · The Talented Mr. Ripley confirmed in rotation</div></div><div class="show-price free">Free · ~8pm</div></div>
+<div class="card-foot"><span>Arrive early to claim a spot</span><a href="https://bryantpark.org/activities/summer-film-festival" target="_blank">bryantpark.org ↗</a></div>
+</div>
+</div>
+</div>
+<!-- ═══════════════════════════════════════════════════
+     TAB 5 — LUNATICO
+═══════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-lunatico">
+<p class="intro">LunÀtico — 486 Halsey St, Bed-Stuy, Brooklyn · Open nightly 5pm–1am · Happy hour 5–7pm · Dinner menu 6–11pm · Live music from 9pm · <strong>$10 suggested donation — bring cash!</strong> · July onward posted rolling at barlunatico.com/music</p>
+<div style="font-size:12px;color:#7a7468;margin-bottom:1rem;font-style:italic;">In memory of Sonny Rollins, 1930–2026</div>
+<div class="series-grid">
+<div class="series-card full-width">
+<div class="card-head">
+<div class="card-tag tag-lunatico">Nightly · $10 suggested donation (cash)</div>
+<h3>LunÀtico — June 2026 Full Schedule</h3>
+<p>Music from 9pm · Two sets most nights · Come early to eat</p>
+</div>
+<div class="week-label">Week 1 — June 1–7</div>
+<div class="show-row"><div class="show-date">Mon Jun 1</div><div class="show-info"><div class="show-artist">Agustin Uriburu Quartet <span class="icons">💚</span></div><div class="show-sub">w/ Daniele Germani · Luke Marantz · Juan Chiavassa</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Tue Jun 2</div><div class="show-info"><div class="show-artist">SCREE <span class="icons">💚</span></div><div class="show-sub">Ryan El-Sohl · Carmen Quill · Jason Burger</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Wed Jun 3</div><div class="show-info"><div class="show-artist">Yacouba Sissoko &amp; SIYA <span class="icons">❤️</span></div><div class="show-meta">Malian kora master — 21-string West African harp. Rare and special.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Thu Jun 4</div><div class="show-info"><div class="show-artist">Arthur Kell Speculation Sextet <span class="icons">❤️</span></div><div class="show-sub">Caroline Davis · Alfredo Colón · Brad Shepik · Nate Radley · Allan Mednard · <strong>Two sets: 9pm &amp; 10:15pm</strong></div></div><div class="show-price">9 &amp; 10:15pm</div></div>
+<div class="show-row"><div class="show-date">Fri Jun 5</div><div class="show-info"><div class="show-artist">Wayne Tucker &amp; The Bad Mothas <span class="icons">❤️</span></div><div class="show-meta">Jazz-funk / Brooklyn funk — heavy grooves, big horn section energy.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Sat Jun 6</div><div class="show-info"><div class="show-artist">UNITY Quartet ft. Hélio Alves · Guilherme Monteiro · Gili Lopes · Alex Kautz <span class="icons">❤️</span></div><div class="show-meta">Top-shelf Brazilian Latin jazz. Hélio Alves recorded with Paquito D'Rivera and Eliane Elias.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Sun Jun 7</div><div class="show-info"><div class="show-artist">George Burton: WORKSHOP ft. Tyrone Allen · Dylan Band · Nazir Ebo · Siya Makuzeni (special guest) <span class="icons">❤️</span></div><div class="show-meta">South African trombonist-vocalist Siya Makuzeni — genuinely singular. Don't sleep on this.</div></div><div class="show-price">9pm</div></div>
+<div class="week-label">Week 2 — June 8–14</div>
+<div class="show-row"><div class="show-date">Mon Jun 8</div><div class="show-info"><div class="show-artist">Jeremy Gustin · Henry Fraser · Jacob Drab <span class="icons">💚</span></div><div class="show-sub">Loose, exploratory trio with downtown improvisers — good low-key LunÀtico night.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Tue Jun 9</div><div class="show-info"><div class="show-artist">OUTERNET ft. Rob Duguay · Anwar Marshall · Morgan Price · David Gibson <span class="icons">❤️</span></div><div class="show-meta">Anwar Marshall (Kendrick Lamar, Robert Glasper) on drums. Any band with him grooves hard.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Wed Jun 10</div><div class="show-info"><div class="show-artist">Justin Purtill Trio ft. Leo Genovese &amp; Sean Conly <span class="icons">💚</span></div><div class="show-sub">Modern jazz trio with Leo Genovese’s searching piano and Sean Conly’s deep bass.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Thu Jun 11</div><div class="show-info"><div class="show-artist">OROPENDOLA: Joanna Schubert · Elizabeth LoPiccolo · Gabby Sherba · Nico Osborne · Sam Decker · Aaron Edgcomb <span class="icons">❤️</span></div><div class="show-meta">Chamber-meets-global. Named for a South American bird. Hard to categorize — discover it.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Fri Jun 12</div><div class="show-info"><div class="show-artist">Álvaro Benavides Group <span class="icons">💚</span></div><div class="show-sub">Chilean bassist — Latin jazz</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Sat Jun 13</div><div class="show-info"><div class="show-artist">Fred Thomas of The JB's <span class="icons">❤️</span></div><div class="show-meta">James Brown's bassist. Living funk history. If you've never seen him, this is the one.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Sun Jun 14</div><div class="show-info"><div class="show-artist">Moon Radio · The Smoota Tête-à-Tête <span class="icons">💚</span></div><div class="show-sub">Double bill</div></div><div class="show-price">9pm</div></div>
+<div class="week-label">Week 3 — June 15–21</div>
+<div class="show-row"><div class="show-date">Mon Jun 15</div><div class="show-info"><div class="show-artist">Sebastián de Urquiza Quartet ft. Leo Genovese · Vinícius Gomes · Rudy Royston <span class="icons">❤️</span></div><div class="show-meta">Rudy Royston (Bill Frisell, Dave Douglas) + Leo Genovese (Argentine piano). Rich Latin jazz with serious improvisers.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Tue Jun 16</div><div class="show-info"><div class="show-artist">Firas Zreik <span class="icons">💚</span></div><div class="show-sub">Palestinian oud and vocalist</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Wed Jun 17</div><div class="show-info"><div class="show-artist">Samuel Torres &amp; Trio Libre ft. Carmen Staaf &amp; Daniel Neville <span class="icons">❤️</span></div><div class="show-meta">Colombian percussionist + Afro-Colombian rhythms + jazz. Carmen Staaf on piano. Highlight of the month.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Thu Jun 18</div><div class="show-info"><div class="show-artist">Erik Deutsch Band <span class="icons">💚</span></div><div class="show-sub">Keyboard-led rootsy jazz, soul, and Americana from a versatile NYC player.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Fri Jun 19</div><div class="show-info"><div class="show-artist">Modupe Onilu <span class="icons">❤️</span></div><div class="show-meta">Nigerian-American percussionist and vocalist — West African tradition meets jazz. Rarely heard.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Sat Jun 20</div><div class="show-info"><div class="show-artist">Belo &amp; The Beasts <span class="icons">❤️</span></div><div class="show-meta">Afrobeat-inflected band — Fela Kuti territory with jazz and funk. Squarely your wheelhouse.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Sun Jun 21</div><div class="show-info"><div class="show-artist">Very Special Guest TBA <span class="icons">❤️</span></div><div class="show-meta">Mystery booking. Monitor @barlunatico on Instagram as it gets closer.</div></div><div class="show-price">9pm</div></div>
+<div class="week-label">Week 4 — June 22–28</div>
+<div class="show-row"><div class="show-date">Mon Jun 22</div><div class="show-info"><div class="show-artist">Elé Howell Quartet ft. Rodriguez Bros. &amp; Luques Curtis <span class="icons">❤️</span></div><div class="show-meta">The Rodriguez Brothers — among NYC's top Latin jazz pianists. Luques Curtis is a serious bassist.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Tue Jun 23</div><div class="show-info"><div class="show-artist">Marta Sanchez Trio w/ Kanoa Mendenhall &amp; Kweku Sumbry <span class="icons">❤️</span></div><div class="show-meta">Spanish pianist doing ambitious, emotionally direct work. Kweku Sumbry brings West African rhythmic sensibility.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Wed Jun 24</div><div class="show-info"><div class="show-artist">ROCKET SCI: Kenny Wollesen · Jonathon Haffner · Tony Scherr · Dalius Naujo <span class="icons">❤️</span></div><div class="show-meta">Downtown NYC jazz-funk-experimental. Kenny Wollesen is a scene legend.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Thu Jun 25</div><div class="show-info"><div class="show-artist">Chico Pinheiro Quartet <span class="icons">❤️</span></div><div class="show-meta">Brazilian guitarist in the Baden Powell tradition — lyrical, deeply swinging, with his own modern voice.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Fri Jun 26</div><div class="show-info"><div class="show-artist">Sugartone Brass Band <span class="icons">❤️</span></div><div class="show-meta">New Orleans-style brass funk / second-line energy. Hard not to move.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Sat Jun 27</div><div class="show-info"><div class="show-artist">AMAYO &amp; Friends play Lion Awakes! <span class="icons">❤️</span></div><div class="show-meta">AMAYO is a founding member of Antibalas. Fela Kuti torch. Best night of the month for your taste.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Sun Jun 28</div><div class="show-info"><div class="show-artist">Guillermo Klein 5Tet: Rodrigo Recabarren · Rogério Boccato · Sebastián Urquiza · Vinícius Gomes <span class="icons">❤️</span></div><div class="show-meta">Argentine jazz composition legend. Deeply original arranger. Rogério Boccato on percussion seals it.</div></div><div class="show-price">9pm</div></div>
+<div class="week-label">Week 5 — June 29–30</div>
+<div class="show-row"><div class="show-date">Mon Jun 29</div><div class="show-info"><div class="show-artist">Alex Asher Quartet <span class="icons">💚</span></div><div class="show-sub">Trombone-forward small-group jazz — an easy neighborhood pick.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Tue Jun 30</div><div class="show-info"><div class="show-artist">Jim Oblon w/ Josh Dion &amp; Tony Scherr <span class="icons">💚</span></div><div class="show-sub">Guitar/drums trio with Tony Scherr: bluesy, rangy, and quietly serious.</div></div><div class="show-price">9pm</div></div>
+<div class="card-foot"><span>Bring cash · come early to eat · 718-513-0339 · July+ rolling on site</span><a href="https://www.barlunatico.com/music" target="_blank">barlunatico.com/music ↗</a></div>
+</div>
+</div>
+</div>
+<!-- ═══════════════════════════════════════════════════
+     TAB 6 — MOVIES
+═══════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-movies">
+<div class="series-grid">
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-free">In theaters now &amp; summer</div>
+<h3>Kid Picks — Mainstream</h3>
+<p>Wide release · check local showtimes</p>
+</div>
+<div class="show-row"><div class="show-date">Now</div><div class="show-info"><div class="show-artist">The Sheep Detectives <span class="icons">🧒</span></div><div class="show-sub">In theaters now. Cute animated sheep mystery.</div></div><div class="show-price">~$20</div></div>
+<div class="show-row"><div class="show-date">Jun 19</div><div class="show-info"><div class="show-artist">Toy Story 5 <span class="icons">🧒</span></div><div class="show-sub">Woody, Buzz, Jessie vs. electronics. Pixar. Inevitable.</div></div><div class="show-price">~$20</div></div>
+<div class="show-row"><div class="show-date">Jul 1</div><div class="show-info"><div class="show-artist">Minions 3 <span class="icons">🧒</span></div><div class="show-sub">Slapstick chaos and banana jokes — likely a safe rainy-day kid outing.</div></div><div class="show-price">~$20</div></div>
+<div class="show-row"><div class="show-date">Jul 10</div><div class="show-info"><div class="show-artist">Moana (live-action) <span class="icons">🧒</span></div><div class="show-sub">Disney’s island adventure remade as live action; expect big songs and spectacle.</div></div><div class="show-price">~$20</div></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-indie">Arthouse kid picks</div>
+<h3>Kid Picks — Less Mainstream</h3>
+<p>Film Forum Jr., Metrograph Screen Time, outdoor</p>
+</div>
+<div class="show-row"><div class="show-date">Jun 14</div><div class="show-info"><div class="show-artist">The Muppet Movie (1979) — Film Forum Jr. <span class="icons">🧒</span></div><div class="show-sub">Film Forum · $13 · 11am · one of the great comedies</div></div><div class="show-price">$13 · 11am</div></div>
+<div class="show-row"><div class="show-date">Jul TBA</div><div class="show-info"><div class="show-artist">Oliver! + Young Frankenstein — Film Forum Jr. <span class="icons">🧒</span></div><div class="show-sub">Film Forum · Sunday mornings</div></div><div class="show-price">$13 · 11am</div></div>
+<div class="show-row"><div class="show-date">Sun mornings</div><div class="show-info"><div class="show-artist">Metrograph Screen Time — where is the Friend's House? (Kiarostami) + Tomboy (Sciamma) <span class="icons">🧒</span></div><div class="show-sub">Metrograph · 7 Ludlow St · rolling schedule</div></div><div class="show-price">~$17</div></div>
+<div class="show-row"><div class="show-date">Sep 18</div><div class="show-info"><div class="show-artist">How to Train Your Dragon — Movies With A View <span class="icons">🧒</span></div><div class="show-sub">Brooklyn Bridge Park · Pier 1 · Family Night · Sunset</div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Jun–Sep</div><div class="show-info"><div class="show-artist">NYC Parks Movies Under the Stars — 300+ screenings <span class="icons">🧒</span></div><div class="show-sub">Parks citywide · Wicked, Encanto, Lilo &amp; Stitch, Dirty Dancing + more</div></div><div class="show-price free">Free</div></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-indie">26th season</div>
+<h3>Movies With A View presented by Persol</h3>
+<p>Pier 1 Harbor View Lawn, Brooklyn Bridge Park · Thursdays at sunset · Lawn opens 6pm</p>
+</div>
+<div class="show-row"><div class="show-date">Jul 2</div><div class="show-info"><div class="show-artist">Film TBA — series opener</div><div class="show-sub">Opening Bryant Park movie night; worth checking once the title is announced.</div></div><div class="show-price free">Free · Sunset</div></div>
+<div class="show-row"><div class="show-date">Jul 10</div><div class="show-info"><div class="show-artist">Jurassic Park (1993) <span class="icons">🧒</span></div><div class="show-sub">Spielberg dinosaurs on a big outdoor screen — thrilling, but maybe intense for sensitive kids.</div></div><div class="show-price free">Free · Sunset</div></div>
+<div class="show-row"><div class="show-date">Jul 17</div><div class="show-info"><div class="show-artist">Do the Right Thing (1989, dir. Spike Lee)</div><div class="show-sub">Spike Lee’s hot-weather Brooklyn masterpiece; essential NYC outdoor screening.</div></div><div class="show-price free">Free · Sunset</div></div>
+<div class="show-row"><div class="show-date">Aug dates</div><div class="show-info"><div class="show-artist">Bridesmaids + more TBA</div><div class="show-sub">Public vote Aug 27: Challengers vs. The Great Gatsby vs. Ocean's Eleven</div></div><div class="show-price free">Free · Sunset</div></div>
+<div class="show-row"><div class="show-date">Sep 18</div><div class="show-info"><div class="show-artist">How to Train Your Dragon — family night <span class="icons">🧒</span></div><div class="show-sub">Family night with dragons, friendship, and big outdoor crowd energy.</div></div><div class="show-price free">Free · Sunset</div></div>
+<div class="card-foot"><span>No RSVP · no glass · vote for Aug 27 at brooklynbridgepark.org</span><a href="https://brooklynbridgepark.org/event-series/movies-with-a-view/" target="_blank">brooklynbridgepark.org ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-free">All free · Tuesdays ~8pm</div>
+<h3>Seaport Cinema at Pier 17</h3>
+<p>Heineken Riverdeck, 89 South St · Brooklyn Bridge views</p>
+</div>
+<div class="show-row"><div class="show-date">Jul 21</div><div class="show-info"><div class="show-artist">National Treasure (2004) <span class="icons">🧒</span></div><div class="show-sub">Goofy historical treasure hunt; very easy family crowd-pleaser.</div></div><div class="show-price free">Free · ~8pm</div></div>
+<div class="show-row"><div class="show-date">Jul 28</div><div class="show-info"><div class="show-artist">She's the Man (2006) <span class="icons">🧒</span></div><div class="show-sub">Amanda Bynes Shakespeare riff — broad, silly, teen-comedy comfort food.</div></div><div class="show-price free">Free · ~8pm</div></div>
+<div class="show-row"><div class="show-date">Aug 4</div><div class="show-info"><div class="show-artist">Legally Blonde (2001) <span class="icons">🧒</span></div><div class="show-sub">Sparkly, smart, endlessly rewatchable comedy with a great summer-lawn vibe.</div></div><div class="show-price free">Free · ~8pm</div></div>
+<div class="show-row"><div class="show-date">Aug 11</div><div class="show-info"><div class="show-artist">13 Going on 30 (2004) <span class="icons">🧒</span></div><div class="show-sub">Sweet body-swap rom-com with a big nostalgia factor.</div></div><div class="show-price free">Free · ~8pm</div></div>
+<div class="show-row"><div class="show-date">More TBA</div><div class="show-info"><div class="show-artist">Sports dramas + crowd-pleasers</div><div class="show-sub">Likely crowd-friendly outdoor titles; check the final sports-film lineup.</div></div><div class="show-price free">Free</div></div>
+<div class="card-foot"><span>Concessions on site · movie-themed drinks</span><a href="https://pier17ny.com" target="_blank">pier17ny.com ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-indie">Adult arthouse · Film Forum</div>
+<h3>Film Forum — Summer Highlights</h3>
+<p>209 W Houston St · Tickets $18 general / $12 members</p>
+</div>
+<div class="show-row"><div class="show-date">Now–Jun 11</div><div class="show-info"><div class="show-artist">Manas (dir. Marianna Brennand)</div><div class="show-sub">Amazon rainforest debut. Exec produced by Dardennes + Salles + Sean Penn.</div></div><div class="show-price">$18</div></div>
+<div class="show-row"><div class="show-date">Jun 9–29</div><div class="show-info"><div class="show-artist">OZU 120 — Complete Retrospective</div><div class="show-sub">Tokyo Story, Late Spring, Early Summer, Tokyo Twilight, The End of Summer + more. All 35mm. Wim Wenders: "sacred treasure of the cinema."</div></div><div class="show-price">$18</div></div>
+<div class="show-row"><div class="show-date">Jun 12 →</div><div class="show-info"><div class="show-artist">The Third Man (Carol Reed, 1949) — brand new 35mm print</div><div class="show-sub">Vienna shadows, zither score, Orson Welles entrance — classic noir in 35mm.</div></div><div class="show-price">$18</div></div>
+<div class="show-row"><div class="show-date">Jun 26 →</div><div class="show-info"><div class="show-artist">Romería (dir. Carla Simón)</div><div class="show-sub">Janus Films. New film from the Estiu 1993 / Alcarràs director. Right in your wheelhouse.</div></div><div class="show-price">$18</div></div>
+<div class="show-row"><div class="show-date">Jun 26→Jul 2</div><div class="show-info"><div class="show-artist">Guy Maddin retrospective — Careful, Tales from the Gimli Hospital + more</div><div class="show-sub">Surreal, funny, handmade Canadian dream-cinema; definitely more Jerome than Sasha.</div></div><div class="show-price">$18</div></div>
+<div class="card-foot"><span>209 W Houston St · Tue–Sat Lubitsch series also ongoing</span><a href="https://filmforum.org" target="_blank">filmforum.org ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-indie">Adult arthouse · Metrograph</div>
+<h3>Metrograph — June Highlights</h3>
+<p>7 Ludlow St, LES · Tickets ~$17 · No late entry 15min after start</p>
+</div>
+<div class="show-row"><div class="show-date">Jun 4–</div><div class="show-info"><div class="show-artist">Louis Malle retrospective</div><div class="show-sub">Vanya on 42nd Street (35mm), Atlantic City (35mm), God's Country (16mm), ...And the Pursuit of Happiness + documentary</div></div><div class="show-price">~$17</div></div>
+<div class="show-row"><div class="show-date">Jun 4–</div><div class="show-info"><div class="show-artist">Shunji Iwai retrospective</div><div class="show-sub">Love Letter (4K), All About Lily Chou-Chou, April Story — director in person Jun 5–7</div></div><div class="show-price">~$17</div></div>
+<div class="show-row"><div class="show-date">Jun 6</div><div class="show-info"><div class="show-artist">Jollof Films: Den Muso (Souleymane Cissé, 1975)</div><div class="show-sub">West African cinema. Post-screening conversation with Assane Sy and Ahmad Cissé.</div></div><div class="show-price">~$17</div></div>
+<div class="show-row"><div class="show-date">Jun 14→</div><div class="show-info"><div class="show-artist">Disreputable Cinema — Showgirls (4K restoration)</div><div class="show-sub">Metrograph's cult/underground series</div></div><div class="show-price">~$17</div></div>
+<div class="card-foot"><span>7 Ludlow St · Screen Time family program ongoing Sundays</span><a href="https://metrograph.com/nyc/" target="_blank">metrograph.com ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-indie">Adult arthouse · BAM</div>
+<h3>BAMcinematek — Summer Series</h3>
+<p>30 Lafayette Ave, Fort Greene · bam.org/film</p>
+</div>
+<div class="show-row"><div class="show-date">Now</div><div class="show-info"><div class="show-artist">Silent Friend (Ildikó Enyedi) — Tony Leung / Léa Seydoux</div><div class="show-sub">Three vignettes around a ginkgo tree over a century. Hungarian visionary director.</div></div><div class="show-price">~$16</div></div>
+<div class="show-row"><div class="show-date">Jun 5–11</div><div class="show-info"><div class="show-artist">Black Cops, Spies and Overseers — film series</div><div class="show-sub">A pointed repertory series on policing, race, surveillance, and Black representation.</div></div><div class="show-price">~$16</div></div>
+<div class="show-row"><div class="show-date">Now</div><div class="show-info"><div class="show-artist">I Love Boosters (Boots Riley)</div><div class="show-sub">New film from Sorry to Bother You director. Keke Palmer, Naomi Ackie, Demi Moore.</div></div><div class="show-price">~$16</div></div>
+<div class="card-foot"><span>Daily repertory + new releases · Fort Greene</span><a href="https://www.bam.org/film" target="_blank">bam.org/film ↗</a></div>
+</div>
+</div>
+</div>
+<!-- ═══════════════════════════════════════════════════
+     TAB 7 — THEATER
+═══════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-theater">
+<div class="series-grid">
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-free">2 productions · Free</div>
+<h3>Shakespeare in the Park — The Public Theater</h3>
+<p>Delacorte Theater, Central Park (enter 81st &amp; CPW or 79th &amp; 5th Ave)</p>
+</div>
+<div class="show-row"><div class="show-date">May 22–Jun 28</div><div class="show-info"><div class="show-artist">Romeo &amp; Juliet — dir. Saheem Ali <span class="icons">🧒</span></div><div class="show-sub">Lovers speak Spanish as their secret language. Tony winners Francis Jue, Deirdre O'Connell, LaChanze.</div><div class="badges"><span class="badge b-free">Free · tickets req.</span></div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Jul 25–Aug 23</div><div class="show-info"><div class="show-artist">The Winter's Tale — dir. Daniel Sullivan <span class="icons">🧒</span></div><div class="show-sub">Loss, forgiveness, and renewal. Tony-winning director.</div><div class="badges"><span class="badge b-free">Free · tickets req.</span></div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Mondays</div><div class="show-info"><div class="show-artist">Public Forum series — performance meets conversation <span class="icons">🧒</span></div><div class="show-sub">Civic-minded theater conversations and performances; check topics for kid fit.</div><div class="badges"><span class="badge b-free">Free</span></div></div><div class="show-price free">Free</div></div>
+<div class="card-foot"><span>Tickets distributed noon daily · Patron ID required at publictheater.org/register</span><a href="https://publictheater.org" target="_blank">publictheater.org ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-free">Mobile Unit · Free</div>
+<h3>The Public Theater Mobile Unit: As You Like It</h3>
+<p>Parks &amp; facilities across all five boroughs</p>
+</div>
+<div class="show-row"><div class="show-date">Jun 4–28</div><div class="show-info"><div class="show-artist">As You Like It — dir. Emma Rosa Went <span class="icons">🧒</span></div><div class="show-sub">Rosalind disguised as a young man in the Forest of Arden. Touring neighborhood parks citywide.</div><div class="badges"><span class="badge b-free">Free · walk-ups welcome</span></div></div><div class="show-price free">Free</div></div>
+<div class="card-foot"><span>Full borough schedule at publictheater.org</span><a href="https://publictheater.org/productions/season/2526/sftc/shakespeare-for-the-city/" target="_blank">publictheater.org ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-free">Immersive walk-around · Free</div>
+<h3>NY Classical Theatre: The Tragedy of Julius Caesar</h3>
+<p>Central Park (enter W. 103rd &amp; CPW) + Carl Schurz Park, UES</p>
+</div>
+<div class="show-row"><div class="show-date">Tue–Sun · 7pm</div><div class="show-info"><div class="show-artist">Julius Caesar — immersive walk-around production <span class="icons">🧒</span></div><div class="show-sub">Audience follows the action through the park. No Mondays. Louis Butelli as Caesar. Dog-friendly nights offered.</div><div class="badges"><span class="badge b-free">Free · walk-ups welcome</span></div></div><div class="show-price free">Free · 7pm</div></div>
+<div class="card-foot"><span>RSVP for weather updates recommended</span><a href="https://nyclassical.org/summer-2026" target="_blank">nyclassical.org ↗</a></div>
+</div>
+</div>
+<p class="note">NYC Parks also lists 91 free summer theater events borough-wide — <a href="https://www.nycgovparks.org/events/free_summer_theater" target="_blank">nycgovparks.org</a></p>
+</div>
+<!-- ═══════════════════════════════════════════════════
+     TAB 8 — MOMI
+═══════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-momi">
+<p class="intro">Museum of the Moving Image — 36-01 35 Ave, Astoria, Queens · Thu 2–6pm · Fri 2–8pm · Sat &amp; Sun 11am–6pm · Free admission Thursdays 2–6pm</p>
+<div class="series-grid">
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-indie">Jun 12–Aug 29</div>
+<h3>De Palma: Summer of Suspense</h3>
+<p>Redstone Theater · tickets with museum admission</p>
+</div>
+<div class="show-row"><div class="show-date">Jun 12→</div><div class="show-info"><div class="show-artist">Brian De Palma retrospective — Carrie, Blow Out, Dressed to Kill, Scarface, Body Double, Mission Impossible + more</div><div class="show-sub">After Hitchcock, De Palma's the most formally obsessive thriller director of the 20th century.</div></div><div class="show-price">w/ admission</div></div>
+<div class="card-foot"><span>Running through August 29</span><a href="https://movingimage.org/series/de-palma-summer-of-suspense/" target="_blank">movingimage.org ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-indie">Jun 26–Jul 12</div>
+<h3>Culture Wars!</h3>
+<p>Films that provoked censors in the late 80s/early 90s — programmed with Isaac Butler's new book</p>
+</div>
+<div class="show-row"><div class="show-date">Fri Jun 26 · 7pm</div><div class="show-info"><div class="show-artist">The Doom Generation (Gregg Araki, 1995)</div><div class="show-sub">Gregg Araki’s queer, violent, pop-trash road movie; cult 90s provocation.</div></div><div class="show-price">w/ admission</div></div>
+<div class="show-row"><div class="show-date">Sat Jun 27 · 12:30pm</div><div class="show-info"><div class="show-artist">The Last Temptation of Christ + Isaac Butler &amp; Alissa Wilkinson in person</div><div class="show-sub">Scorsese’s controversial spiritual epic, paired with an in-person discussion.</div></div><div class="show-price">w/ admission</div></div>
+<div class="show-row"><div class="show-date">Sat Jun 27 · 4pm</div><div class="show-info"><div class="show-artist">The Watermelon Woman (Cheryl Dunye, 1996)</div><div class="show-sub">Landmark queer Black indie film: funny, searching, and historically essential.</div></div><div class="show-price">w/ admission</div></div>
+<div class="show-row"><div class="show-date">Sun Jun 28 · 1pm</div><div class="show-info"><div class="show-artist">Quills w/ screenwriter Douglas Wright in person</div><div class="show-sub">Dark literary fantasia about the Marquis de Sade, with screenwriter Douglas Wright in person.</div></div><div class="show-price">w/ admission</div></div>
+<div class="show-row"><div class="show-date">Sun Jun 28 · 2pm</div><div class="show-info"><div class="show-artist">Tongues Untied (Marlon Riggs, 1989)</div><div class="show-sub">Marlon Riggs’s poetic, urgent landmark of Black gay experimental cinema.</div></div><div class="show-price">w/ admission</div></div>
+<div class="show-row"><div class="show-date">Sun Jun 28 · 4pm</div><div class="show-info"><div class="show-artist">Poison (Todd Haynes, 1991)</div><div class="show-sub">Todd Haynes’s transgressive early feature, mixing queer theory, horror, and melodrama.</div></div><div class="show-price">w/ admission</div></div>
+<div class="show-row"><div class="show-date">Sat Jul 11 · 3pm</div><div class="show-info"><div class="show-artist">Natural Born Killers (Oliver Stone, 1994)</div><div class="show-sub">Oliver Stone’s tabloid-violence fever dream — brash, abrasive, very 90s.</div></div><div class="show-price">w/ admission</div></div>
+<div class="card-foot"><span>movingimage.org/series/culture-wars</span><a href="https://movingimage.org/series/culture-wars/" target="_blank">movingimage.org ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-indie">May 29–Jul 5</div>
+<h3>By the People, For the People: Real American Tales</h3>
+<p>Films by/about historically marginalized communities · America at 250</p>
+</div>
+<div class="show-row"><div class="show-date">May 29–Jul 5</div><div class="show-info"><div class="show-artist">Ongoing screening series — films TBA</div><div class="show-sub">Asking what "American cinema" means and what it could mean.</div></div><div class="show-price">w/ admission</div></div>
+<div class="card-foot"><a href="https://movingimage.org/series/by-the-people/" target="_blank">movingimage.org ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-free">Free · Various dates</div>
+<h3>Open Worlds 2026 &amp; Special Events</h3>
+<p>Free ground floor access + community programming</p>
+</div>
+<div class="show-row"><div class="show-date">Jun 12→Sep 6</div><div class="show-info"><div class="show-artist">New installation: Proof As If Proof Were Needed (Ting Tong Chang) + Sense of Nowhere VR (Hsin Hsuan Yeh)</div><div class="show-sub">Interactive/immersive art from Taiwan. Artist talk Jun 13.</div></div><div class="show-price">w/ admission</div></div>
+<div class="show-row"><div class="show-date">Jun 13</div><div class="show-info"><div class="show-artist">MoMI LAB opens — people's lab for technology and culture <span class="icons">🧒</span></div><div class="show-sub">Free co-creation studio and artist residency space.</div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Jun 19</div><div class="show-info"><div class="show-artist">Family Day Football — Juneteenth + World Cup <span class="icons">🧒</span></div><div class="show-sub">12–6pm · Fox Amphitheater · football games, VR, FC26, Subsoccer</div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Jun 20</div><div class="show-info"><div class="show-artist">Signal from the Soil: Mycelium, Sound &amp; Story <span class="icons">🧒</span></div><div class="show-sub">Plant sonification performance + mushroom workshops + Fungi Fellowship. 1–5pm</div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Sat mornings</div><div class="show-info"><div class="show-artist">Yoga in the Courtyard w/ The Yoga Room <span class="icons">🧒</span></div><div class="show-sub">9:45am check-in · 10am class · Free with RSVP · bring your own mat</div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Sundays</div><div class="show-info"><div class="show-artist">Moving Image Studio — drop-in media-making <span class="icons">🧒</span></div><div class="show-sub">12:30–5:30pm · green-screen, stop-motion, VR building, drawing</div></div><div class="show-price free">Free</div></div>
+<div class="card-foot"><span>Thu free 2–6pm · 36-01 35 Ave, Astoria · 718-777-6800</span><a href="https://movingimage.org" target="_blank">movingimage.org ↗</a></div>
+</div>
+</div>
+</div>
+<!-- ═══════════════════════════════════════════════════
+     TAB 9 — PARENTS' NIGHT OUT
+═══════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-parentsnight">
+<p class="intro">A practical citywide date-night drop-off tracker. The useful fields are exact drop-off time, exact pickup time, age range, price, food, maps, and registration links. “Verified” means I found an active or current source in June 2026; still confirm the specific date before booking.</p>
+<div class="pno-key">
+<span>❤️ top pick / strong fit</span><span>🧒 good for Sasha's age</span><span>🤖 STEAM</span><span>🎲 games</span><span>🎨 arts</span><span>🎵 dance/music</span><span>🥋 martial arts</span><span>🧗 climbing/active</span><span>🤸 gymnastics</span><span>🎬 movie</span><span>🍕 food included</span><span>🌧 indoor</span><span>🚇 subway-friendly</span><span>🔁 recurring</span><span>⚠️ verify dates</span>
+</div>
+<div class="pno-section">Best Verified Drop-Off Programs</div>
+<table class="pno-table">
+<thead><tr><th>Program</th><th>Borough / Neighborhood</th><th>Ages</th><th>Drop-off</th><th>Pick-up</th><th>Duration</th><th>Price</th><th>Badges</th><th>Links</th><th>Verified</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Program"><div class="pno-title">❤️ Robotic S.T.E.A.M. — Kids Night Out</div><div class="pno-desc">Sasha-tested Fulton Street STEAM night: robotics/experiments, age-appropriate movie, snacks, and pizza.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Clinton Hill / Fort Greene<br/>1004 Fulton St</td>
+<td data-label="Ages">4+</td>
+<td data-label="Drop-off">6:30 PM</td><td data-label="Pick-up">9:30 PM</td><td data-label="Duration">3 hrs</td><td data-label="Price">$30</td>
+<td data-label="Badges"><span class="pno-badges">❤️🧒🤖🎬🍕🌧🚇🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=1004+Fulton+Street+Brooklyn+NY+11238" target="_blank">Map</a> · <a href="https://robotic-steam.com/products/kids-night-out" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ Genius Gems — Date Night Drop-Off</div><div class="pno-desc">Chelsea STEM playground with magnetic builds, marble runs, robotics activities, pizza, juice, and water.</div></td>
+<td data-label="Borough / Neighborhood">Manhattan<br/>Chelsea<br/>555 6th Ave</td>
+<td data-label="Ages">5–12 / K–6</td>
+<td data-label="Drop-off">Usually 5:30 or 6:00 PM</td><td data-label="Pick-up">Usually 8:00 or 8:30 PM</td><td data-label="Duration">2.5 hrs</td><td data-label="Price">$49.99 + tax</td>
+<td data-label="Badges"><span class="pno-badges">❤️🧒🤖🎨🍕🌧🚇🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=555+6th+Ave+New+York+NY+10011" target="_blank">Map</a> · <a href="https://nyc.geniusgems.com/products/date-night-drop-off" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ PLAY Kids Greenpoint — Drop-Off Movie Nights</div><div class="pno-desc">Friday kids’ night out with arts & crafts, movie screening, open play, pizza, popcorn, and optional early drop-off.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Greenpoint<br/>33 Nassau Ave</td>
+<td data-label="Ages">4–8</td>
+<td data-label="Drop-off">5:30 PM</td><td data-label="Pick-up">8:30 PM</td><td data-label="Duration">3 hrs</td><td data-label="Price">Check schedule; recent listings around $47</td>
+<td data-label="Badges"><span class="pno-badges">❤️🧒🎨🎬🍕🌧🚇🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=33+Nassau+Ave+Brooklyn+NY+11222" target="_blank">Map</a> · <a href="https://www.playgreenpoint.com/movie-nights" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ Brooklyn Bouldering Project — Parents’ Night Out</div><div class="pno-desc">Climbing, games, pizza, and a kid-friendly movie. One of the better longer-window options.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Gowanus<br/>575 Degraw St</td>
+<td data-label="Ages">5–15</td>
+<td data-label="Drop-off">6:30 PM typical</td><td data-label="Pick-up">9:30 PM typical</td><td data-label="Duration">3–3.5 hrs</td><td data-label="Price">Check booking page</td>
+<td data-label="Badges"><span class="pno-badges">❤️🧒🧗🎬🍕🌧🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=575+Degraw+St+Brooklyn+NY+11217" target="_blank">Map</a> · <a href="https://boulderingproject.com/parents-night-out-brooklyn/" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ Brooklyn Game Lab — Saturday Pajama Party</div><div class="pno-desc">Board games, RPG/tabletop energy, crafts, movie, and pizza. Especially good now that Sasha is 6.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Park Slope / Center Slope<br/>310 7th Ave</td>
+<td data-label="Ages">6–12</td>
+<td data-label="Drop-off">5:30 PM</td><td data-label="Pick-up">10:00 PM</td><td data-label="Duration">4.5 hrs</td><td data-label="Price">Check registration; discounts noted</td>
+<td data-label="Badges"><span class="pno-badges">❤️🧒🎲🎬🍕🌧🚇🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=310+7th+Ave+Brooklyn+NY+11215" target="_blank">Map</a> · <a href="https://brooklyngamelab.com/pajamaparty" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ Gotham Gymnastics — Kids’ Night Out</div><div class="pno-desc">Open gym, pit time, bouncy house, games, pizza, ice cream, and themed nights.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Gowanus / Downtown Brooklyn area</td>
+<td data-label="Ages">4–14</td>
+<td data-label="Drop-off">6:00 PM</td><td data-label="Pick-up">9:00 PM</td><td data-label="Duration">3 hrs</td><td data-label="Price">$65</td>
+<td data-label="Badges"><span class="pno-badges">🧒🤸🧗🍕🌧🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=Gotham+Gymnastics+Brooklyn+NY" target="_blank">Map</a> · <a href="https://www.gothamgymnastics.com/copy-of-kid-s-night-out-1" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ HAPIK Industry City — Date Night Drop-Off</div><div class="pno-desc">Supervised climbing night with instructors; no parent supervision needed. Snack and drink included.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Sunset Park / Industry City</td>
+<td data-label="Ages">35–309 lbs; typically 4+</td>
+<td data-label="Drop-off">Weekly Friday slots at 5:00 PM and 7:00 PM</td><td data-label="Pick-up">Session-based</td><td data-label="Duration">Verify session length</td><td data-label="Price">$39.90 per climber</td>
+<td data-label="Badges"><span class="pno-badges">🧒🧗🌧🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=HAPIK+Industry+City+Brooklyn+NY" target="_blank">Map</a> · <a href="https://hapik.us/hapik-industry-city-date-night-drop-off" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ CREA Interactivity — Date Night Drop-Off</div><div class="pno-desc">Tech-infused STEAM / interactive play drop-off at Industry City. Strong add-on if paired with HAPIK/IC.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Sunset Park / Industry City</td>
+<td data-label="Ages">3–12</td>
+<td data-label="Drop-off">6:00 PM</td><td data-label="Pick-up">8:30 PM</td><td data-label="Duration">2.5 hrs</td><td data-label="Price">Verify current listing</td>
+<td data-label="Badges"><span class="pno-badges">🧒🤖🎨🌧🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=CREA+Interactivity+Industry+City+Brooklyn+NY" target="_blank">Map</a> · <a href="https://brooklynnw.macaronikid.com/events/68e6cd1658724878d96f029c/the-crea-date-night-drop-off-at-industry-city-in-sunset-park-%28ages-3-12%29" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ Life Time Dumbo — Parents’ Night Out</div><div class="pno-desc">Monthly/themed Kids Academy drop-off: active games, pizza party, parent may leave club. Requires junior membership.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>DUMBO<br/>Life Time Dumbo</td>
+<td data-label="Ages">4–13, potty-trained</td>
+<td data-label="Drop-off">Varies by event</td><td data-label="Pick-up">3 hrs later</td><td data-label="Duration">3 hrs</td><td data-label="Price">Complimentary with active junior membership</td>
+<td data-label="Badges"><span class="pno-badges">🧒🏃🍕🌧🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=Life+Time+Dumbo+Brooklyn+NY" target="_blank">Map</a> · <a href="https://my.lifetime.life/clubs/ny/dumbo/programs/kids/events.html" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ The Tiny Scientist — Night Science PJ Parties</div><div class="pno-desc">Science PJ parties with hands-on experiments, pizza, and often a bubble dance party or take-home project.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Park Slope / South Slope / Prospect Heights</td>
+<td data-label="Ages">4–10 typical</td>
+<td data-label="Drop-off">Often 6:00 or 6:30 PM</td><td data-label="Pick-up">Often 8:30 or 9:00 PM</td><td data-label="Duration">2–3 hrs</td><td data-label="Price">Often $25–$55</td>
+<td data-label="Badges"><span class="pno-badges">❤️🧒🤖🍕🌧🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=The+Tiny+Scientist+Brooklyn+NY" target="_blank">Map</a> · <a href="https://www.thetinyscientist.com/workshops" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ My Gym Park Slope — Parents’ Night Out</div><div class="pno-desc">Games, rides, activities, pizza, and a 30-minute movie with My Gym teachers.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Park Slope<br/>808 Union St, 2nd Fl</td>
+<td data-label="Ages">3–10, potty-trained</td>
+<td data-label="Drop-off">Check event date</td><td data-label="Pick-up">Check event date</td><td data-label="Duration">Usually event block</td><td data-label="Price">1 session $80; 2+ $75/session</td>
+<td data-label="Badges"><span class="pno-badges">🧒🤸🎬🍕🌧🚇🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=808+Union+Street+Brooklyn+NY+11215" target="_blank">Map</a> · <a href="https://www.mygym.com/parkslope/events" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ Juguemos — Parents Night Out</div><div class="pno-desc">Monthly Spanish-immersion center PNO with games, arts & crafts, play, socialization, pizza, and possible movie.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>South Slope<br/>323 5th Ave</td>
+<td data-label="Ages">3–8</td>
+<td data-label="Drop-off">Monthly; confirm date/time</td><td data-label="Pick-up">Monthly; confirm date/time</td><td data-label="Duration">Verify</td><td data-label="Price">Verify</td>
+<td data-label="Badges"><span class="pno-badges">🧒🎨🎬🍕🌧🚇🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=323+5th+Ave+Brooklyn+NY+11215" target="_blank">Map</a> · <a href="https://www.juguemos.org/parents-night-out-4-10y.html" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ Tumbling Tunes — Parent’s Night Out</div><div class="pno-desc">Fully supervised games, crafts, gymnastics, free play, and pizza dinner. No potty-training requirement.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn / NYC-area<br/>Confirm exact location before booking</td>
+<td data-label="Ages">1–8</td>
+<td data-label="Drop-off">6:00 PM</td><td data-label="Pick-up">9:00 PM</td><td data-label="Duration">3 hrs</td><td data-label="Price">$15/hr one child; $25/hr two siblings; $30/hr three siblings</td>
+<td data-label="Badges"><span class="pno-badges">🧒🤸🎨🍕🌧🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=Tumbling+Tunes+Brooklyn+NY" target="_blank">Map</a> · <a href="https://www.tumblingtunes.com/special-events" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ NY Kids Club — PJ Parties</div><div class="pno-desc">Themed after-hours gym/art/disco party with pizza dinner; multiple NYC locations, membership not required.</div></td>
+<td data-label="Borough / Neighborhood">Manhattan, Brooklyn & Queens<br/>Multiple locations</td>
+<td data-label="Ages">2.5–8</td>
+<td data-label="Drop-off">Friday/Saturday evenings; varies</td><td data-label="Pick-up">Varies</td><td data-label="Duration">Usually 2 hrs</td><td data-label="Price">Check location schedule</td>
+<td data-label="Badges"><span class="pno-badges">❤️🧒🎨🧗🍕🌧🚇🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=NY+Kids+Club+New+York+NY" target="_blank">Map</a> · <a href="https://nypreschoolandkidsclub.com/activities/pj-parties/" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ Broadway Dance Center — Kids’ Night Out</div><div class="pno-desc">Dance, games, crafts, food, friends, and themed parties. Cheese pizza and cookies included.</div></td>
+<td data-label="Borough / Neighborhood">Manhattan<br/>Midtown / Lincoln Center programs</td>
+<td data-label="Ages">3–5 and 6–9</td>
+<td data-label="Drop-off">Check event listing</td><td data-label="Pick-up">Late pickup fees after 9:00 PM</td><td data-label="Duration">Evening event</td><td data-label="Price">$50; sibling $35</td>
+<td data-label="Badges"><span class="pno-badges">🧒🎵🎨🍕🌧🚇🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=322+W+45th+St+New+York+NY+10036" target="_blank">Map</a> · <a href="https://broadwaydancecenter.com/children-teens/kids-night-out" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ Omne MMA — Parents Night Out</div><div class="pno-desc">Monthly Friday martial arts studio PNO with games, activity, kid-appropriate movie, pizza, drinks, and snacks.</div></td>
+<td data-label="Borough / Neighborhood">Manhattan<br/>Upper West Side<br/>200 West End Ave</td>
+<td data-label="Ages">Potty-trained kids; age verify</td>
+<td data-label="Drop-off">One Friday/month</td><td data-label="Pick-up">3 hrs later</td><td data-label="Duration">3 hrs</td><td data-label="Price">Verify</td>
+<td data-label="Badges"><span class="pno-badges">🥋🏃🎬🍕🌧🚇🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=200+West+End+Ave+New+York+NY+10023" target="_blank">Map</a> · <a href="https://omnemma.com/parents-night-out/" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ The Little Gym UWS — Parent Survival Night</div><div class="pno-desc">Structured games, music, movement, and skill-building in a familiar kids-gym environment.</div></td>
+<td data-label="Borough / Neighborhood">Manhattan<br/>Upper West Side</td>
+<td data-label="Ages">Verify by event</td>
+<td data-label="Drop-off">Varies</td><td data-label="Pick-up">Varies</td><td data-label="Duration">Evening event</td><td data-label="Price">Verify</td>
+<td data-label="Badges"><span class="pno-badges">🧒🤸🏃🌧🚇🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=The+Little+Gym+Upper+West+Side+NYC" target="_blank">Map</a> · <a href="https://www.thelittlegym.com/new-york-upper-westside/events-more/" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">❤️ Royal Magic Castle — Parents Night Out</div><div class="pno-desc">Flushing indoor entertainment center with soft play, laser tag/arcade-style fun, dinner, drinks, and free play.</div></td>
+<td data-label="Borough / Neighborhood">Queens<br/>Flushing<br/>3605 Bud Place</td>
+<td data-label="Ages">3+, potty-trained</td>
+<td data-label="Drop-off">5:00 PM</td><td data-label="Pick-up">8:00 PM</td><td data-label="Duration">3 hrs</td><td data-label="Price">$28 members / $45 non-members</td>
+<td data-label="Badges"><span class="pno-badges">🧒🧗🍕🌧🔁</span></td>
+<td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=3605+Bud+Place+Flushing+NY+11354" target="_blank">Map</a> · <a href="https://royalmagiccastle.com/parents-night-out-event/" target="_blank">Register</a></td>
+<td class="pno-good" data-label="Verified">Jun 2026</td>
+</tr>
+</tbody>
+</table>
+<div class="pno-section">Worth Tracking / Verify Before Booking</div>
+<table class="pno-table">
+<thead><tr><th>Program</th><th>Borough / Neighborhood</th><th>Ages</th><th>Likely Time</th><th>Price</th><th>Badges</th><th>Links</th><th>Status</th></tr></thead>
+<tbody>
+<tr>
+<td data-label="Program"><div class="pno-title">Prospect Gymnastics — Open Gym / Parents’ Night Out</div><div class="pno-desc">Great Bed-Stuy physical option if current drop-off dates are available.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Bed-Stuy<br/>1230 Bedford Ave</td><td data-label="Ages">5+</td><td data-label="Likely Time">Need current booking slot</td><td data-label="Price">Historically around $35</td><td data-label="Badges"><span class="pno-badges">🧒🤸🌧🚇⚠️</span></td><td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=1230+Bedford+Ave+Brooklyn+NY+11216" target="_blank">Map</a> · <a href="https://www.prospectgymnastics.com/bed-stuy-programming" target="_blank">Check</a></td><td class="pno-warn" data-label="Status">Verify dates</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">Bed-Stuy Kids — Parents’ Night Out</div><div class="pno-desc">Neighborhood childcare center that has run evening drop-off events; current schedule appears social-media driven.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Bed-Stuy</td><td data-label="Ages">Verify</td><td data-label="Likely Time">Previously 5:30–8:30 PM</td><td data-label="Price">Verify</td><td data-label="Badges"><span class="pno-badges">🧒🌧🚇⚠️</span></td><td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=Bed-Stuy+Kids+Brooklyn+NY" target="_blank">Map</a> · <a href="https://www.facebook.com/bedstuykidschildcare/" target="_blank">Check</a></td><td class="pno-warn" data-label="Status">Verify current schedule</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">Space Club — Big Kid Drop-Off Night</div><div class="pno-desc">Fort Greene indoor playground with drop-off nights advertised socially; exact dates need direct verification.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Fort Greene<br/>143 Waverly Ave</td><td data-label="Ages">Big kids; verify</td><td data-label="Likely Time">Example social posts: 6:00–8:30 PM</td><td data-label="Price">Verify</td><td data-label="Badges"><span class="pno-badges">🧒🧗🌧🚇⚠️</span></td><td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=143+Waverly+Ave+Brooklyn+NY" target="_blank">Map</a> · <a href="https://www.instagram.com/spaceclubnyc/" target="_blank">Check</a></td><td class="pno-warn" data-label="Status">Verify current dates</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">Flying Apple NY</div><div class="pno-desc">Excellent indoor play space, but current evidence points to open play rather than true parent-leaves drop-off.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Broadway / Bed-Stuy-Bushwick<br/>912 Broadway</td><td data-label="Ages">Up to 10 typical</td><td data-label="Likely Time">Open late weekends</td><td data-label="Price">Open-play pricing</td><td data-label="Badges"><span class="pno-badges">🧒🧗🌧⚠️</span></td><td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=912+Broadway+Brooklyn+NY" target="_blank">Map</a> · <a href="https://www.flyingappleny.com/" target="_blank">Check</a></td><td class="pno-warn" data-label="Status">Not verified as drop-off</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">Brooklyn Robot Foundry</div><div class="pno-desc">Great STEAM operator, especially for school-holiday Fundays and summer; I did not find a recurring evening date-night drop-off.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Bed-Stuy / Brooklyn Heights / mobile programs</td><td data-label="Ages">K–5 / K–6 programs</td><td data-label="Likely Time">School breaks and camps, not PNO</td><td data-label="Price">Varies</td><td data-label="Badges"><span class="pno-badges">🧒🤖🎨🌧⚠️</span></td><td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=Brooklyn+Robot+Foundry+Bed-Stuy+NY" target="_blank">Map</a> · <a href="https://brooklynrobotfoundry.com/bed-stuy/welcome/" target="_blank">Check</a></td><td class="pno-warn" data-label="Status">Monitor, but not true PNO yet</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">CREA + HAPIK at Industry City</div><div class="pno-desc">Both are strong; HAPIK is verified weekly. Keep CREA checked for exact weekly drop-off dates and booking page.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Sunset Park / Industry City</td><td data-label="Ages">3–12 / 4+</td><td data-label="Likely Time">Fridays, varies by venue</td><td data-label="Price">CREA verify; HAPIK $39.90</td><td data-label="Badges"><span class="pno-badges">🧒🤖🧗🌧🔁⚠️</span></td><td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=Industry+City+Brooklyn+NY" target="_blank">Map</a> · <a href="https://industrycity.com/explore/family-friendly/" target="_blank">Check</a></td><td class="pno-warn" data-label="Status">Monitor combo date-night opportunities</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">Gentle Art Kidz / Astoria martial arts PNO</div><div class="pno-desc">Social posts show Astoria parents-night-out style events, but I would verify directly before relying on it.</div></td>
+<td data-label="Borough / Neighborhood">Queens<br/>Astoria</td><td data-label="Ages">5–12 in posts</td><td data-label="Likely Time">Examples: 5:00–9:00 PM</td><td data-label="Price">Verify</td><td data-label="Badges"><span class="pno-badges">🥋🏃🍕🌧⚠️</span></td><td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=Gentle+Art+Kidz+Astoria+NY" target="_blank">Map</a> · <a href="https://www.instagram.com/gentleartkidz/" target="_blank">Check</a></td><td class="pno-warn" data-label="Status">Verify current dates</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">Bounce Gymnastics</div><div class="pno-desc">Queens-area gymnastics provider listed with Parents Night Out; exact NYC-adjacent dates need direct verification.</div></td>
+<td data-label="Borough / Neighborhood">Queens / Great Neck area</td><td data-label="Ages">2–teen range listed</td><td data-label="Likely Time">Social posts suggest 6:00–9:00 PM or 6:30–9:30 PM</td><td data-label="Price">Verify</td><td data-label="Badges"><span class="pno-badges">🧒🤸🍕🌧⚠️</span></td><td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=Bounce+Gymnastics+Great+Neck+NY" target="_blank">Map</a> · <a href="https://queens.kidsoutandabout.com/content/bounce-gymnastics" target="_blank">Check</a></td><td class="pno-warn" data-label="Status">Verify if worth the trip</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">Project Playdate</div><div class="pno-desc">Historically strong 3-hour NYC pajama-party drop-off model for younger kids. Sasha is at the top edge, so confirm active locations.</div></td>
+<td data-label="Borough / Neighborhood">Manhattan / Brooklyn<br/>Multiple pop-up locations</td><td data-label="Ages">2–6</td><td data-label="Likely Time">Fri/Sat evenings historically</td><td data-label="Price">Verify</td><td data-label="Badges"><span class="pno-badges">🧒🎨🎬🍕🌧⚠️</span></td><td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=Project+Playdate+New+York+NY" target="_blank">Map</a> · <a href="https://www.projectplaydate.org/" target="_blank">Check</a></td><td class="pno-warn" data-label="Status">Verify active 2026 locations</td>
+</tr><tr>
+<td data-label="Program"><div class="pno-title">NY City Explorers — Parent-Free Pajama Party</div><div class="pno-desc">Historic Downtown Brooklyn parent-free pajama party listing; useful lead, but current operation needs verification.</div></td>
+<td data-label="Borough / Neighborhood">Brooklyn<br/>Downtown Brooklyn<br/>110 Schermerhorn St</td><td data-label="Ages">2+ historically</td><td data-label="Likely Time">Friday evening historically</td><td data-label="Price">Historically low-cost</td><td data-label="Badges"><span class="pno-badges">🧒🎬🍕🌧🚇⚠️</span></td><td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=110+Schermerhorn+St+Brooklyn+NY" target="_blank">Map</a> · <a href="https://www.jpurbanmoving.com/blog/top-drop-in-daycare-centers-in-new-york/" target="_blank">Check</a></td><td class="pno-warn" data-label="Status">Likely stale; verify</td>
+</tr>
+</tbody>
+</table>
+<div class="pno-section">Overnight Adventures — Not Usually Parent-Free</div>
+<table class="pno-table">
+<thead><tr><th>Program</th><th>Borough / Neighborhood</th><th>Ages</th><th>Start</th><th>End</th><th>Price</th><th>Badges</th><th>Links</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td data-label="Program"><div class="pno-title">AMNH — A Night at the Museum Sleepover</div><div class="pno-desc">Flashlight tours, activities, and sleeping under/near iconic exhibits. Amazing, but not a date-night drop-off for Sasha yet because under-8s need their own adult chaperone.</div></td><td data-label="Borough / Neighborhood">Manhattan<br/>Upper West Side</td><td data-label="Ages">6–12 with chaperones</td><td data-label="Start">6:00 PM</td><td data-label="End">Morning</td><td data-label="Price">About $225/person in 2026 reports</td><td data-label="Badges"><span class="pno-badges">🧒🌙🦖🌧⚠️</span></td><td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=American+Museum+of+Natural+History+NYC" target="_blank">Map</a> · <a href="https://www.amnh.org/plan-your-visit/sleepovers" target="_blank">Info</a></td><td class="pno-warn" data-label="Status">Needs adult chaperone</td></tr>
+<tr><td data-label="Program"><div class="pno-title">Intrepid Museum — Overnights</div><div class="pno-desc">Sleep aboard the aircraft carrier with nighttime access, ship exploration, and activities. Best for groups, scouts, or birthday overnights.</div></td><td data-label="Borough / Neighborhood">Manhattan<br/>Hudson Yards / Pier 86</td><td data-label="Ages">5+ / groups</td><td data-label="Start">Evening</td><td data-label="End">Morning</td><td data-label="Price">Birthday package listed at $145/person</td><td data-label="Badges"><span class="pno-badges">🧒🌙🚢🌧⚠️</span></td><td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=Intrepid+Museum+New+York+NY" target="_blank">Map</a> · <a href="https://intrepidmuseum.org/plan-your-visit/group-visits/overnights" target="_blank">Info</a></td><td class="pno-warn" data-label="Status">Group/chaperone model</td></tr>
+<tr><td data-label="Program"><div class="pno-title">Bronx Zoo — Overnight Safari</div><div class="pno-desc">Previously a classic NYC overnight, but current Bronx Zoo page says overnights are not being hosted for the foreseeable future.</div></td><td data-label="Borough / Neighborhood">Bronx<br/>Bronx Park</td><td data-label="Ages">Family programs vary</td><td data-label="Start">N/A</td><td data-label="End">N/A</td><td data-label="Price">N/A</td><td data-label="Badges"><span class="pno-badges">🧒🌙🐯⚠️</span></td><td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=Bronx+Zoo+Bronx+NY" target="_blank">Map</a> · <a href="https://bronxzoo.com/learn/families/overnight-safari" target="_blank">Info</a></td><td class="pno-warn" data-label="Status">Not currently offered</td></tr>
+</tbody>
+</table>
+<p class="note"><strong>Last verified:</strong> June 4, 2026. For actual date-night planning, re-check the registration page the week of the event. Priority fields: exact drop-off time, exact pickup time, price, age range, food, and whether parents may leave.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     TAB 10 — MUSEUMS + FAMILY EVENTS
+═══════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-museums">
+<p class="intro">Museum and family-event picks for summer 2026 — especially useful for Sasha days, rainy afternoons, and low-planning weekends. Schedules change often, so use the links to confirm hours, registration, and ticketing.</p>
+<div class="series-grid">
+<div class="series-card full-width">
+<div class="card-head">
+<div class="card-tag tag-special">Jerome + Sasha shortlist</div>
+<h3>Top Family Museum Picks</h3>
+<p>Hands-on, low-stress, and good for a six-year-old</p>
+</div>
+<div class="show-row"><div class="show-date">Daily except Tue</div><div class="show-info"><div class="show-artist"><a href="https://www.amnh.org/exhibitions/permanent/discovery-room" target="_blank">AMNH Discovery Room</a>  ❤️ 🧒</div><div class="show-sub">Hands-on natural-history discovery space for pre-K and up; included with museum admission.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Fri Jul 24</div><div class="show-info"><div class="show-artist">AMNH Sleepover at the Museum <span class="icons">❤️ 🧒 ⚠️</span></div><div class="show-sub">Ages 6–12 overnight adventure under the Blue Whale; likely books fast.</div></div><div class="show-price">Ticketed</div></div>
+<div class="show-row"><div class="show-date">Thu Jun 11–Sun Jul 19</div><div class="show-info"><div class="show-artist">Intrepid Museum World Cup Watch Parties <span class="icons">💚 🧒</span></div><div class="show-sub">Free match screenings on Pier 86 — big ships, planes, soccer, and river air.</div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Jul 3–7</div><div class="show-info"><div class="show-artist">Intrepid: Celebrating America’s 250th <span class="icons">💚 🧒</span></div><div class="show-sub">Military displays, activities, demonstrations, and performances over the holiday weekend.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Thursdays</div><div class="show-info"><div class="show-artist"><a href="https://www.brooklynkids.org/community-access/" target="_blank">Brooklyn Children’s Museum — Community Access Thursdays</a>  ❤️ 🧒</div><div class="show-sub">2–5pm access window for Totally Tots, World Brooklyn, NEST climber, and more.</div></div><div class="show-price free">Free/low-cost</div></div>
+<div class="show-row"><div class="show-date">Wed–Sun</div><div class="show-info"><div class="show-artist">Brooklyn Children’s Museum — Play at BCM <span class="icons">❤️ 🧒</span></div><div class="show-sub">Reliable all-weather play day: exhibits, ColorLab art studio, STEM makerspace, and rooftop options.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Daily</div><div class="show-info"><div class="show-artist">Children’s Museum of Manhattan — Public Programs <span class="icons">💚 🧒</span></div><div class="show-sub">Rotating art, music, science, and storytelling programs designed especially for ages 0–6.</div></div><div class="show-price">Admission</div></div>
+<div class="card-foot"><span>Best “what do we do today?” options</span><a href="https://www.amnh.org/calendar" target="_blank">AMNH calendar ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-free">Children’s museums</div>
+<h3>Dedicated Kids’ Museums</h3>
+<p>Most predictable family programming</p>
+</div>
+<div class="show-row"><div class="show-date">Daily</div><div class="show-info"><div class="show-artist"><a href="https://cmom.org/visit/public-programs/" target="_blank">CMOM Public Programs</a>  💚 🧒</div><div class="show-sub">Best for younger kids, but still useful for Sasha if the theme is strong.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Wed–Sun</div><div class="show-info"><div class="show-artist">Brooklyn Children’s Museum <span class="icons">❤️ 🧒</span></div><div class="show-sub">Totally Tots, World Brooklyn, NEST climber, ColorLab, and STEM makerspace.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Thursdays</div><div class="show-info"><div class="show-artist">BCM Community Access Thursdays <span class="icons">❤️ 🧒</span></div><div class="show-sub">2–5pm weekly access program; useful after camp, school, or a lazy morning.</div></div><div class="show-price free">Free/low-cost</div></div>
+<div class="card-foot"><span>Check same-week listings before going</span><a href="https://www.brooklynkids.org/calendar/" target="_blank">BCM calendar ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-special">Science + ships</div>
+<h3>Science, Space &amp; Discovery</h3>
+<p>Great rainy-day choices</p>
+</div>
+<div class="show-row"><div class="show-date">Daily except Tue</div><div class="show-info"><div class="show-artist"><a href="https://www.amnh.org/exhibitions/permanent/discovery-room" target="_blank">AMNH Discovery Room</a>  ❤️ 🧒</div><div class="show-sub">Hands-on specimens, puzzles, microscopes, and natural-history exploration.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Weekends</div><div class="show-info"><div class="show-artist">AMNH Learning Labs <span class="icons">💚 🧒</span></div><div class="show-sub">Climate and Human Origins labs are geared older, but good if Sasha is in science mode.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Jun 11–Jul 19</div><div class="show-info"><div class="show-artist">Intrepid World Cup Watch Parties <span class="icons">💚 🧒</span></div><div class="show-sub">A fun hybrid: soccer outside, aircraft carrier next door.</div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Monthly</div><div class="show-info"><div class="show-artist">Intrepid Access Family Events <span class="icons">💚 🧒</span></div><div class="show-sub">Guided tours and art-making for families with developmental disabilities.</div></div><div class="show-price">Register</div></div>
+<div class="card-foot"><span>AMNH + Intrepid are the strongest science picks</span><a href="https://intrepidmuseum.org/events/calendar" target="_blank">Intrepid calendar ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-indie">Art museums</div>
+<h3>Art Museums with Family Hooks</h3>
+<p>Best when paired with one specific activity</p>
+</div>
+<div class="show-row"><div class="show-date">Sat Jun 6</div><div class="show-info"><div class="show-artist">The Met Cloisters — Garden Festival: Wild Imaginations <span class="icons">❤️ 🧒</span></div><div class="show-sub">Tours, performances, and art-making in the Cloisters gardens — unusually magical kid option.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Sat Jun 6</div><div class="show-info"><div class="show-artist">The Met Cloisters — Family Tours <span class="icons">💚 🧒</span></div><div class="show-sub">A guided family-friendly entry point into the Cloisters’ art, gardens, and medieval weirdness.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Sat Jun 6</div><div class="show-info"><div class="show-artist">Brooklyn Museum First Saturday: Pride Month <span class="icons">💚 🧒</span></div><div class="show-sub">Free evening programming; more crowded and grown-up, but festive and close to home.</div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Aug 1</div><div class="show-info"><div class="show-artist">Brooklyn Museum First Saturday: Caribbean Culture <span class="icons">💚 🧒</span></div><div class="show-sub">Music, art, and community programming tied to Caribbean culture.</div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Summer</div><div class="show-info"><div class="show-artist">Brooklyn Museum on Wheels <span class="icons">💚 🧒</span></div><div class="show-sub">Mobile museum visits Brooklyn neighborhoods with touchable teaching objects and activities.</div></div><div class="show-price free">Free</div></div>
+<div class="card-foot"><span>Pick a day with hands-on programming</span><a href="https://www.brooklynmuseum.org/programs" target="_blank">Brooklyn Museum programs ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-mixed">NYC history</div>
+<h3>City History + Immersive Exhibits</h3>
+<p>Better for curious kids than tiny-kid play</p>
+</div>
+<div class="show-row"><div class="show-date">Opens Jun 6</div><div class="show-info"><div class="show-artist"><a href="https://www.mcny.org/exhibition/another-wonderland" target="_blank">MCNY — Another Wonderland</a>  💚 🧒</div><div class="show-sub">Alice in Wonderland refracted through New York — likely the most kid-friendly MCNY summer hook.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Ongoing</div><div class="show-info"><div class="show-artist"><a href="https://www.mcny.org/exhibition/songs-new-york" target="_blank">MCNY — Songs of New York</a>  💚 🧒</div><div class="show-sub">Interactive music exhibition spanning NYC sounds from bebop to K-pop.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Family days</div><div class="show-info"><div class="show-artist"><a href="https://www.mcny.org/series/family-community" target="_blank">MCNY Family Programs</a>  💚 🧒</div><div class="show-sub">Workshops and tours generally geared toward ages 6–12; registration often suggested.</div></div><div class="show-price">Admission</div></div>
+<div class="card-foot"><span>Good uptown pairing with Central Park</span><a href="https://www.mcny.org/series/family-community" target="_blank">MCNY family programs ↗</a></div>
+</div>
+</div>
+<p class="note"><strong>Sources checked June 4, 2026:</strong> AMNH, Intrepid Museum, Brooklyn Children’s Museum, Children’s Museum of Manhattan, The Met, Brooklyn Museum, and Museum of the City of New York. Confirm final times and registration before going.</p>
+</div>
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
