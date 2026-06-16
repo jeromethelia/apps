@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>NYC Summer 2026 — Jerome's Guide</title>
+<title>Mashrome's Guide — NYC Summer 2026</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
@@ -296,6 +296,180 @@
     .pno-table td::before { content:attr(data-label); display:block; font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
   }
 
+
+  /* DANCING TAB */
+  .dance-top-pick {
+    display:inline-block;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:2px 7px;
+    border-radius:999px;
+    background:#fff3cd;
+    color:#7a5500;
+    white-space:nowrap;
+  }
+
+  .dance-table a, .dance-card a, .dance-watch-list a { color: var(--teal); text-decoration: none; }
+  .dance-table a:hover, .dance-card a:hover, .dance-watch-list a:hover { text-decoration: underline; }
+  .dance-priority { white-space: nowrap; font-size: 14px; }
+
+  .dance-main { max-width: 1100px; }
+  .dance-key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0.9rem 0 1.25rem;
+  }
+  .dance-key span {
+    font-size: 11px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 3px 9px;
+    color: var(--muted);
+  }
+  .dance-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--gold);
+    margin: 1.7rem 0 0.65rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.25rem;
+  }
+  .dance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 14px;
+    margin-top: 0.85rem;
+  }
+  .dance-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .dance-card-head {
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 13px 8px;
+  }
+  .dance-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    background: #fde8d8;
+    color: #7a2e0a;
+  }
+  .dance-tag.favorite { background: #fff3cd; color: #7a5500; }
+  .dance-tag.outdoor { background: #d4edda; color: #1a5c2a; }
+  .dance-tag.late { background: #f8d7da; color: #7a1f2b; }
+  .dance-tag.watch { background: #d1ecf1; color: #0c5460; }
+  .dance-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .dance-meta {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .dance-card-body { padding: 10px 13px 12px; }
+  .dance-card-body p {
+    font-size: 12px;
+    color: var(--ink);
+    margin-bottom: 0.55rem;
+  }
+  .dance-why {
+    font-size: 11px;
+    color: var(--teal);
+    font-style: italic;
+    margin-top: 0.4rem;
+  }
+  .dance-rating {
+    font-size: 15px;
+    letter-spacing: 2px;
+    margin-top: 0.45rem;
+  }
+  .dance-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border: 1px solid var(--border);
+    font-size: 12px;
+    margin-top: 0.7rem;
+  }
+  .dance-table th {
+    background: var(--cream);
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-size: 10px;
+    text-align: left;
+    padding: 8px 9px;
+    border-bottom: 1px solid var(--border);
+  }
+  .dance-table td {
+    padding: 9px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .dance-table tr:last-child td { border-bottom: none; }
+  .dance-title {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .dance-desc {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.35;
+    margin-top: 2px;
+  }
+  .dance-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 1.25rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    border-radius: 5px;
+  }
+  .dance-watch-list {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 0.95rem 1.1rem;
+    border-radius: 5px;
+  }
+  .dance-watch-list ul {
+    columns: 2;
+    list-style: none;
+  }
+  .dance-watch-list li {
+    font-size: 12px;
+    padding: 3px 0;
+    color: var(--ink);
+  }
+  .dance-watch-list li::before {
+    content: "• ";
+    color: var(--gold);
+    font-weight: bold;
+  }
+  @media (max-width: 760px) {
+    .dance-table, .dance-table thead, .dance-table tbody, .dance-table th, .dance-table td, .dance-table tr { display: block; }
+    .dance-table thead { display: none; }
+    .dance-table tr { border-bottom: 1px solid var(--border); padding: 8px 0; }
+    .dance-table td { border: none; padding: 4px 12px; }
+    .dance-watch-list ul { columns: 1; }
+  }
+
   @media (max-width: 600px) {
     header { padding: 1.25rem 1rem 1rem; }
     header h1 { font-size: 1.5rem; }
@@ -309,8 +483,8 @@
 </head>
 <body>
 <header>
-<h1>NYC Summer <em>2026</em></h1>
-<p>Jerome's guide — concerts · movies · theater · museums · kid days</p>
+<h1>Mashrome's Guide <em>Summer 2026</em></h1>
+<p>concerts · movies · theater · museums · date night drop-off · dancing</p>
 </header>
 <div class="legend">
 <span>❤️ you'll love it</span>
@@ -319,15 +493,15 @@
 <span>⚠️ check availability</span>
 <span>🍕 food included</span><span>🤖 STEAM</span><span>🌧 indoor</span></div>
 <nav class="tab-bar" role="tablist">
-<button class="tab-btn active" onclick="showTab('picks',this)">Your Picks</button>
+<button class="tab-btn active" onclick="showTab('picks',this)">Live Music Picks</button>
 <button class="tab-btn" onclick="showTab('summerstage',this)">SummerStage</button>
 <button class="tab-btn" onclick="showTab('bric',this)">BRIC Brooklyn!</button>
 <button class="tab-btn" onclick="showTab('bryant',this)">Bryant Park</button>
 <button class="tab-btn" onclick="showTab('lunatico',this)">LunÀtico</button>
-<button class="tab-btn" onclick="showTab('movies',this)">Movies</button>
+<button class="tab-btn" onclick="showTab('museums',this)">Museums + Kids</button><button class="tab-btn" onclick="showTab('movies',this)">Movies</button>
 <button class="tab-btn" onclick="showTab('theater',this)">Theater</button>
 <button class="tab-btn" onclick="showTab('momi',this)">MoMI</button>
-<button class="tab-btn" onclick="showTab('parentsnight',this)">Parents' Night Out</button><button class="tab-btn" onclick="showTab('museums',this)">Museums + Kids</button></nav>
+<button class="tab-btn" onclick="showTab('parentsnight',this)">Date Night Drop-Off</button><button class="tab-btn" onclick="showTab('dancing',this)">Dancing</button></nav>
 <!-- ═══════════════════════════════════════════════════
      TAB 1 — YOUR PICKS
 ═══════════════════════════════════════════════════ -->
@@ -819,9 +993,9 @@
      TAB 5 — LUNATICO
 ═══════════════════════════════════════════════════ -->
 <div class="tab-panel" id="tab-lunatico">
-<p class="intro">LunÀtico — 486 Halsey St, Bed-Stuy, Brooklyn · Open nightly 5pm–1am · Happy hour 5–7pm · Dinner menu 6–11pm · Live music from 9pm · <strong>$10 suggested donation — bring cash!</strong> · July onward posted rolling at barlunatico.com/music</p>
+<p class="intro">LunÀtico — 486 Halsey St, Bed-Stuy, Brooklyn · Open nightly 5pm–1am · Happy hour 5–7pm · Dinner menu 6–11pm · Live music from 9pm · <strong>$10 suggested donation — bring cash!</strong> · July onward posted rolling at barlunatico.com/music · <strong>💃 = most likely to become danceable</strong></p>
 <div style="font-size:12px;color:#7a7468;margin-bottom:1rem;font-style:italic;">In memory of Sonny Rollins, 1930–2026</div>
-<div class="series-grid">
+<p class="note">LunÀtico note: 💃 marks groove-heavy nights where dancing feels plausible, not guaranteed. It is still primarily an intimate live-music room.</p><div class="series-grid">
 <div class="series-card full-width">
 <div class="card-head">
 <div class="card-tag tag-lunatico">Nightly · $10 suggested donation (cash)</div>
@@ -831,35 +1005,35 @@
 <div class="week-label">Week 1 — June 1–7</div>
 <div class="show-row"><div class="show-date">Mon Jun 1</div><div class="show-info"><div class="show-artist">Agustin Uriburu Quartet <span class="icons">💚</span></div><div class="show-sub">w/ Daniele Germani · Luke Marantz · Juan Chiavassa</div></div><div class="show-price">9pm</div></div>
 <div class="show-row"><div class="show-date">Tue Jun 2</div><div class="show-info"><div class="show-artist">SCREE <span class="icons">💚</span></div><div class="show-sub">Ryan El-Sohl · Carmen Quill · Jason Burger</div></div><div class="show-price">9pm</div></div>
-<div class="show-row"><div class="show-date">Wed Jun 3</div><div class="show-info"><div class="show-artist">Yacouba Sissoko &amp; SIYA <span class="icons">❤️</span></div><div class="show-meta">Malian kora master — 21-string West African harp. Rare and special.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Wed Jun 3</div><div class="show-info"><div class="show-artist">Yacouba Sissoko &amp; SIYA <span class="icons">❤️</span><span class="icons" title="Most likely to become danceable"> 💃</span></div><div class="show-meta">Malian kora master — 21-string West African harp. Rare and special.</div></div><div class="show-price">9pm</div></div>
 <div class="show-row"><div class="show-date">Thu Jun 4</div><div class="show-info"><div class="show-artist">Arthur Kell Speculation Sextet <span class="icons">❤️</span></div><div class="show-sub">Caroline Davis · Alfredo Colón · Brad Shepik · Nate Radley · Allan Mednard · <strong>Two sets: 9pm &amp; 10:15pm</strong></div></div><div class="show-price">9 &amp; 10:15pm</div></div>
-<div class="show-row"><div class="show-date">Fri Jun 5</div><div class="show-info"><div class="show-artist">Wayne Tucker &amp; The Bad Mothas <span class="icons">❤️</span></div><div class="show-meta">Jazz-funk / Brooklyn funk — heavy grooves, big horn section energy.</div></div><div class="show-price">9pm</div></div>
-<div class="show-row"><div class="show-date">Sat Jun 6</div><div class="show-info"><div class="show-artist">UNITY Quartet ft. Hélio Alves · Guilherme Monteiro · Gili Lopes · Alex Kautz <span class="icons">❤️</span></div><div class="show-meta">Top-shelf Brazilian Latin jazz. Hélio Alves recorded with Paquito D'Rivera and Eliane Elias.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Fri Jun 5</div><div class="show-info"><div class="show-artist">Wayne Tucker &amp; The Bad Mothas <span class="icons">❤️</span><span class="icons" title="Most likely to become danceable"> 💃</span></div><div class="show-meta">Jazz-funk / Brooklyn funk — heavy grooves, big horn section energy.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Sat Jun 6</div><div class="show-info"><div class="show-artist">UNITY Quartet ft. Hélio Alves · Guilherme Monteiro · Gili Lopes · Alex Kautz <span class="icons">❤️</span><span class="icons" title="Most likely to become danceable"> 💃</span></div><div class="show-meta">Top-shelf Brazilian Latin jazz. Hélio Alves recorded with Paquito D'Rivera and Eliane Elias.</div></div><div class="show-price">9pm</div></div>
 <div class="show-row"><div class="show-date">Sun Jun 7</div><div class="show-info"><div class="show-artist">George Burton: WORKSHOP ft. Tyrone Allen · Dylan Band · Nazir Ebo · Siya Makuzeni (special guest) <span class="icons">❤️</span></div><div class="show-meta">South African trombonist-vocalist Siya Makuzeni — genuinely singular. Don't sleep on this.</div></div><div class="show-price">9pm</div></div>
 <div class="week-label">Week 2 — June 8–14</div>
 <div class="show-row"><div class="show-date">Mon Jun 8</div><div class="show-info"><div class="show-artist">Jeremy Gustin · Henry Fraser · Jacob Drab <span class="icons">💚</span></div><div class="show-sub">Loose, exploratory trio with downtown improvisers — good low-key LunÀtico night.</div></div><div class="show-price">9pm</div></div>
-<div class="show-row"><div class="show-date">Tue Jun 9</div><div class="show-info"><div class="show-artist">OUTERNET ft. Rob Duguay · Anwar Marshall · Morgan Price · David Gibson <span class="icons">❤️</span></div><div class="show-meta">Anwar Marshall (Kendrick Lamar, Robert Glasper) on drums. Any band with him grooves hard.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Tue Jun 9</div><div class="show-info"><div class="show-artist">OUTERNET ft. Rob Duguay · Anwar Marshall · Morgan Price · David Gibson <span class="icons">❤️</span><span class="icons" title="Most likely to become danceable"> 💃</span></div><div class="show-meta">Anwar Marshall (Kendrick Lamar, Robert Glasper) on drums. Any band with him grooves hard.</div></div><div class="show-price">9pm</div></div>
 <div class="show-row"><div class="show-date">Wed Jun 10</div><div class="show-info"><div class="show-artist">Justin Purtill Trio ft. Leo Genovese &amp; Sean Conly <span class="icons">💚</span></div><div class="show-sub">Modern jazz trio with Leo Genovese’s searching piano and Sean Conly’s deep bass.</div></div><div class="show-price">9pm</div></div>
 <div class="show-row"><div class="show-date">Thu Jun 11</div><div class="show-info"><div class="show-artist">OROPENDOLA: Joanna Schubert · Elizabeth LoPiccolo · Gabby Sherba · Nico Osborne · Sam Decker · Aaron Edgcomb <span class="icons">❤️</span></div><div class="show-meta">Chamber-meets-global. Named for a South American bird. Hard to categorize — discover it.</div></div><div class="show-price">9pm</div></div>
 <div class="show-row"><div class="show-date">Fri Jun 12</div><div class="show-info"><div class="show-artist">Álvaro Benavides Group <span class="icons">💚</span></div><div class="show-sub">Chilean bassist — Latin jazz</div></div><div class="show-price">9pm</div></div>
-<div class="show-row"><div class="show-date">Sat Jun 13</div><div class="show-info"><div class="show-artist">Fred Thomas of The JB's <span class="icons">❤️</span></div><div class="show-meta">James Brown's bassist. Living funk history. If you've never seen him, this is the one.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Sat Jun 13</div><div class="show-info"><div class="show-artist">Fred Thomas of The JB's <span class="icons">❤️</span><span class="icons" title="Most likely to become danceable"> 💃</span></div><div class="show-meta">James Brown's bassist. Living funk history. If you've never seen him, this is the one.</div></div><div class="show-price">9pm</div></div>
 <div class="show-row"><div class="show-date">Sun Jun 14</div><div class="show-info"><div class="show-artist">Moon Radio · The Smoota Tête-à-Tête <span class="icons">💚</span></div><div class="show-sub">Double bill</div></div><div class="show-price">9pm</div></div>
 <div class="week-label">Week 3 — June 15–21</div>
 <div class="show-row"><div class="show-date">Mon Jun 15</div><div class="show-info"><div class="show-artist">Sebastián de Urquiza Quartet ft. Leo Genovese · Vinícius Gomes · Rudy Royston <span class="icons">❤️</span></div><div class="show-meta">Rudy Royston (Bill Frisell, Dave Douglas) + Leo Genovese (Argentine piano). Rich Latin jazz with serious improvisers.</div></div><div class="show-price">9pm</div></div>
 <div class="show-row"><div class="show-date">Tue Jun 16</div><div class="show-info"><div class="show-artist">Firas Zreik <span class="icons">💚</span></div><div class="show-sub">Palestinian oud and vocalist</div></div><div class="show-price">9pm</div></div>
-<div class="show-row"><div class="show-date">Wed Jun 17</div><div class="show-info"><div class="show-artist">Samuel Torres &amp; Trio Libre ft. Carmen Staaf &amp; Daniel Neville <span class="icons">❤️</span></div><div class="show-meta">Colombian percussionist + Afro-Colombian rhythms + jazz. Carmen Staaf on piano. Highlight of the month.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Wed Jun 17</div><div class="show-info"><div class="show-artist">Samuel Torres &amp; Trio Libre ft. Carmen Staaf &amp; Daniel Neville <span class="icons">❤️</span><span class="icons" title="Most likely to become danceable"> 💃</span></div><div class="show-meta">Colombian percussionist + Afro-Colombian rhythms + jazz. Carmen Staaf on piano. Highlight of the month.</div></div><div class="show-price">9pm</div></div>
 <div class="show-row"><div class="show-date">Thu Jun 18</div><div class="show-info"><div class="show-artist">Erik Deutsch Band <span class="icons">💚</span></div><div class="show-sub">Keyboard-led rootsy jazz, soul, and Americana from a versatile NYC player.</div></div><div class="show-price">9pm</div></div>
-<div class="show-row"><div class="show-date">Fri Jun 19</div><div class="show-info"><div class="show-artist">Modupe Onilu <span class="icons">❤️</span></div><div class="show-meta">Nigerian-American percussionist and vocalist — West African tradition meets jazz. Rarely heard.</div></div><div class="show-price">9pm</div></div>
-<div class="show-row"><div class="show-date">Sat Jun 20</div><div class="show-info"><div class="show-artist">Belo &amp; The Beasts <span class="icons">❤️</span></div><div class="show-meta">Afrobeat-inflected band — Fela Kuti territory with jazz and funk. Squarely your wheelhouse.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Fri Jun 19</div><div class="show-info"><div class="show-artist">Modupe Onilu <span class="icons">❤️</span><span class="icons" title="Most likely to become danceable"> 💃</span></div><div class="show-meta">Nigerian-American percussionist and vocalist — West African tradition meets jazz. Rarely heard.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Sat Jun 20</div><div class="show-info"><div class="show-artist">Belo &amp; The Beasts <span class="icons">❤️</span><span class="icons" title="Most likely to become danceable"> 💃</span></div><div class="show-meta">Afrobeat-inflected band — Fela Kuti territory with jazz and funk. Squarely your wheelhouse.</div></div><div class="show-price">9pm</div></div>
 <div class="show-row"><div class="show-date">Sun Jun 21</div><div class="show-info"><div class="show-artist">Very Special Guest TBA <span class="icons">❤️</span></div><div class="show-meta">Mystery booking. Monitor @barlunatico on Instagram as it gets closer.</div></div><div class="show-price">9pm</div></div>
 <div class="week-label">Week 4 — June 22–28</div>
 <div class="show-row"><div class="show-date">Mon Jun 22</div><div class="show-info"><div class="show-artist">Elé Howell Quartet ft. Rodriguez Bros. &amp; Luques Curtis <span class="icons">❤️</span></div><div class="show-meta">The Rodriguez Brothers — among NYC's top Latin jazz pianists. Luques Curtis is a serious bassist.</div></div><div class="show-price">9pm</div></div>
 <div class="show-row"><div class="show-date">Tue Jun 23</div><div class="show-info"><div class="show-artist">Marta Sanchez Trio w/ Kanoa Mendenhall &amp; Kweku Sumbry <span class="icons">❤️</span></div><div class="show-meta">Spanish pianist doing ambitious, emotionally direct work. Kweku Sumbry brings West African rhythmic sensibility.</div></div><div class="show-price">9pm</div></div>
 <div class="show-row"><div class="show-date">Wed Jun 24</div><div class="show-info"><div class="show-artist">ROCKET SCI: Kenny Wollesen · Jonathon Haffner · Tony Scherr · Dalius Naujo <span class="icons">❤️</span></div><div class="show-meta">Downtown NYC jazz-funk-experimental. Kenny Wollesen is a scene legend.</div></div><div class="show-price">9pm</div></div>
-<div class="show-row"><div class="show-date">Thu Jun 25</div><div class="show-info"><div class="show-artist">Chico Pinheiro Quartet <span class="icons">❤️</span></div><div class="show-meta">Brazilian guitarist in the Baden Powell tradition — lyrical, deeply swinging, with his own modern voice.</div></div><div class="show-price">9pm</div></div>
-<div class="show-row"><div class="show-date">Fri Jun 26</div><div class="show-info"><div class="show-artist">Sugartone Brass Band <span class="icons">❤️</span></div><div class="show-meta">New Orleans-style brass funk / second-line energy. Hard not to move.</div></div><div class="show-price">9pm</div></div>
-<div class="show-row"><div class="show-date">Sat Jun 27</div><div class="show-info"><div class="show-artist">AMAYO &amp; Friends play Lion Awakes! <span class="icons">❤️</span></div><div class="show-meta">AMAYO is a founding member of Antibalas. Fela Kuti torch. Best night of the month for your taste.</div></div><div class="show-price">9pm</div></div>
-<div class="show-row"><div class="show-date">Sun Jun 28</div><div class="show-info"><div class="show-artist">Guillermo Klein 5Tet: Rodrigo Recabarren · Rogério Boccato · Sebastián Urquiza · Vinícius Gomes <span class="icons">❤️</span></div><div class="show-meta">Argentine jazz composition legend. Deeply original arranger. Rogério Boccato on percussion seals it.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Thu Jun 25</div><div class="show-info"><div class="show-artist">Chico Pinheiro Quartet <span class="icons">❤️</span><span class="icons" title="Most likely to become danceable"> 💃</span></div><div class="show-meta">Brazilian guitarist in the Baden Powell tradition — lyrical, deeply swinging, with his own modern voice.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Fri Jun 26</div><div class="show-info"><div class="show-artist">Sugartone Brass Band <span class="icons">❤️</span><span class="icons" title="Most likely to become danceable"> 💃</span></div><div class="show-meta">New Orleans-style brass funk / second-line energy. Hard not to move.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Sat Jun 27</div><div class="show-info"><div class="show-artist">AMAYO &amp; Friends play Lion Awakes! <span class="icons">❤️</span><span class="icons" title="Most likely to become danceable"> 💃</span></div><div class="show-meta">AMAYO is a founding member of Antibalas. Fela Kuti torch. Best night of the month for your taste.</div></div><div class="show-price">9pm</div></div>
+<div class="show-row"><div class="show-date">Sun Jun 28</div><div class="show-info"><div class="show-artist">Guillermo Klein 5Tet: Rodrigo Recabarren · Rogério Boccato · Sebastián Urquiza · Vinícius Gomes <span class="icons">❤️</span><span class="icons" title="Most likely to become danceable"> 💃</span></div><div class="show-meta">Argentine jazz composition legend. Deeply original arranger. Rogério Boccato on percussion seals it.</div></div><div class="show-price">9pm</div></div>
 <div class="week-label">Week 5 — June 29–30</div>
 <div class="show-row"><div class="show-date">Mon Jun 29</div><div class="show-info"><div class="show-artist">Alex Asher Quartet <span class="icons">💚</span></div><div class="show-sub">Trombone-forward small-group jazz — an easy neighborhood pick.</div></div><div class="show-price">9pm</div></div>
 <div class="show-row"><div class="show-date">Tue Jun 30</div><div class="show-info"><div class="show-artist">Jim Oblon w/ Josh Dion &amp; Tony Scherr <span class="icons">💚</span></div><div class="show-sub">Guitar/drums trio with Tony Scherr: bluesy, rangy, and quietly serious.</div></div><div class="show-price">9pm</div></div>
@@ -870,7 +1044,74 @@
 <!-- ═══════════════════════════════════════════════════
      TAB 6 — MOVIES
 ═══════════════════════════════════════════════════ -->
-<div class="tab-panel" id="tab-movies">
+<div class="tab-panel" id="tab-museums">
+<p class="intro">Museum and family-event picks for summer 2026 — especially useful for Sasha days, rainy afternoons, and low-planning weekends. Schedules change often, so use the links to confirm hours, registration, and ticketing.</p>
+<div class="series-grid">
+<div class="series-card full-width">
+<div class="card-head">
+<div class="card-tag tag-special">Jerome + Sasha shortlist</div>
+<h3>Top Family Museum Picks</h3>
+<p>Hands-on, low-stress, and good for a six-year-old</p>
+</div>
+<div class="show-row"><div class="show-date">Daily except Tue</div><div class="show-info"><div class="show-artist"><a href="https://www.amnh.org/exhibitions/permanent/discovery-room" target="_blank">AMNH Discovery Room</a>  ❤️ 🧒</div><div class="show-sub">Hands-on natural-history discovery space for pre-K and up; included with museum admission.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Fri Jul 24</div><div class="show-info"><div class="show-artist">AMNH Sleepover at the Museum <span class="icons">❤️ 🧒 ⚠️</span></div><div class="show-sub">Ages 6–12 overnight adventure under the Blue Whale; likely books fast.</div></div><div class="show-price">Ticketed</div></div>
+<div class="show-row"><div class="show-date">Thu Jun 11–Sun Jul 19</div><div class="show-info"><div class="show-artist">Intrepid Museum World Cup Watch Parties <span class="icons">💚 🧒</span></div><div class="show-sub">Free match screenings on Pier 86 — big ships, planes, soccer, and river air.</div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Jul 3–7</div><div class="show-info"><div class="show-artist">Intrepid: Celebrating America’s 250th <span class="icons">💚 🧒</span></div><div class="show-sub">Military displays, activities, demonstrations, and performances over the holiday weekend.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Thursdays</div><div class="show-info"><div class="show-artist"><a href="https://www.brooklynkids.org/community-access/" target="_blank">Brooklyn Children’s Museum — Community Access Thursdays</a>  ❤️ 🧒</div><div class="show-sub">2–5pm access window for Totally Tots, World Brooklyn, NEST climber, and more.</div></div><div class="show-price free">Free/low-cost</div></div>
+<div class="show-row"><div class="show-date">Wed–Sun</div><div class="show-info"><div class="show-artist">Brooklyn Children’s Museum — Play at BCM <span class="icons">❤️ 🧒</span></div><div class="show-sub">Reliable all-weather play day: exhibits, ColorLab art studio, STEM makerspace, and rooftop options.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Daily</div><div class="show-info"><div class="show-artist">Children’s Museum of Manhattan — Public Programs <span class="icons">💚 🧒</span></div><div class="show-sub">Rotating art, music, science, and storytelling programs designed especially for ages 0–6.</div></div><div class="show-price">Admission</div></div>
+<div class="card-foot"><span>Best “what do we do today?” options</span><a href="https://www.amnh.org/calendar" target="_blank">AMNH calendar ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-free">Children’s museums</div>
+<h3>Dedicated Kids’ Museums</h3>
+<p>Most predictable family programming</p>
+</div>
+<div class="show-row"><div class="show-date">Daily</div><div class="show-info"><div class="show-artist"><a href="https://cmom.org/visit/public-programs/" target="_blank">CMOM Public Programs</a>  💚 🧒</div><div class="show-sub">Best for younger kids, but still useful for Sasha if the theme is strong.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Wed–Sun</div><div class="show-info"><div class="show-artist">Brooklyn Children’s Museum <span class="icons">❤️ 🧒</span></div><div class="show-sub">Totally Tots, World Brooklyn, NEST climber, ColorLab, and STEM makerspace.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Thursdays</div><div class="show-info"><div class="show-artist">BCM Community Access Thursdays <span class="icons">❤️ 🧒</span></div><div class="show-sub">2–5pm weekly access program; useful after camp, school, or a lazy morning.</div></div><div class="show-price free">Free/low-cost</div></div>
+<div class="card-foot"><span>Check same-week listings before going</span><a href="https://www.brooklynkids.org/calendar/" target="_blank">BCM calendar ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-special">Science + ships</div>
+<h3>Science, Space &amp; Discovery</h3>
+<p>Great rainy-day choices</p>
+</div>
+<div class="show-row"><div class="show-date">Daily except Tue</div><div class="show-info"><div class="show-artist"><a href="https://www.amnh.org/exhibitions/permanent/discovery-room" target="_blank">AMNH Discovery Room</a>  ❤️ 🧒</div><div class="show-sub">Hands-on specimens, puzzles, microscopes, and natural-history exploration.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Weekends</div><div class="show-info"><div class="show-artist">AMNH Learning Labs <span class="icons">💚 🧒</span></div><div class="show-sub">Climate and Human Origins labs are geared older, but good if Sasha is in science mode.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Jun 11–Jul 19</div><div class="show-info"><div class="show-artist">Intrepid World Cup Watch Parties <span class="icons">💚 🧒</span></div><div class="show-sub">A fun hybrid: soccer outside, aircraft carrier next door.</div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Monthly</div><div class="show-info"><div class="show-artist">Intrepid Access Family Events <span class="icons">💚 🧒</span></div><div class="show-sub">Guided tours and art-making for families with developmental disabilities.</div></div><div class="show-price">Register</div></div>
+<div class="card-foot"><span>AMNH + Intrepid are the strongest science picks</span><a href="https://intrepidmuseum.org/events/calendar" target="_blank">Intrepid calendar ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-indie">Art museums</div>
+<h3>Art Museums with Family Hooks</h3>
+<p>Best when paired with one specific activity</p>
+</div>
+<div class="show-row"><div class="show-date">Sat Jun 6</div><div class="show-info"><div class="show-artist">The Met Cloisters — Garden Festival: Wild Imaginations <span class="icons">❤️ 🧒</span></div><div class="show-sub">Tours, performances, and art-making in the Cloisters gardens — unusually magical kid option.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Sat Jun 6</div><div class="show-info"><div class="show-artist">The Met Cloisters — Family Tours <span class="icons">💚 🧒</span></div><div class="show-sub">A guided family-friendly entry point into the Cloisters’ art, gardens, and medieval weirdness.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Sat Jun 6</div><div class="show-info"><div class="show-artist">Brooklyn Museum First Saturday: Pride Month <span class="icons">💚 🧒</span></div><div class="show-sub">Free evening programming; more crowded and grown-up, but festive and close to home.</div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Aug 1</div><div class="show-info"><div class="show-artist">Brooklyn Museum First Saturday: Caribbean Culture <span class="icons">💚 🧒</span></div><div class="show-sub">Music, art, and community programming tied to Caribbean culture.</div></div><div class="show-price free">Free</div></div>
+<div class="show-row"><div class="show-date">Summer</div><div class="show-info"><div class="show-artist">Brooklyn Museum on Wheels <span class="icons">💚 🧒</span></div><div class="show-sub">Mobile museum visits Brooklyn neighborhoods with touchable teaching objects and activities.</div></div><div class="show-price free">Free</div></div>
+<div class="card-foot"><span>Pick a day with hands-on programming</span><a href="https://www.brooklynmuseum.org/programs" target="_blank">Brooklyn Museum programs ↗</a></div>
+</div>
+<div class="series-card">
+<div class="card-head">
+<div class="card-tag tag-mixed">NYC history</div>
+<h3>City History + Immersive Exhibits</h3>
+<p>Better for curious kids than tiny-kid play</p>
+</div>
+<div class="show-row"><div class="show-date">Opens Jun 6</div><div class="show-info"><div class="show-artist"><a href="https://www.mcny.org/exhibition/another-wonderland" target="_blank">MCNY — Another Wonderland</a>  💚 🧒</div><div class="show-sub">Alice in Wonderland refracted through New York — likely the most kid-friendly MCNY summer hook.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Ongoing</div><div class="show-info"><div class="show-artist"><a href="https://www.mcny.org/exhibition/songs-new-york" target="_blank">MCNY — Songs of New York</a>  💚 🧒</div><div class="show-sub">Interactive music exhibition spanning NYC sounds from bebop to K-pop.</div></div><div class="show-price">Admission</div></div>
+<div class="show-row"><div class="show-date">Family days</div><div class="show-info"><div class="show-artist"><a href="https://www.mcny.org/series/family-community" target="_blank">MCNY Family Programs</a>  💚 🧒</div><div class="show-sub">Workshops and tours generally geared toward ages 6–12; registration often suggested.</div></div><div class="show-price">Admission</div></div>
+<div class="card-foot"><span>Good uptown pairing with Central Park</span><a href="https://www.mcny.org/series/family-community" target="_blank">MCNY family programs ↗</a></div>
+</div>
+</div>
+<p class="note"><strong>Sources checked June 4, 2026:</strong> AMNH, Intrepid Museum, Brooklyn Children’s Museum, Children’s Museum of Manhattan, The Met, Brooklyn Museum, and Museum of the City of New York. Confirm final times and registration before going.</p>
+</div><div class="tab-panel" id="tab-movies">
 <div class="series-grid">
 <div class="series-card">
 <div class="card-head">
@@ -958,6 +1199,19 @@
 <div class="card-foot"><span>Daily repertory + new releases · Fort Greene</span><a href="https://www.bam.org/film" target="_blank">bam.org/film ↗</a></div>
 </div>
 </div>
+
+<div class="section-header"><h2>🎥 Mashrome Film Calendar</h2><span>June–August 2026</span></div>
+<p class="intro">Curated film-culture picks: Rooftop Films, repertory screenings, and date-night cinema.</p>
+<table class="dance-table">
+<thead><tr><th>Date</th><th>Event</th><th>Venue</th><th>Doors</th><th>Film</th><th>Kid Friendly</th></tr></thead>
+<tbody>
+<tr><td>Jun 5</td><td>Cemetery Shorts 2026 🎬❤️🌙</td><td>Green-Wood Cemetery</td><td>7:45 PM</td><td>9:00 PM</td><td>❌</td></tr>
+<tr><td>Jun (TBA)</td><td>Jaripeo 🎬❤️</td><td>Fort Greene Park</td><td>7:00 PM</td><td>~8:45 PM</td><td>⚠️</td></tr>
+<tr><td>Jun (TBA)</td><td>Queerly Beloved: Pride Shorts 🎬🌙</td><td>Various</td><td>~7:00 PM</td><td>After sunset</td><td>❌</td></tr>
+<tr><td>Jul 31</td><td>New York Non-Fiction 2026 🎬❤️🌙</td><td>Green-Wood Cemetery</td><td>7:45 PM</td><td>9:00 PM</td><td>⚠️</td></tr>
+<tr><td>TBA</td><td>Farm-to-Screen Shorts 🎬👨‍👩‍👦</td><td>Various</td><td>~7:00 PM</td><td>After sunset</td><td>👨‍👩‍👦</td></tr>
+</tbody>
+</table>
 </div>
 <!-- ═══════════════════════════════════════════════════
      TAB 7 — THEATER
@@ -1080,7 +1334,7 @@
 <td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=555+6th+Ave+New+York+NY+10011" target="_blank">Map</a> · <a href="https://nyc.geniusgems.com/products/date-night-drop-off" target="_blank">Register</a></td>
 <td class="pno-good" data-label="Verified">Jun 2026</td>
 </tr><tr>
-<td data-label="Program"><div class="pno-title">❤️ PLAY Kids Greenpoint — Drop-Off Movie Nights</div><div class="pno-desc">Friday kids’ night out with arts & crafts, movie screening, open play, pizza, popcorn, and optional early drop-off.</div></td>
+<td data-label="Program"><div class="pno-title">❤️ PLAY Kids Greenpoint — Drop-Off Movie Nights</div><div class="pno-desc">Friday kids’ night out with arts &amp; crafts, movie screening, open play, pizza, popcorn, and optional early drop-off.</div></td>
 <td data-label="Borough / Neighborhood">Brooklyn<br/>Greenpoint<br/>33 Nassau Ave</td>
 <td data-label="Ages">4–8</td>
 <td data-label="Drop-off">5:30 PM</td><td data-label="Pick-up">8:30 PM</td><td data-label="Duration">3 hrs</td><td data-label="Price">Check schedule; recent listings around $47</td>
@@ -1152,7 +1406,7 @@
 <td class="pno-links" data-label="Links"><a href="https://maps.google.com/?q=808+Union+Street+Brooklyn+NY+11215" target="_blank">Map</a> · <a href="https://www.mygym.com/parkslope/events" target="_blank">Register</a></td>
 <td class="pno-good" data-label="Verified">Jun 2026</td>
 </tr><tr>
-<td data-label="Program"><div class="pno-title">❤️ Juguemos — Parents Night Out</div><div class="pno-desc">Monthly Spanish-immersion center PNO with games, arts & crafts, play, socialization, pizza, and possible movie.</div></td>
+<td data-label="Program"><div class="pno-title">❤️ Juguemos — Parents Night Out</div><div class="pno-desc">Monthly Spanish-immersion center PNO with games, arts &amp; crafts, play, socialization, pizza, and possible movie.</div></td>
 <td data-label="Borough / Neighborhood">Brooklyn<br/>South Slope<br/>323 5th Ave</td>
 <td data-label="Ages">3–8</td>
 <td data-label="Drop-off">Monthly; confirm date/time</td><td data-label="Pick-up">Monthly; confirm date/time</td><td data-label="Duration">Verify</td><td data-label="Price">Verify</td>
@@ -1169,7 +1423,7 @@
 <td class="pno-good" data-label="Verified">Jun 2026</td>
 </tr><tr>
 <td data-label="Program"><div class="pno-title">❤️ NY Kids Club — PJ Parties</div><div class="pno-desc">Themed after-hours gym/art/disco party with pizza dinner; multiple NYC locations, membership not required.</div></td>
-<td data-label="Borough / Neighborhood">Manhattan, Brooklyn & Queens<br/>Multiple locations</td>
+<td data-label="Borough / Neighborhood">Manhattan, Brooklyn &amp; Queens<br/>Multiple locations</td>
 <td data-label="Ages">2.5–8</td>
 <td data-label="Drop-off">Friday/Saturday evenings; varies</td><td data-label="Pick-up">Varies</td><td data-label="Duration">Usually 2 hrs</td><td data-label="Price">Check location schedule</td>
 <td data-label="Badges"><span class="pno-badges">❤️🧒🎨🧗🍕🌧🚇🔁</span></td>
@@ -1258,78 +1512,9 @@
 </table>
 <p class="note"><strong>Last verified:</strong> June 4, 2026. For actual date-night planning, re-check the registration page the week of the event. Priority fields: exact drop-off time, exact pickup time, price, age range, food, and whether parents may leave.</p>
 </div>
-
 <!-- ═══════════════════════════════════════════════════
      TAB 10 — MUSEUMS + FAMILY EVENTS
 ═══════════════════════════════════════════════════ -->
-<div class="tab-panel" id="tab-museums">
-<p class="intro">Museum and family-event picks for summer 2026 — especially useful for Sasha days, rainy afternoons, and low-planning weekends. Schedules change often, so use the links to confirm hours, registration, and ticketing.</p>
-<div class="series-grid">
-<div class="series-card full-width">
-<div class="card-head">
-<div class="card-tag tag-special">Jerome + Sasha shortlist</div>
-<h3>Top Family Museum Picks</h3>
-<p>Hands-on, low-stress, and good for a six-year-old</p>
-</div>
-<div class="show-row"><div class="show-date">Daily except Tue</div><div class="show-info"><div class="show-artist"><a href="https://www.amnh.org/exhibitions/permanent/discovery-room" target="_blank">AMNH Discovery Room</a>  ❤️ 🧒</div><div class="show-sub">Hands-on natural-history discovery space for pre-K and up; included with museum admission.</div></div><div class="show-price">Admission</div></div>
-<div class="show-row"><div class="show-date">Fri Jul 24</div><div class="show-info"><div class="show-artist">AMNH Sleepover at the Museum <span class="icons">❤️ 🧒 ⚠️</span></div><div class="show-sub">Ages 6–12 overnight adventure under the Blue Whale; likely books fast.</div></div><div class="show-price">Ticketed</div></div>
-<div class="show-row"><div class="show-date">Thu Jun 11–Sun Jul 19</div><div class="show-info"><div class="show-artist">Intrepid Museum World Cup Watch Parties <span class="icons">💚 🧒</span></div><div class="show-sub">Free match screenings on Pier 86 — big ships, planes, soccer, and river air.</div></div><div class="show-price free">Free</div></div>
-<div class="show-row"><div class="show-date">Jul 3–7</div><div class="show-info"><div class="show-artist">Intrepid: Celebrating America’s 250th <span class="icons">💚 🧒</span></div><div class="show-sub">Military displays, activities, demonstrations, and performances over the holiday weekend.</div></div><div class="show-price">Admission</div></div>
-<div class="show-row"><div class="show-date">Thursdays</div><div class="show-info"><div class="show-artist"><a href="https://www.brooklynkids.org/community-access/" target="_blank">Brooklyn Children’s Museum — Community Access Thursdays</a>  ❤️ 🧒</div><div class="show-sub">2–5pm access window for Totally Tots, World Brooklyn, NEST climber, and more.</div></div><div class="show-price free">Free/low-cost</div></div>
-<div class="show-row"><div class="show-date">Wed–Sun</div><div class="show-info"><div class="show-artist">Brooklyn Children’s Museum — Play at BCM <span class="icons">❤️ 🧒</span></div><div class="show-sub">Reliable all-weather play day: exhibits, ColorLab art studio, STEM makerspace, and rooftop options.</div></div><div class="show-price">Admission</div></div>
-<div class="show-row"><div class="show-date">Daily</div><div class="show-info"><div class="show-artist">Children’s Museum of Manhattan — Public Programs <span class="icons">💚 🧒</span></div><div class="show-sub">Rotating art, music, science, and storytelling programs designed especially for ages 0–6.</div></div><div class="show-price">Admission</div></div>
-<div class="card-foot"><span>Best “what do we do today?” options</span><a href="https://www.amnh.org/calendar" target="_blank">AMNH calendar ↗</a></div>
-</div>
-<div class="series-card">
-<div class="card-head">
-<div class="card-tag tag-free">Children’s museums</div>
-<h3>Dedicated Kids’ Museums</h3>
-<p>Most predictable family programming</p>
-</div>
-<div class="show-row"><div class="show-date">Daily</div><div class="show-info"><div class="show-artist"><a href="https://cmom.org/visit/public-programs/" target="_blank">CMOM Public Programs</a>  💚 🧒</div><div class="show-sub">Best for younger kids, but still useful for Sasha if the theme is strong.</div></div><div class="show-price">Admission</div></div>
-<div class="show-row"><div class="show-date">Wed–Sun</div><div class="show-info"><div class="show-artist">Brooklyn Children’s Museum <span class="icons">❤️ 🧒</span></div><div class="show-sub">Totally Tots, World Brooklyn, NEST climber, ColorLab, and STEM makerspace.</div></div><div class="show-price">Admission</div></div>
-<div class="show-row"><div class="show-date">Thursdays</div><div class="show-info"><div class="show-artist">BCM Community Access Thursdays <span class="icons">❤️ 🧒</span></div><div class="show-sub">2–5pm weekly access program; useful after camp, school, or a lazy morning.</div></div><div class="show-price free">Free/low-cost</div></div>
-<div class="card-foot"><span>Check same-week listings before going</span><a href="https://www.brooklynkids.org/calendar/" target="_blank">BCM calendar ↗</a></div>
-</div>
-<div class="series-card">
-<div class="card-head">
-<div class="card-tag tag-special">Science + ships</div>
-<h3>Science, Space &amp; Discovery</h3>
-<p>Great rainy-day choices</p>
-</div>
-<div class="show-row"><div class="show-date">Daily except Tue</div><div class="show-info"><div class="show-artist"><a href="https://www.amnh.org/exhibitions/permanent/discovery-room" target="_blank">AMNH Discovery Room</a>  ❤️ 🧒</div><div class="show-sub">Hands-on specimens, puzzles, microscopes, and natural-history exploration.</div></div><div class="show-price">Admission</div></div>
-<div class="show-row"><div class="show-date">Weekends</div><div class="show-info"><div class="show-artist">AMNH Learning Labs <span class="icons">💚 🧒</span></div><div class="show-sub">Climate and Human Origins labs are geared older, but good if Sasha is in science mode.</div></div><div class="show-price">Admission</div></div>
-<div class="show-row"><div class="show-date">Jun 11–Jul 19</div><div class="show-info"><div class="show-artist">Intrepid World Cup Watch Parties <span class="icons">💚 🧒</span></div><div class="show-sub">A fun hybrid: soccer outside, aircraft carrier next door.</div></div><div class="show-price free">Free</div></div>
-<div class="show-row"><div class="show-date">Monthly</div><div class="show-info"><div class="show-artist">Intrepid Access Family Events <span class="icons">💚 🧒</span></div><div class="show-sub">Guided tours and art-making for families with developmental disabilities.</div></div><div class="show-price">Register</div></div>
-<div class="card-foot"><span>AMNH + Intrepid are the strongest science picks</span><a href="https://intrepidmuseum.org/events/calendar" target="_blank">Intrepid calendar ↗</a></div>
-</div>
-<div class="series-card">
-<div class="card-head">
-<div class="card-tag tag-indie">Art museums</div>
-<h3>Art Museums with Family Hooks</h3>
-<p>Best when paired with one specific activity</p>
-</div>
-<div class="show-row"><div class="show-date">Sat Jun 6</div><div class="show-info"><div class="show-artist">The Met Cloisters — Garden Festival: Wild Imaginations <span class="icons">❤️ 🧒</span></div><div class="show-sub">Tours, performances, and art-making in the Cloisters gardens — unusually magical kid option.</div></div><div class="show-price">Admission</div></div>
-<div class="show-row"><div class="show-date">Sat Jun 6</div><div class="show-info"><div class="show-artist">The Met Cloisters — Family Tours <span class="icons">💚 🧒</span></div><div class="show-sub">A guided family-friendly entry point into the Cloisters’ art, gardens, and medieval weirdness.</div></div><div class="show-price">Admission</div></div>
-<div class="show-row"><div class="show-date">Sat Jun 6</div><div class="show-info"><div class="show-artist">Brooklyn Museum First Saturday: Pride Month <span class="icons">💚 🧒</span></div><div class="show-sub">Free evening programming; more crowded and grown-up, but festive and close to home.</div></div><div class="show-price free">Free</div></div>
-<div class="show-row"><div class="show-date">Aug 1</div><div class="show-info"><div class="show-artist">Brooklyn Museum First Saturday: Caribbean Culture <span class="icons">💚 🧒</span></div><div class="show-sub">Music, art, and community programming tied to Caribbean culture.</div></div><div class="show-price free">Free</div></div>
-<div class="show-row"><div class="show-date">Summer</div><div class="show-info"><div class="show-artist">Brooklyn Museum on Wheels <span class="icons">💚 🧒</span></div><div class="show-sub">Mobile museum visits Brooklyn neighborhoods with touchable teaching objects and activities.</div></div><div class="show-price free">Free</div></div>
-<div class="card-foot"><span>Pick a day with hands-on programming</span><a href="https://www.brooklynmuseum.org/programs" target="_blank">Brooklyn Museum programs ↗</a></div>
-</div>
-<div class="series-card">
-<div class="card-head">
-<div class="card-tag tag-mixed">NYC history</div>
-<h3>City History + Immersive Exhibits</h3>
-<p>Better for curious kids than tiny-kid play</p>
-</div>
-<div class="show-row"><div class="show-date">Opens Jun 6</div><div class="show-info"><div class="show-artist"><a href="https://www.mcny.org/exhibition/another-wonderland" target="_blank">MCNY — Another Wonderland</a>  💚 🧒</div><div class="show-sub">Alice in Wonderland refracted through New York — likely the most kid-friendly MCNY summer hook.</div></div><div class="show-price">Admission</div></div>
-<div class="show-row"><div class="show-date">Ongoing</div><div class="show-info"><div class="show-artist"><a href="https://www.mcny.org/exhibition/songs-new-york" target="_blank">MCNY — Songs of New York</a>  💚 🧒</div><div class="show-sub">Interactive music exhibition spanning NYC sounds from bebop to K-pop.</div></div><div class="show-price">Admission</div></div>
-<div class="show-row"><div class="show-date">Family days</div><div class="show-info"><div class="show-artist"><a href="https://www.mcny.org/series/family-community" target="_blank">MCNY Family Programs</a>  💚 🧒</div><div class="show-sub">Workshops and tours generally geared toward ages 6–12; registration often suggested.</div></div><div class="show-price">Admission</div></div>
-<div class="card-foot"><span>Good uptown pairing with Central Park</span><a href="https://www.mcny.org/series/family-community" target="_blank">MCNY family programs ↗</a></div>
-</div>
-</div>
-<p class="note"><strong>Sources checked June 4, 2026:</strong> AMNH, Intrepid Museum, Brooklyn Children’s Museum, Children’s Museum of Manhattan, The Met, Brooklyn Museum, and Museum of the City of New York. Confirm final times and registration before going.</p>
-</div>
 <script>
 function showTab(name, btn) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -1339,6 +1524,472 @@ function showTab(name, btn) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
-
-</body>
+<div class="tab-panel" id="tab-dancing"><div class="dance-main"><p class="intro">Early-night dancing, old-school R&amp;B, soul, funk, global grooves, and grown-up date nights.
+Curated for people who want to dance without feeling like they're at a nightclub for 23-year-olds.</p><p class="intro">Note: LunÀtico is treated as excellent live music, not a dedicated dance destination. Dance-likely LunÀtico nights are marked separately in the LunÀtico tab.</p>
+<div class="dance-key">
+<span>❤️ Mashrome Favorite</span>
+<span>💚 Strong Option</span>
+<span>⚠️ Usually Starts Late</span>
+<span>🌳 Outdoor / summer</span>
+</div>
+<h2 class="dance-section-title">Mashrome Favorites ❤️</h2>
+<div class="dance-grid">
+<section class="dance-card">
+<div class="dance-card-head">
+<span class="dance-tag favorite">Top Pick</span>
+<h3><a href="https://www.fortgreenepark.org/all-programs/soul-summit" target="_blank">Soul Summit</a></h3>
+<div class="dance-meta">Fort Greene Park · Sundays · 3–8 PM</div>
+</div>
+<div class="dance-card-body">
+<p>The closest thing NYC has to a perfect Mashrome dance event: outdoor summer soul, disco, funk, boogie, deep cuts, community, and zero nightclub nonsense.</p>
+<div class="dance-why">Why it fits: starts in the afternoon, no dress code, no bottle service, multigenerational Brooklyn crowd.</div>
+<div class="dance-rating">❤️❤️❤️</div>
+</div>
+</section>
+<section class="dance-card">
+<div class="dance-card-head">
+<span class="dance-tag favorite">R&amp;B Sing-Along</span>
+<h3><a href="https://www.rnbonly.com/calendar/" target="_blank">R&amp;B ONLY</a></h3>
+<div class="dance-meta">Warsaw + various NYC venues · several times per year</div>
+</div>
+<div class="dance-card-body">
+<p>A giant R&amp;B sing-along built around Usher, Lauryn Hill, TLC, Mary J. Blige, D'Angelo, Destiny's Child, Alicia Keys, and more.</p>
+<div class="dance-why">Why it fits: less “club night,” more collective nostalgia and dancing to songs everyone knows.</div>
+<div class="dance-rating">❤️❤️</div>
+</div>
+</section>
+<section class="dance-card">
+<div class="dance-card-head">
+<span class="dance-tag favorite">Reliable Venue</span>
+<h3><a href="https://www.brooklynbowl.com/shows/all" target="_blank">Brooklyn Bowl</a></h3>
+<div class="dance-meta">Williamsburg · often 7–10 PM</div>
+</div>
+<div class="dance-card-body">
+<p>One of the easiest places in NYC to catch danceable live music without committing to a full nightclub evening.</p>
+<div class="dance-why">Watch for funk, soul, Afrobeat, groove-heavy rock, roots, and DJ nights.</div>
+<div class="dance-rating">❤️❤️</div>
+</div>
+</section>
+<section class="dance-card">
+<div class="dance-card-head">
+<span class="dance-tag outdoor">Early Weeknight</span>
+<h3><a href="https://bryantpark.org/activities/dance-party" target="_blank">Bryant Park Dance Parties</a></h3>
+<div class="dance-meta">Midtown · summer season · usually early evening</div>
+</div>
+<div class="dance-card-body">
+<p>Free outdoor dancing with beginner lessons before social dancing begins. Surprisingly elegant and low-pressure.</p>
+<div class="dance-why">Why it fits: dance on a weeknight and still get a full night's sleep.</div>
+<div class="dance-rating">❤️❤️</div>
+</div>
+</section>
+</div>
+<h2 class="dance-section-title">Mashrome Dance Calendar — June &amp; July 2026 🏆</h2>
+<p class="intro">Curated from the dance-friendly venue calendars: the events most likely to produce actual dancing without feeling like a random late-night club situation.</p>
+<table class="dance-table">
+<thead>
+<tr>
+<th>Date</th>
+<th>Event</th>
+<th>Venue</th>
+<th>Why It Fits</th>
+<th>Priority</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thu Jun 4</td>
+<td><div class="dance-title">Sheila E. / Leon Knight / DJ Spinna</div><div class="dance-desc">BRIC opening night with percussion, funk, and DJ Spinna.</div></td>
+<td>BRIC Celebrate Brooklyn · Prospect Park</td>
+<td>Very likely to move. Sheila E. plus DJ Spinna is one of the strongest free dance-adjacent concert bills.</td>
+<td><span class="dance-top-pick">🏆 Top Pick</span></td>
+<td><a href="https://bricartsmedia.org/celebrate-brooklyn/" target="_blank">BRIC ↗</a></td>
+</tr>
+<tr>
+<td>Fri Jun 5</td>
+<td><div class="dance-title">House of Grooves: Eli Escobar</div><div class="dance-desc">Disco, boogie, soul, and warm NYC house.</div></td>
+<td>House of Yes · Bushwick</td>
+<td>The House of Yes night most likely to feel like a real grown-up dance floor rather than generic club chaos.</td>
+<td><span class="dance-top-pick">🏆 Top Pick</span></td>
+<td><a href="https://www.houseofyes.org/houseofgrooves" target="_blank">Event ↗</a></td>
+</tr>
+<tr>
+<td>Sat Jun 6</td>
+<td><div class="dance-title">Tank and the Bangas</div><div class="dance-desc">Funk, soul, spoken word, New Orleans groove.</div></td>
+<td>Brooklyn Bowl · Williamsburg</td>
+<td>Not a formal dance party, but probably one of the most danceable live shows on the calendar.</td>
+<td>❤️❤️</td>
+<td><a href="https://www.brooklynbowl.com/shows/all" target="_blank">Brooklyn Bowl ↗</a></td>
+</tr>
+<tr>
+<td>Sun Jun 7</td>
+<td><div class="dance-title">Saint James Joy @ The High Line</div><div class="dance-desc">House, soul, family/community dance energy.</div></td>
+<td>The High Line · Manhattan</td>
+<td>Outdoor, daytime, low-pressure dancing. Exactly the right shape for a weekend date.</td>
+<td>❤️❤️</td>
+<td><a href="https://www.stjamesjoy.com/" target="_blank">Calendar ↗</a></td>
+</tr>
+<tr>
+<td>Sun Jun 7</td>
+<td><div class="dance-title">Saint James Joy x Front Yard FM</div><div class="dance-desc">House and soul in Herbert Von King Park.</div></td>
+<td>Herbert Von King Park · Bed-Stuy</td>
+<td>Neighborhood outdoor dancing with easy logistics and a friendly community feel.</td>
+<td>❤️❤️</td>
+<td><a href="https://www.stjamesjoy.com/" target="_blank">Calendar ↗</a></td>
+</tr>
+<tr>
+<td>Wed Jun 10</td>
+<td><div class="dance-title">Lincoln Center Swing Night</div><div class="dance-desc">Eyal Vilner Big Band + Caleb Teicher on the outdoor dance floor.</div></td>
+<td>Lincoln Center · Upper West Side</td>
+<td>Structured social dancing, likely early enough to be sane, and part of the Summer of Dance season.</td>
+<td><span class="dance-top-pick">🏆 Top Pick</span></td>
+<td><a href="https://lincolncenter.org/series/summer-for-the-city/" target="_blank">Lincoln Center ↗</a></td>
+</tr>
+<tr>
+<td>Fri Jun 13</td>
+<td><div class="dance-title">Hot In Herre: 2000s Dance Party</div><div class="dance-desc">Mainstream 2000s nostalgia dance party.</div></td>
+<td>Brooklyn Bowl · Williamsburg</td>
+<td>Not the deepest Mashrome fit, but absolutely a dance night and likely fun.</td>
+<td>💚</td>
+<td><a href="https://www.brooklynbowl.com/shows/all" target="_blank">Brooklyn Bowl ↗</a></td>
+</tr>
+<tr>
+<td>Sat Jun 20</td>
+<td><div class="dance-title">Wayne Wonder + Lila Iké</div><div class="dance-desc">Reggae and dancehall summer energy.</div></td>
+<td>BRIC Celebrate Brooklyn · Prospect Park</td>
+<td>Likely to have more movement than a seated concert; strong outdoor summer possibility.</td>
+<td>❤️</td>
+<td><a href="https://bricartsmedia.org/celebrate-brooklyn/" target="_blank">BRIC ↗</a></td>
+</tr>
+<tr>
+<td>Fri Jun 26</td>
+<td><div class="dance-title">Patti LaBelle + Lady Wray + morernbplease</div><div class="dance-desc">Classic soul/R&amp;B legend plus modern soul and R&amp;B DJ energy.</div></td>
+<td>BRIC Celebrate Brooklyn · Prospect Park</td>
+<td>Outdoor R&amp;B crowd, strong sing-along potential, and likely dancing around the lawn.</td>
+<td><span class="dance-top-pick">🏆 Top Pick</span></td>
+<td><a href="https://bricartsmedia.org/celebrate-brooklyn/" target="_blank">BRIC ↗</a></td>
+</tr>
+<tr>
+<td>Sun Jun 28</td>
+<td><div class="dance-title">Glitterbox Pride</div><div class="dance-desc">Disco-house, queer celebration, performers, spectacle.</div></td>
+<td>House of Yes · Bushwick</td>
+<td>Probably the most celebratory House of Yes pick: disco roots, inclusivity, and big joyous dancing.</td>
+<td><span class="dance-top-pick">🏆 Top Pick</span></td>
+<td><a href="https://www.houseofyes.org/glitterbox" target="_blank">Event ↗</a></td>
+</tr>
+<tr>
+<td>Sun Jun 28</td>
+<td><div class="dance-title">Martha Wash</div><div class="dance-desc">Disco/house vocal legend.</div></td>
+<td>Sony Hall · Midtown</td>
+<td>Legacy dance music credentials: Weather Girls, C+C Music Factory, and huge house/disco vocal history.</td>
+<td>❤️❤️</td>
+<td><a href="https://sonyhall.com/events/" target="_blank">Sony Hall ↗</a></td>
+</tr>
+<tr>
+<td>Fri Jul 3</td>
+<td><div class="dance-title">House of Grooves: Eli Escobar</div><div class="dance-desc">Monthly soulful house/disco night.</div></td>
+<td>House of Yes · Bushwick</td>
+<td>Repeat top pick if you want the House of Yes version of a Soul Summit-adjacent night.</td>
+<td><span class="dance-top-pick">🏆 Top Pick</span></td>
+<td><a href="https://www.houseofyes.org/houseofgrooves" target="_blank">Event ↗</a></td>
+</tr>
+<tr>
+<td>Tue Jul 8</td>
+<td><div class="dance-title">Jesse Royal</div><div class="dance-desc">Reggae live show.</div></td>
+<td>SOB's · SoHo</td>
+<td>More live-reggae energy than dedicated dance party, but a good SOB's watch-list item.</td>
+<td>💚</td>
+<td><a href="https://sobs.com/calendar/" target="_blank">SOB's ↗</a></td>
+</tr>
+<tr>
+<td>Sun Jul 12</td>
+<td><div class="dance-title">Soul Summit Music Festival</div><div class="dance-desc">Soul, disco, funk, house, boogie, outdoor Brooklyn dancing.</div></td>
+<td>Fort Greene Park · Brooklyn</td>
+<td>The best overall match: daytime, free, outdoor, multigenerational, and actually centered on dancing.</td>
+<td><span class="dance-top-pick">🏆 Top Pick</span></td>
+<td><a href="https://www.fortgreenepark.org/all-programs/soul-summit" target="_blank">Fort Greene Park ↗</a></td>
+</tr>
+<tr>
+<td>Fri Jul 25</td>
+<td><div class="dance-title">Saved By The 90s</div><div class="dance-desc">90s nostalgia dance party.</div></td>
+<td>Brooklyn Bowl · Williamsburg</td>
+<td>More goofy nostalgia than deep soul, but a reliable dance-floor night.</td>
+<td>💚</td>
+<td><a href="https://www.brooklynbowl.com/shows/all" target="_blank">Brooklyn Bowl ↗</a></td>
+</tr>
+<tr>
+<td>Sat Jul 25</td>
+<td><div class="dance-title">Rhythm Revue Retro Soul Dance Party</div><div class="dance-desc">Felix Hernandez retro soul dance party.</div></td>
+<td>Le Poisson Rouge · Greenwich Village</td>
+<td>Direct hit: retro soul, NYC dance history, earlier evening timing, and explicitly a dance party.</td>
+<td><span class="dance-top-pick">🏆 Top Pick</span></td>
+<td><a href="https://lpr.com/" target="_blank">LPR ↗</a></td>
+</tr>
+<tr>
+<td>Thu Jul 30</td>
+<td><div class="dance-title">Souls of Mischief</div><div class="dance-desc">Golden-era hip-hop live show.</div></td>
+<td>Brooklyn Bowl · Williamsburg</td>
+<td>More bouncing and crowd energy than dance-party dancing, but still worth flagging.</td>
+<td>💚</td>
+<td><a href="https://www.brooklynbowl.com/shows/all" target="_blank">Brooklyn Bowl ↗</a></td>
+</tr>
+</tbody>
+</table>
+<h2 class="dance-section-title">Venue Watch Notes</h2>
+<table class="dance-table">
+<thead>
+<tr>
+<th>Venue</th>
+<th>Best Bets</th>
+<th>Notes</th>
+<th>Calendar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><div class="dance-title">House of Yes</div></td>
+<td>House of Grooves, Glitterbox, disco, soulful house, community dance events.</td>
+<td>Selected nights only. Avoid techno-heavy/bass-heavy or novelty rave nights unless the theme really grabs you.</td>
+<td><a href="https://www.houseofyes.org/calendar" target="_blank">Calendar ↗</a></td>
+</tr>
+<tr>
+<td><div class="dance-title">SOB's</div></td>
+<td>House on Varick, Rhythm Revue, Hustle in the House, retro soul, reggae, neo-soul.</td>
+<td>Potentially great, but the calendar is mixed. Scan for soul/R&amp;B/house rather than generic hip-hop nights.</td>
+<td><a href="https://sobs.com/calendar/" target="_blank">Calendar ↗</a></td>
+</tr>
+<tr>
+<td><div class="dance-title">Sony Hall</div></td>
+<td>Legacy soul, funk, R&amp;B, disco/house vocalists, jazz-funk.</td>
+<td>Comfortable room. More concert than dance club, but the right booking can absolutely move.</td>
+<td><a href="https://sonyhall.com/events/" target="_blank">Calendar ↗</a></td>
+</tr>
+<tr>
+<td><div class="dance-title">BRIC Celebrate Brooklyn</div></td>
+<td>Funk, Afrobeat, reggae, R&amp;B, Latin, global dance-oriented outdoor bills.</td>
+<td>Often better for you than clubs: outdoor, Brooklyn crowd, music-first, dance happens naturally.</td>
+<td><a href="https://bricartsmedia.org/celebrate-brooklyn/" target="_blank">Calendar ↗</a></td>
+</tr>
+<tr>
+<td><div class="dance-title">Lincoln Center</div></td>
+<td>Summer for the City, social dance nights, swing, salsa, silent disco, outdoor dance floor.</td>
+<td>Best recurring Manhattan dance source for earlier, grown-up, structured dancing.</td>
+<td><a href="https://lincolncenter.org/series/summer-for-the-city/" target="_blank">Calendar ↗</a></td>
+</tr>
+</tbody>
+</table>
+<h2 class="dance-section-title">House of Yes Watchlist 🎪</h2>
+<table class="dance-table">
+<thead><tr><th>Event Type</th><th>Look For</th><th>Usually Skip</th><th>Calendar</th></tr></thead>
+<tbody>
+<tr><td><div class="dance-title">Mashrome-friendly House of Yes</div><div class="dance-desc">Selected nights only.</div></td><td>House of Grooves, Glitterbox, disco, soulful house, Saint James Joy-style community dance, daytime/sunset events.</td><td>Techno-heavy nights, bass-heavy nights, novelty rave concepts, anything that starts too late without a compelling musical reason.</td><td><a href="https://www.houseofyes.org/calendar" target="_blank">House of Yes Calendar ↗</a></td></tr>
+</tbody>
+</table>
+<h2 class="dance-section-title">R&amp;B &amp; Soul Dance Nights</h2>
+<table class="dance-table">
+<thead>
+<tr>
+<th>Event</th>
+<th>Vibe</th>
+<th>Notes</th>
+<th>Rating</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><div class="dance-title"><a href="https://www.rnbonly.com/calendar/" target="_blank">R&amp;B ONLY</a></div><div class="dance-desc">Touring R&amp;B dance party</div></td>
+<td>90s–2000s R&amp;B sing-along</td>
+<td>Watch for NYC dates. Often lands at Warsaw or similar larger rooms.</td>
+<td>❤️❤️</td>
+</tr>
+<tr>
+<td><div class="dance-title"><a href="https://www.facebook.com/newyorknighttrain/" target="_blank">Jonathan Toubin Soul Clap</a></div></td>
+<td>Vintage soul, funk, garage, and R&amp;B</td>
+<td>Rooted in record-collector dance-floor culture rather than bottle-service club culture.</td>
+<td>❤️</td>
+</tr>
+<tr>
+<td><div class="dance-title"><a href="https://www.stjamesjoy.com/" target="_blank">Joy &amp; Pain</a></div></td>
+<td>Soul, funk, disco, classic dance music</td>
+<td>Long-running Brooklyn institution with a more mature, friendly crowd.</td>
+<td>💚</td>
+</tr>
+<tr>
+<td><div class="dance-title"><a href="https://www.instagram.com/howpartiesusedtobe/" target="_blank">How Parties Used To Be</a></div></td>
+<td>Adults dancing to music they actually know</td>
+<td>The name pretty much says it all.</td>
+<td>💚</td>
+</tr>
+<tr>
+<td><div class="dance-title"><a href="https://www.instagram.com/lateniterandb/" target="_blank">Late Nite R&amp;B</a></div></td>
+<td>Nostalgic R&amp;B dance floor</td>
+<td>Worth checking, especially when the venue and start time are manageable.</td>
+<td>💚</td>
+</tr>
+</tbody>
+</table>
+<h2 class="dance-section-title">Outdoor Summer Dancing 🌳</h2>
+<table class="dance-table">
+<thead>
+<tr>
+<th>Event</th>
+<th>Best For</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><div class="dance-title"><a href="https://www.fortgreenepark.org/all-programs/soul-summit" target="_blank">Soul Summit</a></div></td>
+<td>Old-school soul lovers</td>
+<td>If somebody designed a dance event specifically for Jerome and Masha, it would look a lot like this.</td>
+</tr>
+<tr>
+<td><div class="dance-title"><a href="https://bryantpark.org/activities/dance-party" target="_blank">Bryant Park Dance Parties</a></div></td>
+<td>Structured dancing</td>
+<td>Usually includes a lesson before the open dance portion.</td>
+</tr>
+<tr>
+<td><div class="dance-title"><a href="https://lincolncenter.org/series/summer-for-the-city/" target="_blank">Lincoln Center Summer for the City</a></div></td>
+<td>Social dance, world music, Latin nights</td>
+<td>Worth monitoring every year. Outdoor dance-floor programming can be excellent.</td>
+</tr>
+<tr>
+<td><div class="dance-title"><a href="https://www.prospectpark.org/" target="_blank">Prospect Park Dance Events</a></div></td>
+<td>Neighborhood nights out</td>
+<td>Watch summer calendars for salsa, Afro-Caribbean dance, and community festival events.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="dance-section-title">Live Music You Can Dance To</h2>
+<table class="dance-table">
+<thead>
+<tr>
+<th>Venue</th>
+<th>Neighborhood</th>
+<th>Why Go</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><div class="dance-title"><a href="https://www.brooklynbowl.com/shows/all" target="_blank">Brooklyn Bowl</a></div></td>
+<td>Williamsburg</td>
+<td>Danceable concerts with early starts; funk, soul, roots, Afrobeat, groove-heavy touring acts.</td>
+</tr>
+<tr>
+<td><div class="dance-title"><a href="https://sobs.com/" target="_blank">SOB's</a></div></td>
+<td>SoHo</td>
+<td>Neo-soul, R&amp;B, groove-heavy live acts, DJs, and dance nights.</td>
+</tr>
+<tr>
+<td><div class="dance-title"><a href="https://www.warsawconcerts.com/" target="_blank">Warsaw</a></div></td>
+<td>Greenpoint</td>
+<td>Frequent host of R&amp;B ONLY and larger nostalgia/dance events.</td>
+</tr>
+<tr>
+<td><div class="dance-title"><a href="https://sonyhall.com/" target="_blank">Sony Hall</a></div></td>
+<td>Midtown</td>
+<td>Soul, funk, legacy R&amp;B, jazz-funk, and nostalgia acts in a comfortable room.</td>
+</tr>
+<tr>
+<td><div class="dance-title"><a href="https://bricartsmedia.org/celebrate-brooklyn/" target="_blank">BRIC Celebrate Brooklyn</a></div></td>
+<td>Prospect Park</td>
+<td>Frequent outdoor dance-oriented programming, often free and all-ages.</td>
+</tr>
+<tr>
+<td><div class="dance-title"><a href="https://lincolncenter.org/series/summer-for-the-city/" target="_blank">Lincoln Center</a></div></td>
+<td>Upper West Side</td>
+<td>Seasonal social dance and world music events, often surprisingly approachable.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="dance-section-title">Late-Night But Worth It ⚠️</h2>
+<div class="dance-grid">
+<section class="dance-card">
+<div class="dance-card-head">
+<span class="dance-tag late">Choose Carefully</span>
+<h3><a href="https://goodroombk.com/" target="_blank">Good Room</a></h3>
+<div class="dance-meta">Greenpoint</div>
+</div>
+<div class="dance-card-body">
+<p>Usually not your scene. Occasionally exactly your scene.</p>
+<div class="dance-why">Watch for disco, soul, eclectic DJ nights, and older-crowd bookings.</div>
+</div>
+</section>
+<section class="dance-card">
+<div class="dance-card-head">
+<span class="dance-tag late">Selected Nights Only</span>
+<h3><a href="https://www.houseofyes.org/calendar" target="_blank">House of Yes</a></h3>
+<div class="dance-meta">Bushwick</div>
+</div>
+<div class="dance-card-body"><p>The right night can be fantastic; the wrong night can feel very far from Mashrome territory.</p>
+<div class="dance-why">Best bets: House of Grooves, Glitterbox, disco/soulful house, daytime or community dance events. Skip techno-heavy or novelty rave nights unless the theme really grabs you.</div>
+</div>
+</section>
+<section class="dance-card">
+<div class="dance-card-head">
+<span class="dance-tag watch">Monitor Calendar</span>
+<h3><a href="https://www.chelseamusichall.com/" target="_blank">Chelsea Music Hall</a></h3>
+<div class="dance-meta">Chelsea</div>
+</div>
+<div class="dance-card-body">
+<p>Still worth monitoring. Not as consistently interesting as it once was, but every so often something appears that feels tailor-made for you two.</p>
+<div class="dance-why">Best when it books soul, R&amp;B, funk, or nostalgia-focused dance events.</div>
+</div>
+</section>
+</div>
+<h2 class="dance-section-title">Watch List 👀</h2>
+<div class="dance-watch-list">
+<ul>
+<li><a href="https://www.fortgreenepark.org/all-programs/soul-summit" target="_blank">Soul Summit</a></li>
+<li><a href="https://www.rnbonly.com/calendar/" target="_blank">R&amp;B ONLY</a></li>
+<li><a href="https://www.facebook.com/newyorknighttrain/" target="_blank">Jonathan Toubin Soul Clap</a></li>
+<li><a href="https://www.stjamesjoy.com/" target="_blank">Joy &amp; Pain</a></li>
+<li><a href="https://www.instagram.com/howpartiesusedtobe/" target="_blank">How Parties Used To Be</a></li>
+<li><a href="https://www.instagram.com/lateniterandb/" target="_blank">Late Nite R&amp;B</a></li>
+<li><a href="https://sobs.com/" target="_blank">SOB's</a></li>
+<li><a href="https://www.brooklynbowl.com/shows/all" target="_blank">Brooklyn Bowl</a></li>
+<li><a href="https://sonyhall.com/" target="_blank">Sony Hall</a></li>
+<li><a href="https://www.warsawconcerts.com/" target="_blank">Warsaw</a></li>
+<li><a href="https://bricartsmedia.org/celebrate-brooklyn/" target="_blank">BRIC Celebrate Brooklyn</a></li>
+<li><a href="https://lincolncenter.org/series/summer-for-the-city/" target="_blank">Lincoln Center Summer for the City</a></li>
+<li><a href="https://www.houseofyes.org/calendar" target="_blank">House of Yes, selected events only</a></li>
+<li><a href="https://www.houseofyes.org/houseofgrooves" target="_blank">House of Grooves</a></li><li><a href="https://www.houseofyes.org/glitterbox" target="_blank">Glitterbox</a></li><li><a href="https://www.stjamesjoy.com/" target="_blank">Saint James Joy</a></li><li><a href="https://www.brooklynbowl.com/shows/all" target="_blank">Tank and the Bangas</a></li><li><a href="https://www.brooklynbowl.com/shows/all" target="_blank">Saved By The 90s</a></li><li><a href="https://www.brooklynbowl.com/shows/all" target="_blank">Souls of Mischief</a></li><li><a href="https://sonyhall.com/events/" target="_blank">Martha Wash</a></li><li><a href="https://lpr.com/" target="_blank">Rhythm Revue Retro Soul Dance Party</a></li><li><a href="https://bricartsmedia.org/celebrate-brooklyn/" target="_blank">Sheila E. + DJ Spinna</a></li><li><a href="https://bricartsmedia.org/celebrate-brooklyn/" target="_blank">Patti LaBelle + Lady Wray</a></li></ul>
+</div>
+<h2 class="dance-section-title">Perfect Pairings ❤️</h2>
+<table class="dance-table">
+<thead>
+<tr>
+<th>Pairing</th>
+<th>Why It Works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><div class="dance-title">Date Night Drop-Off → Soul Summit</div></td>
+<td>Probably the strongest overall combination: childcare, dinner, outdoor dancing, home at a sane hour.</td>
+</tr>
+<tr>
+<td><div class="dance-title">Date Night Drop-Off → Brooklyn Bowl</div></td>
+<td>Dinner + live music + dancing, with easy logistics and earlier shows.</td>
+</tr>
+<tr>
+<td><div class="dance-title">Date Night Drop-Off → R&amp;B ONLY</div></td>
+<td>For when you want a bigger night out that still centers music you actually love.</td>
+</tr>
+<tr>
+<td><div class="dance-title">Dinner in Fort Greene → Soul Summit</div></td>
+<td>Almost a perfect Brooklyn summer evening.</td>
+</tr>
+<tr>
+<td><div class="dance-title">East Village Dinner → SOB's</div></td>
+<td>Simple, easy, and often surprisingly fun.</td>
+</tr>
+</tbody>
+</table>
+<div class="dance-note">
+<strong>Mashrome Strategy:</strong>
+  Date Night Drop-Off → dinner → dancing.
+  The goal is simple: <strong>maximum dancing, minimum nightclub nonsense.</strong>
+</div>
+</div></div></body>
 </html>
