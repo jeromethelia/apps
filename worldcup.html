@@ -1,252 +1,105 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026 FIFA World Cup — Full Schedule</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 FIFA World Cup — Updated Schedule and Predictions</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f3; color: #111; font-size: 14px; }
-  h1 { font-size: 20px; font-weight: 600; padding: 1.25rem 1rem 0.25rem; }
-  .subtitle { font-size: 13px; color: #666; padding: 0 1rem 1rem; }
-  .legend { display: flex; gap: 12px; padding: 0 1rem 1rem; flex-wrap: wrap; }
-  .legend span { font-size: 12px; display: flex; align-items: center; gap: 5px; }
-  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-  .controls { display: flex; flex-wrap: wrap; gap: 6px; padding: 0.75rem 1rem; background: #fff; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 20; }
-  .filter-btn { font-size: 12px; font-weight: 500; padding: 5px 12px; border: 1px solid #ccc; border-radius: 20px; background: transparent; color: #555; cursor: pointer; }
-  .filter-btn.active { background: #001f7a; color: #fff; border-color: #001f7a; }
-  .section-header { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.08em; padding: 1rem 1rem 0.4rem; background: #f5f5f3; border-top: 1px solid #e5e5e5; margin-top: 4px; }
-  .section-header:first-of-type { border-top: none; margin-top: 0; }
-  .day-label { font-size: 12px; font-weight: 600; color: #444; padding: 0.6rem 1rem 0.2rem; background: #f5f5f3; }
-  .match-row { display: grid; grid-template-columns: 62px 46px 1fr 88px; align-items: center; gap: 8px; padding: 7px 1rem; --row-bg: #fff; background: var(--row-bg); border-bottom: 1px solid #f0f0f0; }
-  .match-row:last-child { border-bottom: none; }
-  .match-row.watch { --row-bg: #f0f6ff; }
-  .match-row.predicted .matchup-main { color: #555; font-style: italic; }
-  
-  
-  
-  .time { font-size: 13px; font-weight: 600; color: #111; white-space: nowrap; }
-  .channel { font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 4px; text-align: center; }
-  .fox { background: #001f7a; color: #fff; }
-  .fs1 { background: #e0e0e0; color: #333; }
-  .matchup-main { font-size: 13px; line-height: 1.3; }
-  .matchup-sub { font-size: 11px; color: #888; margin-top: 1px; display: flex; align-items: center; gap: 5px; }
-  .metlife-badge { font-size: 10px; font-weight: 600; background: #001f7a; color: #fff; padding: 1px 5px; border-radius: 3px; }
-  .predicted-badge { font-size: 10px; color: #888; font-style: italic; }
-  .venue { font-size: 11px; color: #777; text-align: right; line-height: 1.3; }
-  .no-results { color: #999; font-size: 14px; padding: 2rem 1rem; text-align: center; }
-  @media (max-width: 520px) {
-    .match-row { grid-template-columns: 58px 40px 1fr 70px; gap: 6px; }
-  }
+:root { --bg:#0b1020; --panel:#141b34; --panel2:#10172e; --text:#f5f7fb; --muted:#aab4d4; --line:#2a355c; --accent:#77c8ff; --gold:#ffd36b; --green:#7ce09d; }
+*{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,#0b1020,#121a32 45%,#0b1020);color:var(--text);}
+main{max-width:1180px;margin:0 auto;padding:28px 18px 56px} h1{font-size:clamp(2rem,5vw,4rem);margin:.1em 0} h2{margin-top:34px;border-bottom:1px solid var(--line);padding-bottom:10px} .sub{color:var(--muted);font-size:1.05rem} .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 10px;margin:4px 4px 4px 0;background:rgba(255,255,255,.04)} .champ{color:var(--gold);font-weight:800} .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px} .group-card,.note{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:14px;padding:14px} .group-card h3{margin:0 0 8px;color:var(--accent)} ol{margin:0;padding-left:24px} li{margin:4px 0} table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.035);border-radius:14px;overflow:hidden} th,td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top} th{text-align:left;color:var(--muted);background:rgba(255,255,255,.04);font-size:.9rem;text-transform:uppercase;letter-spacing:.04em} tr:hover{background:rgba(255,255,255,.04)} .final{color:var(--green);font-weight:700} .scheduled{color:var(--accent);font-weight:700} em{color:#fff;font-style:italic} .watch td:first-child::before{content:"★ ";color:var(--gold)} .bracket{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:12px} .box{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:14px;padding:13px} .box .stage{color:var(--muted);font-size:.85rem;text-transform:uppercase;letter-spacing:.04em} .box .match{font-size:1.05rem;margin:6px 0} .box .winner{color:var(--gold);font-weight:800} footer{color:var(--muted);margin-top:34px;font-size:.9rem} @media(max-width:700px){th:nth-child(2),td:nth-child(2){display:none} table{font-size:.92rem}}
 </style>
 </head>
-<body>
-
+<body><main>
+<header>
 <h1>2026 FIFA World Cup</h1>
-<p class="subtitle" style="font-weight:600;color:#444;">Jerome Update — June 8, 2026 · 10:00 AM</p>
-<p class="subtitle">All 104 matches · Jun 11 – Jul 19, 2026 · All times ET · <em>Italic = predicted matchup</em></p>
-
-<div class="legend">
-  <span><span class="dot" style="background:#001f7a"></span> FOX</span>
-  <span><span class="dot" style="background:#bbb"></span> FS1</span>
-  <span><span class="dot" style="background:#f0f6ff;border:1px solid #99b"></span> Games to watch</span>
+<p class="sub">Jerome Update — June 21, 2026 · 5:15 PM ET</p>
+<p class="sub">Games before today removed · Today forward only · Italic = predicted matchup · Predictions updated from completed results through Belgium 0–0 Iran.</p>
+<p><span class="pill">Predicted champion: <span class="champ">France</span></span><span class="pill">Final: France over Brazil</span><span class="pill">Semifinals: France–Spain · Brazil–Argentina</span></p>
+</header>
+<section class="note"><strong>Big changes from the first pass:</strong> Mexico, USA, Germany, Netherlands, Spain, Brazil, Argentina and England look strong early; Portugal’s draw with DR Congo makes Group K tighter; Japan still projects to advance but now has a tougher path after the Netherlands thrashed Sweden.</section>
+<h2>Predicted group finish</h2><div class="grid"><div class='group-card'><h3>Group A</h3><ol><li>Mexico</li><li>South Korea</li><li>Czechia</li><li>South Africa</li></ol></div>
+<div class='group-card'><h3>Group B</h3><ol><li>Canada</li><li>Switzerland</li><li>Bosnia and Herzegovina</li><li>Qatar</li></ol></div>
+<div class='group-card'><h3>Group C</h3><ol><li>Brazil</li><li>Morocco</li><li>Scotland</li><li>Haiti</li></ol></div>
+<div class='group-card'><h3>Group D</h3><ol><li>United States</li><li>Australia</li><li>Paraguay</li><li>Turkey</li></ol></div>
+<div class='group-card'><h3>Group E</h3><ol><li>Germany</li><li>Ivory Coast</li><li>Ecuador</li><li>Curacao</li></ol></div>
+<div class='group-card'><h3>Group F</h3><ol><li>Netherlands</li><li>Japan</li><li>Sweden</li><li>Tunisia</li></ol></div>
+<div class='group-card'><h3>Group G</h3><ol><li>Belgium</li><li>Iran</li><li>New Zealand</li><li>Egypt</li></ol></div>
+<div class='group-card'><h3>Group H</h3><ol><li>Spain</li><li>Uruguay</li><li>Cape Verde</li><li>Saudi Arabia</li></ol></div>
+<div class='group-card'><h3>Group I</h3><ol><li>France</li><li>Norway</li><li>Senegal</li><li>Iraq</li></ol></div>
+<div class='group-card'><h3>Group J</h3><ol><li>Argentina</li><li>Austria</li><li>Algeria</li><li>Jordan</li></ol></div>
+<div class='group-card'><h3>Group K</h3><ol><li>Portugal</li><li>Colombia</li><li>DR Congo</li><li>Uzbekistan</li></ol></div>
+<div class='group-card'><h3>Group L</h3><ol><li>England</li><li>Ghana</li><li>Croatia</li><li>Panama</li></ol></div></div>
+<h2>Remaining group-stage schedule</h2><table><thead><tr><th>Date</th><th>Time ET</th><th>Group</th><th>Match</th><th>Status</th><th>Why it matters</th></tr></thead><tbody><tr><td>2026-06-21</td><td>12:00 PM</td><td>Group H</td><td>Spain 4 vs Saudi Arabia 0</td><td><span class='final'>Final</span></td><td>Spain strengthened its case for Group H.</td></tr>
+<tr><td>2026-06-21</td><td>3:00 PM</td><td>Group G</td><td>Belgium 0 vs Iran 0</td><td><span class='final'>Final</span></td><td>Group G remains wide open.</td></tr>
+<tr><td>2026-06-21</td><td>6:00 PM</td><td>Group H</td><td>Uruguay vs Cape Verde</td><td><span class='scheduled'>Scheduled</span></td><td>Key match for second place.</td></tr>
+<tr><td>2026-06-21</td><td>9:00 PM</td><td>Group G</td><td>New Zealand vs Egypt</td><td><span class='scheduled'>Scheduled</span></td><td>Every Group G team can still move.</td></tr>
+<tr><td>2026-06-22</td><td>1:00 PM</td><td>Group J</td><td>Argentina vs Austria</td><td><span class='scheduled'>Scheduled</span></td><td>Likely group-decider.</td></tr>
+<tr><td>2026-06-22</td><td>5:00 PM</td><td>Group I</td><td>France vs Iraq</td><td><span class='scheduled'>Scheduled</span></td><td>France can take control of Group I.</td></tr>
+<tr><td>2026-06-22</td><td>8:00 PM</td><td>Group I</td><td>Norway vs Senegal</td><td><span class='scheduled'>Scheduled</span></td><td>Big second-place match.</td></tr>
+<tr><td>2026-06-22</td><td>11:00 PM</td><td>Group J</td><td>Jordan vs Algeria</td><td><span class='scheduled'>Scheduled</span></td><td>Survival match.</td></tr>
+<tr><td>2026-06-23</td><td>1:00 PM</td><td>Group K</td><td>Portugal vs Uzbekistan</td><td><span class='scheduled'>Scheduled</span></td><td>Portugal needs a win after drawing DR Congo.</td></tr>
+<tr><td>2026-06-23</td><td>4:00 PM</td><td>Group L</td><td>England vs Ghana</td><td><span class='scheduled'>Scheduled</span></td><td>Top of Group L on the line.</td></tr>
+<tr><td>2026-06-23</td><td>7:00 PM</td><td>Group L</td><td>Panama vs Croatia</td><td><span class='scheduled'>Scheduled</span></td><td>Croatia needs a response.</td></tr>
+<tr><td>2026-06-23</td><td>10:00 PM</td><td>Group K</td><td>Colombia vs DR Congo</td><td><span class='scheduled'>Scheduled</span></td><td>Colombia can nearly lock up advancement.</td></tr>
+<tr><td>2026-06-24</td><td>3:00 PM</td><td>Group B</td><td>Switzerland vs Canada</td><td><span class='scheduled'>Scheduled</span></td><td>Group B title match.</td></tr>
+<tr><td>2026-06-24</td><td>3:00 PM</td><td>Group B</td><td>Bosnia and Herzegovina vs Qatar</td><td><span class='scheduled'>Scheduled</span></td><td>Third-place implications.</td></tr>
+<tr><td>2026-06-24</td><td>6:00 PM</td><td>Group C</td><td>Scotland vs Brazil</td><td><span class='scheduled'>Scheduled</span></td><td>Brazil controls its path.</td></tr>
+<tr><td>2026-06-24</td><td>6:00 PM</td><td>Group C</td><td>Morocco vs Haiti</td><td><span class='scheduled'>Scheduled</span></td><td>Morocco can seal advancement.</td></tr>
+<tr><td>2026-06-24</td><td>9:00 PM</td><td>Group A</td><td>Czechia vs Mexico</td><td><span class='scheduled'>Scheduled</span></td><td>Mexico can win Group A.</td></tr>
+<tr><td>2026-06-24</td><td>9:00 PM</td><td>Group A</td><td>South Africa vs South Korea</td><td><span class='scheduled'>Scheduled</span></td><td>Korea likely needs a result.</td></tr>
+<tr><td>2026-06-25</td><td>4:00 PM</td><td>Group E</td><td>Ecuador vs Germany</td><td><span class='scheduled'>Scheduled</span></td><td>Germany should win Group E.</td></tr>
+<tr><td>2026-06-25</td><td>4:00 PM</td><td>Group E</td><td>Curacao vs Ivory Coast</td><td><span class='scheduled'>Scheduled</span></td><td>Ivory Coast can secure second.</td></tr>
+<tr><td>2026-06-25</td><td>7:00 PM</td><td>Group F</td><td>Tunisia vs Netherlands</td><td><span class='scheduled'>Scheduled</span></td><td>Netherlands favored to top Group F.</td></tr>
+<tr><td>2026-06-25</td><td>7:00 PM</td><td>Group F</td><td>Japan vs Sweden</td><td><span class='scheduled'>Scheduled</span></td><td>Huge match for Japan and Sweden.</td></tr>
+<tr><td>2026-06-25</td><td>10:00 PM</td><td>Group D</td><td>Turkey vs United States</td><td><span class='scheduled'>Scheduled</span></td><td>USA can finish perfect.</td></tr>
+<tr><td>2026-06-25</td><td>10:00 PM</td><td>Group D</td><td>Paraguay vs Australia</td><td><span class='scheduled'>Scheduled</span></td><td>Likely second-place decider.</td></tr>
+<tr><td>2026-06-26</td><td>3:00 PM</td><td>Group I</td><td>Norway vs France</td><td><span class='scheduled'>Scheduled</span></td><td>Could decide Group I.</td></tr>
+<tr><td>2026-06-26</td><td>3:00 PM</td><td>Group I</td><td>Senegal vs Iraq</td><td><span class='scheduled'>Scheduled</span></td><td>Third-place chase.</td></tr>
+<tr><td>2026-06-26</td><td>8:00 PM</td><td>Group H</td><td>Uruguay vs Spain</td><td><span class='scheduled'>Scheduled</span></td><td>Group H finale.</td></tr>
+<tr><td>2026-06-26</td><td>8:00 PM</td><td>Group H</td><td>Cape Verde vs Saudi Arabia</td><td><span class='scheduled'>Scheduled</span></td><td>Third-place chase.</td></tr>
+<tr><td>2026-06-26</td><td>11:00 PM</td><td>Group G</td><td>New Zealand vs Belgium</td><td><span class='scheduled'>Scheduled</span></td><td>Belgium must finish strong.</td></tr>
+<tr><td>2026-06-26</td><td>11:00 PM</td><td>Group G</td><td>Egypt vs Iran</td><td><span class='scheduled'>Scheduled</span></td><td>Group G advancement match.</td></tr>
+<tr><td>2026-06-27</td><td>5:00 PM</td><td>Group L</td><td>Panama vs England</td><td><span class='scheduled'>Scheduled</span></td><td>England favored.</td></tr>
+<tr><td>2026-06-27</td><td>5:00 PM</td><td>Group L</td><td>Croatia vs Ghana</td><td><span class='scheduled'>Scheduled</span></td><td>Likely second-place decider.</td></tr>
+<tr><td>2026-06-27</td><td>7:30 PM</td><td>Group K</td><td>Colombia vs Portugal</td><td><span class='scheduled'>Scheduled</span></td><td>Could decide Group K.</td></tr>
+<tr><td>2026-06-27</td><td>7:30 PM</td><td>Group K</td><td>DR Congo vs Uzbekistan</td><td><span class='scheduled'>Scheduled</span></td><td>Third-place implications.</td></tr>
+<tr><td>2026-06-27</td><td>10:00 PM</td><td>Group J</td><td>Jordan vs Argentina</td><td><span class='scheduled'>Scheduled</span></td><td>Argentina favored.</td></tr>
+<tr><td>2026-06-27</td><td>10:00 PM</td><td>Group J</td><td>Algeria vs Austria</td><td><span class='scheduled'>Scheduled</span></td><td>Austria likely second.</td></tr></tbody></table>
+<h2>Re-predicted knockout schedule</h2><table><thead><tr><th>Date</th><th>Time ET</th><th>Round</th><th>Predicted matchup</th><th>Predicted winner</th></tr></thead><tbody><tr class=''><td>2026-06-28</td><td>3:00 PM</td><td>Round of 32</td><td><em>South Korea vs Switzerland</em></td><td><strong>Switzerland</strong></td></tr>
+<tr class='watch'><td>2026-06-29</td><td>1:00 PM</td><td>Round of 32</td><td><em>Brazil vs Japan</em></td><td><strong>Brazil</strong></td></tr>
+<tr class=''><td>2026-06-29</td><td>4:30 PM</td><td>Round of 32</td><td><em>Germany vs Paraguay</em></td><td><strong>Germany</strong></td></tr>
+<tr class=''><td>2026-06-29</td><td>9:00 PM</td><td>Round of 32</td><td><em>Netherlands vs Morocco</em></td><td><strong>Netherlands</strong></td></tr>
+<tr class='watch'><td>2026-06-30</td><td>1:00 PM</td><td>Round of 32</td><td><em>Ivory Coast vs Norway</em></td><td><strong>Norway</strong></td></tr>
+<tr class='watch'><td>2026-06-30</td><td>5:00 PM</td><td>Round of 32</td><td><em>France vs Sweden</em></td><td><strong>France</strong></td></tr>
+<tr class='watch'><td>2026-06-30</td><td>9:00 PM</td><td>Round of 32</td><td><em>Mexico vs Senegal</em></td><td><strong>Mexico</strong></td></tr>
+<tr class='watch'><td>2026-07-01</td><td>12:00 PM</td><td>Round of 32</td><td><em>England vs Cape Verde</em></td><td><strong>England</strong></td></tr>
+<tr class=''><td>2026-07-01</td><td>4:00 PM</td><td>Round of 32</td><td><em>Belgium vs Czechia</em></td><td><strong>Belgium</strong></td></tr>
+<tr class='watch'><td>2026-07-01</td><td>8:00 PM</td><td>Round of 32</td><td><em>United States vs Ecuador</em></td><td><strong>United States</strong></td></tr>
+<tr class='watch'><td>2026-07-02</td><td>3:00 PM</td><td>Round of 32</td><td><em>Spain vs Austria</em></td><td><strong>Spain</strong></td></tr>
+<tr class=''><td>2026-07-02</td><td>7:00 PM</td><td>Round of 32</td><td><em>Colombia vs Ghana</em></td><td><strong>Colombia</strong></td></tr>
+<tr class=''><td>2026-07-02</td><td>11:00 PM</td><td>Round of 32</td><td><em>Canada vs New Zealand</em></td><td><strong>Canada</strong></td></tr>
+<tr class=''><td>2026-07-03</td><td>2:00 PM</td><td>Round of 32</td><td><em>Australia vs Iran</em></td><td><strong>Iran</strong></td></tr>
+<tr class='watch'><td>2026-07-03</td><td>6:00 PM</td><td>Round of 32</td><td><em>Argentina vs Uruguay</em></td><td><strong>Argentina</strong></td></tr>
+<tr class='watch'><td>2026-07-03</td><td>9:30 PM</td><td>Round of 32</td><td><em>Portugal vs Croatia</em></td><td><strong>Portugal</strong></td></tr>
+<tr class=''><td>2026-07-04</td><td>1:00 PM</td><td>Round of 16</td><td><em>Switzerland vs Netherlands</em></td><td><strong>Netherlands</strong></td></tr>
+<tr class='watch'><td>2026-07-04</td><td>5:00 PM</td><td>Round of 16</td><td><em>Germany vs France</em></td><td><strong>France</strong></td></tr>
+<tr class='watch'><td>2026-07-05</td><td>4:00 PM</td><td>Round of 16</td><td><em>Brazil vs Norway</em></td><td><strong>Brazil</strong></td></tr>
+<tr class='watch'><td>2026-07-05</td><td>8:00 PM</td><td>Round of 16</td><td><em>Mexico vs England</em></td><td><strong>England</strong></td></tr>
+<tr class='watch'><td>2026-07-06</td><td>3:00 PM</td><td>Round of 16</td><td><em>Colombia vs Spain</em></td><td><strong>Spain</strong></td></tr>
+<tr class='watch'><td>2026-07-06</td><td>8:00 PM</td><td>Round of 16</td><td><em>United States vs Belgium</em></td><td><strong>United States</strong></td></tr>
+<tr class='watch'><td>2026-07-07</td><td>12:00 PM</td><td>Round of 16</td><td><em>Argentina vs Iran</em></td><td><strong>Argentina</strong></td></tr>
+<tr class='watch'><td>2026-07-07</td><td>4:00 PM</td><td>Round of 16</td><td><em>Canada vs Portugal</em></td><td><strong>Portugal</strong></td></tr>
+<tr class='watch'><td>2026-07-09</td><td>4:00 PM</td><td>Quarterfinal</td><td><em>France vs Netherlands</em></td><td><strong>France</strong></td></tr>
+<tr class='watch'><td>2026-07-10</td><td>3:00 PM</td><td>Quarterfinal</td><td><em>Spain vs United States</em></td><td><strong>Spain</strong></td></tr>
+<tr class='watch'><td>2026-07-11</td><td>5:00 PM</td><td>Quarterfinal</td><td><em>Brazil vs England</em></td><td><strong>Brazil</strong></td></tr>
+<tr class='watch'><td>2026-07-11</td><td>9:00 PM</td><td>Quarterfinal</td><td><em>Argentina vs Portugal</em></td><td><strong>Argentina</strong></td></tr>
+<tr class='watch'><td>2026-07-14</td><td>3:00 PM</td><td>Semifinal</td><td><em>France vs Spain</em></td><td><strong>France</strong></td></tr>
+<tr class='watch'><td>2026-07-15</td><td>3:00 PM</td><td>Semifinal</td><td><em>Brazil vs Argentina</em></td><td><strong>Brazil</strong></td></tr>
+<tr class='watch'><td>2026-07-18</td><td>5:00 PM</td><td>Third-place playoff</td><td><em>Spain vs Argentina</em></td><td><strong>Argentina</strong></td></tr>
+<tr class='watch'><td>2026-07-19</td><td>3:00 PM</td><td>Final</td><td><em>France vs Brazil</em></td><td><strong>France</strong></td></tr></tbody></table>
+<h2>Bracket path</h2><div class="bracket">
+<div class="box"><div class="stage">Quarterfinal · 2026-07-09 4:00 PM</div><div class="match"><em>France</em> vs <em>Netherlands</em></div><div>Pick: <span class="winner">France</span></div></div><div class="box"><div class="stage">Quarterfinal · 2026-07-10 3:00 PM</div><div class="match"><em>Spain</em> vs <em>United States</em></div><div>Pick: <span class="winner">Spain</span></div></div><div class="box"><div class="stage">Quarterfinal · 2026-07-11 5:00 PM</div><div class="match"><em>Brazil</em> vs <em>England</em></div><div>Pick: <span class="winner">Brazil</span></div></div><div class="box"><div class="stage">Quarterfinal · 2026-07-11 9:00 PM</div><div class="match"><em>Argentina</em> vs <em>Portugal</em></div><div>Pick: <span class="winner">Argentina</span></div></div><div class="box"><div class="stage">Semifinal · 2026-07-14 3:00 PM</div><div class="match"><em>France</em> vs <em>Spain</em></div><div>Pick: <span class="winner">France</span></div></div><div class="box"><div class="stage">Semifinal · 2026-07-15 3:00 PM</div><div class="match"><em>Brazil</em> vs <em>Argentina</em></div><div>Pick: <span class="winner">Brazil</span></div></div><div class="box"><div class="stage">Third-place playoff · 2026-07-18 5:00 PM</div><div class="match"><em>Spain</em> vs <em>Argentina</em></div><div>Pick: <span class="winner">Argentina</span></div></div><div class="box"><div class="stage">Final · 2026-07-19 3:00 PM</div><div class="match"><em>France</em> vs <em>Brazil</em></div><div>Pick: <span class="winner">France</span></div></div>
 </div>
-
-<div class="controls">
-  <button class="filter-btn active" onclick="filterSection('all',this)">All 104</button>
-  <button class="filter-btn" onclick="filterSection('knockout',this)">Knockout rounds</button>
-  <button class="filter-btn" onclick="filterSection('watch',this)">Games to watch</button>
-</div>
-
-<div id="schedule"></div>
-
-<script>
-const data = [
-  {s:"Group stage",d:"Thu Jun 11",t:"3:00 PM",ch:"FOX",m:"Mexico vs South Africa",g:"Group A",v:"Mexico City"},
-  {s:"Group stage",d:"Thu Jun 11",t:"10:00 PM",ch:"FS1",m:"South Korea vs Czechia",g:"Group A",v:"Guadalajara"},
-  {s:"Group stage",d:"Fri Jun 12",t:"3:00 PM",ch:"FOX",m:"Canada vs Bosnia & Herzegovina",g:"Group B",v:"Toronto"},
-  {s:"Group stage",d:"Fri Jun 12",t:"9:00 PM",ch:"FOX",m:"USA vs Paraguay",g:"Group D",v:"Los Angeles",usa:1},
-  {s:"Group stage",d:"Sat Jun 13",t:"3:00 PM",ch:"FOX",m:"Qatar vs Switzerland",g:"Group B",v:"San Francisco"},
-  {s:"Group stage",d:"Sat Jun 13",t:"6:00 PM",ch:"FS1",m:"Brazil vs Morocco",g:"Group C",v:"MetLife",ml:1},
-  {s:"Group stage",d:"Sat Jun 13",t:"9:00 PM",ch:"FS1",m:"Haiti vs Scotland",g:"Group C",v:"Boston"},
-  {s:"Group stage",d:"Sat Jun 13",t:"12:00 AM",ch:"FOX",m:"Australia vs Türkiye",g:"Group D",v:"Vancouver"},
-  {s:"Group stage",d:"Sun Jun 14",t:"1:00 PM",ch:"FOX",m:"Germany vs Curaçao",g:"Group E",v:"Houston"},
-  {s:"Group stage",d:"Sun Jun 14",t:"4:00 PM",ch:"FOX",m:"Netherlands vs Japan",g:"Group F",v:"Dallas"},
-  {s:"Group stage",d:"Sun Jun 14",t:"7:00 PM",ch:"FS1",m:"Ivory Coast vs Ecuador",g:"Group E",v:"Philadelphia"},
-  {s:"Group stage",d:"Sun Jun 14",t:"10:00 PM",ch:"FS1",m:"Sweden vs Tunisia",g:"Group F",v:"Monterrey"},
-  {s:"Group stage",d:"Mon Jun 15",t:"12:00 PM",ch:"FOX",m:"Spain vs Cape Verde",g:"Group H",v:"Atlanta"},
-  {s:"Group stage",d:"Mon Jun 15",t:"3:00 PM",ch:"FOX",m:"Belgium vs Egypt",g:"Group G",v:"Seattle"},
-  {s:"Group stage",d:"Mon Jun 15",t:"6:00 PM",ch:"FS1",m:"Saudi Arabia vs Uruguay",g:"Group H",v:"Miami"},
-  {s:"Group stage",d:"Mon Jun 15",t:"9:00 PM",ch:"FS1",m:"Iran vs New Zealand",g:"Group G",v:"Los Angeles"},
-  {s:"Group stage",d:"Tue Jun 16",t:"3:00 PM",ch:"FOX",m:"France vs Senegal",g:"Group I",v:"MetLife",ml:1},
-  {s:"Group stage",d:"Tue Jun 16",t:"6:00 PM",ch:"FOX",m:"Iraq vs Norway",g:"Group I",v:"Boston"},
-  {s:"Group stage",d:"Tue Jun 16",t:"9:00 PM",ch:"FOX",m:"Argentina vs Algeria",g:"Group J",v:"Kansas City"},
-  {s:"Group stage",d:"Tue Jun 16",t:"12:00 AM",ch:"FS1",m:"Austria vs Jordan",g:"Group J",v:"San Francisco"},
-  {s:"Group stage",d:"Wed Jun 17",t:"1:00 PM",ch:"FOX",m:"Portugal vs Congo DR",g:"Group K",v:"Houston"},
-  {s:"Group stage",d:"Wed Jun 17",t:"4:00 PM",ch:"FOX",m:"England vs Croatia",g:"Group L",v:"Dallas"},
-  {s:"Group stage",d:"Wed Jun 17",t:"7:00 PM",ch:"FS1",m:"Ghana vs Panama",g:"Group L",v:"Toronto"},
-  {s:"Group stage",d:"Wed Jun 17",t:"10:00 PM",ch:"FS1",m:"Uzbekistan vs Colombia",g:"Group K",v:"Mexico City"},
-  {s:"Group stage",d:"Thu Jun 18",t:"12:00 PM",ch:"FOX",m:"Czechia vs South Africa",g:"Group A",v:"Atlanta"},
-  {s:"Group stage",d:"Thu Jun 18",t:"3:00 PM",ch:"FOX",m:"Switzerland vs Bosnia & Herzegovina",g:"Group B",v:"Los Angeles"},
-  {s:"Group stage",d:"Thu Jun 18",t:"6:00 PM",ch:"FS1",m:"Canada vs Qatar",g:"Group B",v:"Vancouver"},
-  {s:"Group stage",d:"Thu Jun 18",t:"9:00 PM",ch:"FOX",m:"Mexico vs South Korea",g:"Group A",v:"Guadalajara"},
-  {s:"Group stage",d:"Fri Jun 19",t:"3:00 PM",ch:"FOX",m:"USA vs Australia",g:"Group D",v:"Seattle",usa:1},
-  {s:"Group stage",d:"Fri Jun 19",t:"6:00 PM",ch:"FOX",m:"Scotland vs Morocco",g:"Group C",v:"Boston"},
-  {s:"Group stage",d:"Fri Jun 19",t:"9:00 PM",ch:"FOX",m:"Brazil vs Haiti",g:"Group C",v:"Philadelphia"},
-  {s:"Group stage",d:"Fri Jun 19",t:"12:00 AM",ch:"FS1",m:"Türkiye vs Paraguay",g:"Group D",v:"San Francisco"},
-  {s:"Group stage",d:"Sat Jun 20",t:"1:00 PM",ch:"FOX",m:"Netherlands vs Sweden",g:"Group F",v:"Houston"},
-  {s:"Group stage",d:"Sat Jun 20",t:"4:00 PM",ch:"FOX",m:"Germany vs Ivory Coast",g:"Group E",v:"Toronto"},
-  {s:"Group stage",d:"Sat Jun 20",t:"8:00 PM",ch:"FS1",m:"Ecuador vs Curaçao",g:"Group E",v:"Kansas City"},
-  {s:"Group stage",d:"Sat Jun 20",t:"12:00 AM",ch:"FS1",m:"Tunisia vs Japan",g:"Group F",v:"Monterrey"},
-  {s:"Group stage",d:"Sun Jun 21",t:"12:00 PM",ch:"FOX",m:"Spain vs Saudi Arabia",g:"Group H",v:"Atlanta"},
-  {s:"Group stage",d:"Sun Jun 21",t:"3:00 PM",ch:"FS1",m:"Belgium vs Iran",g:"Group G",v:"Los Angeles"},
-  {s:"Group stage",d:"Sun Jun 21",t:"6:00 PM",ch:"FS1",m:"Uruguay vs Cape Verde",g:"Group H",v:"Miami"},
-  {s:"Group stage",d:"Sun Jun 21",t:"9:00 PM",ch:"FS1",m:"New Zealand vs Egypt",g:"Group G",v:"Vancouver"},
-  {s:"Group stage",d:"Mon Jun 22",t:"1:00 PM",ch:"FOX",m:"Argentina vs Austria",g:"Group J",v:"Dallas"},
-  {s:"Group stage",d:"Mon Jun 22",t:"5:00 PM",ch:"FOX",m:"France vs Iraq",g:"Group I",v:"Philadelphia"},
-  {s:"Group stage",d:"Mon Jun 22",t:"8:00 PM",ch:"FOX",m:"Norway vs Senegal",g:"Group I",v:"MetLife",ml:1},
-  {s:"Group stage",d:"Mon Jun 22",t:"11:00 PM",ch:"FS1",m:"Jordan vs Algeria",g:"Group J",v:"San Francisco"},
-  {s:"Group stage",d:"Tue Jun 23",t:"1:00 PM",ch:"FOX",m:"Portugal vs Uzbekistan",g:"Group K",v:"Houston"},
-  {s:"Group stage",d:"Tue Jun 23",t:"4:00 PM",ch:"FOX",m:"England vs Ghana",g:"Group L",v:"Boston"},
-  {s:"Group stage",d:"Tue Jun 23",t:"7:00 PM",ch:"FOX",m:"Panama vs Croatia",g:"Group L",v:"Toronto"},
-  {s:"Group stage",d:"Tue Jun 23",t:"10:00 PM",ch:"FS1",m:"Colombia vs Congo DR",g:"Group K",v:"Guadalajara"},
-  {s:"Group stage",d:"Wed Jun 24",t:"3:00 PM",ch:"FOX",m:"Switzerland vs Canada",g:"Group B",v:"Vancouver"},
-  {s:"Group stage",d:"Wed Jun 24",t:"3:00 PM",ch:"FS1",m:"Bosnia & Herzegovina vs Qatar",g:"Group B",v:"Seattle"},
-  {s:"Group stage",d:"Wed Jun 24",t:"6:00 PM",ch:"FOX",m:"Brazil vs Scotland",g:"Group C",v:"Miami"},
-  {s:"Group stage",d:"Wed Jun 24",t:"6:00 PM",ch:"FS1",m:"Morocco vs Haiti",g:"Group C",v:"Atlanta"},
-  {s:"Group stage",d:"Wed Jun 24",t:"9:00 PM",ch:"FOX",m:"Czechia vs Mexico",g:"Group A",v:"Mexico City"},
-  {s:"Group stage",d:"Wed Jun 24",t:"9:00 PM",ch:"FS1",m:"South Africa vs South Korea",g:"Group A",v:"Monterrey"},
-  {s:"Group stage",d:"Thu Jun 25",t:"4:00 PM",ch:"FOX",m:"Ecuador vs Germany",g:"Group E",v:"MetLife",ml:1},
-  {s:"Group stage",d:"Thu Jun 25",t:"4:00 PM",ch:"FS1",m:"Curaçao vs Ivory Coast",g:"Group E",v:"Philadelphia"},
-  {s:"Group stage",d:"Thu Jun 25",t:"7:00 PM",ch:"FOX",m:"Tunisia vs Netherlands",g:"Group F",v:"Kansas City"},
-  {s:"Group stage",d:"Thu Jun 25",t:"7:00 PM",ch:"FS1",m:"Japan vs Sweden",g:"Group F",v:"Dallas"},
-  {s:"Group stage",d:"Thu Jun 25",t:"10:00 PM",ch:"FOX",m:"USA vs Türkiye",g:"Group D",v:"Los Angeles",usa:1},
-  {s:"Group stage",d:"Thu Jun 25",t:"10:00 PM",ch:"FS1",m:"Paraguay vs Australia",g:"Group D",v:"San Francisco"},
-  {s:"Group stage",d:"Fri Jun 26",t:"3:00 PM",ch:"FOX",m:"Norway vs France",g:"Group I",v:"Boston"},
-  {s:"Group stage",d:"Fri Jun 26",t:"3:00 PM",ch:"FS1",m:"Senegal vs Iraq",g:"Group I",v:"Toronto"},
-  {s:"Group stage",d:"Fri Jun 26",t:"8:00 PM",ch:"FOX",m:"Uruguay vs Spain",g:"Group H",v:"Guadalajara"},
-  {s:"Group stage",d:"Fri Jun 26",t:"8:00 PM",ch:"FS1",m:"Cape Verde vs Saudi Arabia",g:"Group H",v:"Houston"},
-  {s:"Group stage",d:"Fri Jun 26",t:"11:00 PM",ch:"FOX",m:"New Zealand vs Belgium",g:"Group G",v:"Vancouver"},
-  {s:"Group stage",d:"Fri Jun 26",t:"11:00 PM",ch:"FS1",m:"Egypt vs Iran",g:"Group G",v:"Seattle"},
-  {s:"Group stage",d:"Sat Jun 27",t:"5:00 PM",ch:"FOX",m:"Panama vs England",g:"Group L",v:"MetLife",ml:1},
-  {s:"Group stage",d:"Sat Jun 27",t:"5:00 PM",ch:"FS1",m:"Croatia vs Ghana",g:"Group L",v:"Philadelphia"},
-  {s:"Group stage",d:"Sat Jun 27",t:"7:30 PM",ch:"FOX",m:"Colombia vs Portugal",g:"Group K",v:"Miami"},
-  {s:"Group stage",d:"Sat Jun 27",t:"7:30 PM",ch:"FS1",m:"Congo DR vs Uzbekistan",g:"Group K",v:"Atlanta"},
-  {s:"Group stage",d:"Sat Jun 27",t:"10:00 PM",ch:"FOX",m:"Jordan vs Argentina",g:"Group J",v:"Dallas"},
-  {s:"Group stage",d:"Sat Jun 27",t:"10:00 PM",ch:"FS1",m:"Algeria vs Austria",g:"Group J",v:"Kansas City"},
-  {s:"Round of 32",d:"Sun Jun 28",t:"3:00 PM",ch:"FOX",m:"predicted: South Korea vs Switzerland",g:"M73",v:"Los Angeles",p:1},
-  {s:"Round of 32",d:"Mon Jun 29",t:"1:00 PM",ch:"FOX",m:"predicted: Brazil vs Tunisia",g:"M76",v:"Houston",p:1},
-  {s:"Round of 32",d:"Mon Jun 29",t:"4:30 PM",ch:"FOX",m:"predicted: Germany vs Sweden",g:"M74",v:"Boston",p:1},
-  {s:"Round of 32",d:"Mon Jun 29",t:"9:00 PM",ch:"FOX",m:"predicted: Netherlands vs Scotland",g:"M75",v:"Monterrey",p:1},
-  {s:"Round of 32",d:"Tue Jun 30",t:"1:00 PM",ch:"FOX",m:"predicted: Ivory Coast vs Norway",g:"M78",v:"Dallas",p:1},
-  {s:"Round of 32",d:"Tue Jun 30",t:"5:00 PM",ch:"FOX",m:"predicted: France vs Uruguay",g:"M77",v:"MetLife",ml:1,p:1},
-  {s:"Round of 32",d:"Tue Jun 30",t:"9:00 PM",ch:"FOX",m:"predicted: Mexico vs Senegal",g:"M79",v:"Mexico City",p:1},
-  {s:"Round of 32",d:"Wed Jul 1",t:"12:00 PM",ch:"FOX",m:"predicted: England vs Algeria",g:"M80",v:"Atlanta",p:1},
-  {s:"Round of 32",d:"Wed Jul 1",t:"4:00 PM",ch:"FS1",m:"predicted: Belgium vs Iraq",g:"M82",v:"Seattle",p:1},
-  {s:"Round of 32",d:"Wed Jul 1",t:"8:00 PM",ch:"FOX",m:"predicted: USA vs Austria",g:"M81",v:"San Francisco",p:1,usa:1},
-  {s:"Round of 32",d:"Thu Jul 2",t:"3:00 PM",ch:"FOX",m:"predicted: Spain vs Austria",g:"M84",v:"Los Angeles",p:1},
-  {s:"Round of 32",d:"Thu Jul 2",t:"7:00 PM",ch:"FOX",m:"predicted: Colombia vs Croatia",g:"M83",v:"Toronto",p:1},
-  {s:"Round of 32",d:"Thu Jul 2",t:"11:00 PM",ch:"FS1",m:"predicted: Canada vs Japan",g:"M85",v:"Vancouver",p:1},
-  {s:"Round of 32",d:"Fri Jul 3",t:"2:00 PM",ch:"FOX",m:"predicted: Morocco vs Türkiye",g:"M88",v:"Dallas",p:1},
-  {s:"Round of 32",d:"Fri Jul 3",t:"6:00 PM",ch:"FOX",m:"predicted: Argentina vs Cape Verde",g:"M86",v:"Miami",p:1},
-  {s:"Round of 32",d:"Fri Jul 3",t:"9:30 PM",ch:"FOX",m:"predicted: Portugal vs Ghana",g:"M87",v:"Kansas City",p:1},
-  {s:"Round of 16",d:"Sat Jul 4",t:"1:00 PM",ch:"FOX",m:"predicted: Germany vs Netherlands",g:"M90",v:"Houston",p:1},
-  {s:"Round of 16",d:"Sat Jul 4",t:"5:00 PM",ch:"FOX",m:"predicted: England vs USA",g:"M89",v:"Philadelphia",p:1,usa:1},
-  {s:"Round of 16",d:"Sun Jul 5",t:"4:00 PM",ch:"FOX",m:"predicted: France vs Brazil",g:"M91",v:"MetLife",ml:1,p:1},
-  {s:"Round of 16",d:"Sun Jul 5",t:"8:00 PM",ch:"FOX",m:"predicted: Argentina vs Spain",g:"M92",v:"Mexico City",p:1},
-  {s:"Round of 16",d:"Mon Jul 6",t:"3:00 PM",ch:"FOX",m:"predicted: Portugal vs Belgium",g:"M93",v:"Dallas",p:1},
-  {s:"Round of 16",d:"Mon Jul 6",t:"5:00 PM",ch:"FOX",m:"predicted: Japan vs Ivory Coast",g:"M94",v:"Seattle",p:1},
-  {s:"Round of 16",d:"Tue Jul 7",t:"12:00 PM",ch:"FOX",m:"predicted: Morocco vs Colombia",g:"M95",v:"Atlanta",p:1},
-  {s:"Round of 16",d:"Tue Jul 7",t:"4:00 PM",ch:"FOX",m:"predicted: Mexico vs South Korea",g:"M96",v:"Vancouver",p:1},
-  {s:"Quarterfinals",d:"Thu Jul 9",t:"4:00 PM",ch:"FOX",m:"predicted: England vs Germany",g:"QF1",v:"Boston",p:1},
-  {s:"Quarterfinals",d:"Fri Jul 10",t:"3:00 PM",ch:"FOX",m:"predicted: France vs Argentina",g:"QF2",v:"Los Angeles",p:1},
-  {s:"Quarterfinals",d:"Sat Jul 11",t:"5:00 PM",ch:"FOX",m:"predicted: Portugal vs Morocco",g:"QF3",v:"Miami",p:1},
-  {s:"Quarterfinals",d:"Sat Jul 11",t:"9:00 PM",ch:"FOX",m:"predicted: Mexico vs Japan",g:"QF4",v:"Kansas City",p:1},
-  {s:"Semifinals",d:"Tue Jul 14",t:"3:00 PM",ch:"FOX",m:"predicted: France vs England",g:"SF1",v:"Dallas",p:1},
-  {s:"Semifinals",d:"Wed Jul 15",t:"3:00 PM",ch:"FOX",m:"predicted: Portugal vs Mexico",g:"SF2",v:"Atlanta",p:1},
-  {s:"Third-place match",d:"Sat Jul 18",t:"5:00 PM",ch:"FOX",m:"predicted: England vs Mexico",g:"3rd place",v:"Miami",p:1},
-  {s:"Final ⭐",d:"Sun Jul 19",t:"3:00 PM",ch:"FOX",m:"predicted: France vs Portugal",g:"FINAL",v:"MetLife",ml:1,p:1},
-];
-
-
-
-let activeFilter = 'all';
-
-function filterSection(f, btn) {
-  activeFilter = f;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  render();
-}
-
-function isWatchGame(matchup) {
-  const clean = matchup.replace(/^predicted:\s*/i, '');
-
-  // Favorite teams from the earlier highlight list.
-  const favoriteTeamPattern = /\b(France|Portugal|Mexico|Japan|Ivory Coast)\b/;
-  if (favoriteTeamPattern.test(clean)) return true;
-
-  // Extra hand-picked "most fun" matches.
-  const extraWatchGames = [
-    "Brazil vs Morocco",
-    "Netherlands vs Japan",
-    "USA vs Türkiye",
-    "France vs Uruguay",
-    "Mexico vs Senegal",
-    "France vs Brazil",
-    "France vs Argentina",
-    "France vs England",
-    "Portugal vs Colombia",
-    "France vs Portugal"
-  ];
-
-  return extraWatchGames.includes(clean);
-}
-
-function render() {
-  let rows = data;
-  if (activeFilter === 'knockout') rows = data.filter(r => r.s !== 'Group stage');
-  if (activeFilter === 'watch') rows = data.filter(r => isWatchGame(r.m));
-
-  const el = document.getElementById('schedule');
-  if (!rows.length) {
-    el.innerHTML = '<p class="no-results">No matches for this filter.</p>';
-    return;
-  }
-
-  let html = '';
-  let lastSection = '', lastDay = '';
-
-  rows.forEach(r => {
-    if (r.s !== lastSection) {
-      html += `<div class="section-header">${r.s}</div>`;
-      lastSection = r.s;
-      lastDay = '';
-    }
-
-    if (r.d !== lastDay) {
-      html += `<div class="day-label">${r.d}</div>`;
-      lastDay = r.d;
-    }
-
-    const predBadge = r.p ? '<span class="predicted-badge">predicted</span>' : '';
-    const watch = isWatchGame(r.m);
-
-    html += `<div class="match-row${watch ? ' watch' : ''}${r.p ? ' predicted' : ''}">
-      <span class="time">${r.t}</span>
-      <span class="channel ${r.ch === 'FOX' ? 'fox' : 'fs1'}">${r.ch}</span>
-      <span>
-        <div class="matchup-main">${r.m}</div>
-        <div class="matchup-sub">${r.g} ${predBadge}</div>
-      </span>
-      <span class="venue">${r.v}</span>
-    </div>`;
-  });
-
-  el.innerHTML = html;
-}
-
-render();
-</script>
-</body>
-</html>
+<footer>Source basis: updated match snapshot available June 21, 2026. This is a prediction page, not an official FIFA bracket.</footer>
+</main></body></html>
