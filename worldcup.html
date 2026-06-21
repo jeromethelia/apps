@@ -8,13 +8,26 @@
 :root { --bg:#0b1020; --panel:#141b34; --panel2:#10172e; --text:#f5f7fb; --muted:#aab4d4; --line:#2a355c; --accent:#77c8ff; --gold:#ffd36b; --green:#7ce09d; }
 *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,#0b1020,#121a32 45%,#0b1020);color:var(--text);}
 main{max-width:1180px;margin:0 auto;padding:28px 18px 56px} h1{font-size:clamp(2rem,5vw,4rem);margin:.1em 0} h2{margin-top:34px;border-bottom:1px solid var(--line);padding-bottom:10px} .sub{color:var(--muted);font-size:1.05rem} .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 10px;margin:4px 4px 4px 0;background:rgba(255,255,255,.04)} .champ{color:var(--gold);font-weight:800} .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px} .group-card,.note{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:14px;padding:14px} .group-card h3{margin:0 0 8px;color:var(--accent)} ol{margin:0;padding-left:24px} li{margin:4px 0} table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.035);border-radius:14px;overflow:hidden} th,td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top} th{text-align:left;color:var(--muted);background:rgba(255,255,255,.04);font-size:.9rem;text-transform:uppercase;letter-spacing:.04em} tr:hover{background:rgba(255,255,255,.04)} .final{color:var(--green);font-weight:700} .scheduled{color:var(--accent);font-weight:700} em{color:#fff;font-style:italic} .watch td:first-child::before{content:"★ ";color:var(--gold)} .bracket{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:12px} .box{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:14px;padding:13px} .box .stage{color:var(--muted);font-size:.85rem;text-transform:uppercase;letter-spacing:.04em} .box .match{font-size:1.05rem;margin:6px 0} .box .winner{color:var(--gold);font-weight:800} footer{color:var(--muted);margin-top:34px;font-size:.9rem} @media(max-width:700px){th:nth-child(2),td:nth-child(2){display:none} table{font-size:.92rem}}
+
+/* Date-aware row styling */
+tr.past-game { opacity: .46; filter: grayscale(.45); background: rgba(255,255,255,.018); }
+tr.past-game:hover { opacity: .72; background: rgba(255,255,255,.04); }
+tr.today-game { background: linear-gradient(90deg, rgba(255,211,107,.22), rgba(119,200,255,.10)); outline: 2px solid rgba(255,211,107,.65); outline-offset: -2px; }
+tr.today-game td:first-child { font-weight: 800; color: var(--gold); }
+tr.today-game td:first-child::after { content: "  TODAY"; display: inline-block; margin-left: 6px; padding: 2px 6px; border-radius: 999px; background: rgba(255,211,107,.22); color: var(--gold); font-size: .72rem; letter-spacing: .04em; }
+tr.future-game { opacity: 1; }
+.legend { margin: 12px 0 16px; color: var(--muted); font-size: .95rem; }
+.legend .swatch { display:inline-block; width: 1.1em; height: .75em; border-radius: 4px; margin: 0 5px 0 12px; vertical-align: baseline; border: 1px solid var(--line); }
+.legend .today-swatch { background: rgba(255,211,107,.32); border-color: rgba(255,211,107,.65); }
+.legend .past-swatch { background: rgba(255,255,255,.06); opacity: .5; }
+
 </style>
 </head>
 <body><main>
 <header>
 <h1>2026 FIFA World Cup</h1>
 <p class="sub">Jerome Update — June 21, 2026 · 5:15 PM ET</p>
-<p class="sub">Games before today removed · Today forward only · Italic = predicted matchup · Predictions updated from completed results through Belgium 0–0 Iran.</p>
+<p class="sub">Games before June 21 removed · Today's games highlighted automatically · Past games gray out automatically · Italic = predicted matchup · Predictions updated from completed results through Belgium 0–0 Iran.</p>
 <p><span class="pill">Predicted champion: <span class="champ">France</span></span><span class="pill">Final: France over Brazil</span><span class="pill">Semifinals: France–Spain · Brazil–Argentina</span></p>
 </header>
 <section class="note"><strong>Big changes from the first pass:</strong> Mexico, USA, Germany, Netherlands, Spain, Brazil, Argentina and England look strong early; Portugal’s draw with DR Congo makes Group K tighter; Japan still projects to advance but now has a tougher path after the Netherlands thrashed Sweden.</section>
@@ -30,7 +43,7 @@ main{max-width:1180px;margin:0 auto;padding:28px 18px 56px} h1{font-size:clamp(2
 <div class='group-card'><h3>Group J</h3><ol><li>Argentina</li><li>Austria</li><li>Algeria</li><li>Jordan</li></ol></div>
 <div class='group-card'><h3>Group K</h3><ol><li>Portugal</li><li>Colombia</li><li>DR Congo</li><li>Uzbekistan</li></ol></div>
 <div class='group-card'><h3>Group L</h3><ol><li>England</li><li>Ghana</li><li>Croatia</li><li>Panama</li></ol></div></div>
-<h2>Remaining group-stage schedule</h2><table><thead><tr><th>Date</th><th>Time ET</th><th>Group</th><th>Match</th><th>Status</th><th>Why it matters</th></tr></thead><tbody><tr><td>2026-06-21</td><td>12:00 PM</td><td>Group H</td><td>Spain 4 vs Saudi Arabia 0</td><td><span class='final'>Final</span></td><td>Spain strengthened its case for Group H.</td></tr>
+<h2>Remaining group-stage schedule</h2><div class="legend"><span class="swatch today-swatch"></span>Today's games <span class="swatch past-swatch"></span>Past games</div><table><thead><tr><th>Date</th><th>Time ET</th><th>Group</th><th>Match</th><th>Status</th><th>Why it matters</th></tr></thead><tbody><tr><td>2026-06-21</td><td>12:00 PM</td><td>Group H</td><td>Spain 4 vs Saudi Arabia 0</td><td><span class='final'>Final</span></td><td>Spain strengthened its case for Group H.</td></tr>
 <tr><td>2026-06-21</td><td>3:00 PM</td><td>Group G</td><td>Belgium 0 vs Iran 0</td><td><span class='final'>Final</span></td><td>Group G remains wide open.</td></tr>
 <tr><td>2026-06-21</td><td>6:00 PM</td><td>Group H</td><td>Uruguay vs Cape Verde</td><td><span class='scheduled'>Scheduled</span></td><td>Key match for second place.</td></tr>
 <tr><td>2026-06-21</td><td>9:00 PM</td><td>Group G</td><td>New Zealand vs Egypt</td><td><span class='scheduled'>Scheduled</span></td><td>Every Group G team can still move.</td></tr>
@@ -101,5 +114,30 @@ main{max-width:1180px;margin:0 auto;padding:28px 18px 56px} h1{font-size:clamp(2
 <h2>Bracket path</h2><div class="bracket">
 <div class="box"><div class="stage">Quarterfinal · 2026-07-09 4:00 PM</div><div class="match"><em>France</em> vs <em>Netherlands</em></div><div>Pick: <span class="winner">France</span></div></div><div class="box"><div class="stage">Quarterfinal · 2026-07-10 3:00 PM</div><div class="match"><em>Spain</em> vs <em>United States</em></div><div>Pick: <span class="winner">Spain</span></div></div><div class="box"><div class="stage">Quarterfinal · 2026-07-11 5:00 PM</div><div class="match"><em>Brazil</em> vs <em>England</em></div><div>Pick: <span class="winner">Brazil</span></div></div><div class="box"><div class="stage">Quarterfinal · 2026-07-11 9:00 PM</div><div class="match"><em>Argentina</em> vs <em>Portugal</em></div><div>Pick: <span class="winner">Argentina</span></div></div><div class="box"><div class="stage">Semifinal · 2026-07-14 3:00 PM</div><div class="match"><em>France</em> vs <em>Spain</em></div><div>Pick: <span class="winner">France</span></div></div><div class="box"><div class="stage">Semifinal · 2026-07-15 3:00 PM</div><div class="match"><em>Brazil</em> vs <em>Argentina</em></div><div>Pick: <span class="winner">Brazil</span></div></div><div class="box"><div class="stage">Third-place playoff · 2026-07-18 5:00 PM</div><div class="match"><em>Spain</em> vs <em>Argentina</em></div><div>Pick: <span class="winner">Argentina</span></div></div><div class="box"><div class="stage">Final · 2026-07-19 3:00 PM</div><div class="match"><em>France</em> vs <em>Brazil</em></div><div>Pick: <span class="winner">France</span></div></div>
 </div>
+
+<script>
+(function () {
+  function localISODate(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+
+  const today = localISODate(new Date());
+  document.querySelectorAll('tbody tr').forEach(row => {
+    const firstCell = row.querySelector('td');
+    if (!firstCell) return;
+    const dateText = firstCell.textContent.trim();
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateText)) return;
+
+    row.classList.remove('past-game', 'today-game', 'future-game');
+    if (dateText < today) row.classList.add('past-game');
+    else if (dateText === today) row.classList.add('today-game');
+    else row.classList.add('future-game');
+  });
+})();
+</script>
+
 <footer>Source basis: updated match snapshot available June 21, 2026. This is a prediction page, not an official FIFA bracket.</footer>
 </main></body></html>
