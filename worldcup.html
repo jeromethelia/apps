@@ -206,6 +206,46 @@ tr.past-game:hover {
 td:nth-child(3) {
   white-space: nowrap;
 }
+</style><style id="watch-locations-style">
+.watch-locations { margin-top: 42px; }
+.watch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+.watch-card {
+  background: rgba(255,255,255,.045);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 15px;
+}
+.watch-card.wide-card {
+  grid-column: 1 / -1;
+}
+.watch-card h3 {
+  margin: 0 0 10px;
+  color: var(--accent);
+}
+.watch-card ul,
+.watch-card ol {
+  margin: 0;
+  padding-left: 21px;
+}
+.watch-card li {
+  margin: 8px 0;
+}
+.watch-card a {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+.watch-card a:hover { text-decoration: underline; }
+.tiny-note {
+  color: var(--muted);
+  font-size: .88rem;
+  margin: 10px 0 0;
+}
 </style></head>
 <body><main>
 <header>
@@ -285,5 +325,10 @@ td:nth-child(3) {
   // Re-check hourly so the highlight rolls forward if the page stays open overnight.
   setInterval(applyDateClasses, 60 * 60 * 1000);
 })();
-</script><footer>Source basis: updated match snapshot available June 21, 2026. This is a prediction page, not an official FIFA bracket.</footer>
+</script>
+
+<section class="watch-locations" id="nyc-watch-locations">
+<h2>NYC World Cup Watch Locations</h2>
+<p class="sub">Family-friendlier food/bar options first, then city-sponsored watch parties, then museum and public cultural venues.</p>
+<div class="watch-grid"><div class="watch-card wide-card"><h3>Top 10 family-friendlier bars/restaurants</h3><ol><li><strong>Kent Ale House</strong> — Williamsburg. Great soccer setup, food, lots of screens; best with kids for earlier daytime matches. <a href="https://www.kentalehouse.com/news-item/the-best-bars-to-watch-the-world-cup-in-williamsburg-brooklyn/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=51+Kent+Ave%2C+Brooklyn%2C+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Banter Bar</strong> — Williamsburg. Serious soccer bar, neighborhood scale; go early and pick less intense matchups with kids. <a href="https://banterbrooklyn.com/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=132+Havemeyer+St%2C+Brooklyn%2C+NY" rel="noopener" target="_blank">Map</a></li><li><strong>FancyFree</strong> — Fort Greene. Food-forward neighborhood bar near BAM/Fort Greene Park; good for earlier matches. <a href="https://fancyfreebk.com/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=71+Lafayette+Ave%2C+Brooklyn%2C+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Threes Brewing</strong> — Gowanus / Greenpoint. Brewery setting with room, food, and a more relaxed daytime-watch vibe. <a href="https://threesbrewing.com/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=333+Douglass+St%2C+Brooklyn%2C+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Bohemian Hall &amp; Beer Garden</strong> — Astoria. Spacious outdoor beer garden; easiest when weather is good and games are earlier. <a href="https://bohemianhall.com/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=29-19+24th+Ave%2C+Queens%2C+NY" rel="noopener" target="_blank">Map</a></li><li><strong>The Dram Shop</strong> — Park Slope. Neighborhood sports-bar energy with food and multiple screens; a strong Brooklyn option. <a href="https://www.dramshopbrooklyn.com/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=339+9th+St%2C+Brooklyn%2C+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Harlem Tavern</strong> — Harlem. Big indoor/outdoor setup, family-friendlier daytime atmosphere, and plenty of food. <a href="https://www.harlemtavern.com/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=2153+Frederick+Douglass+Blvd%2C+New+York%2C+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Pig Beach BBQ Queens</strong> — Astoria / Queens. Large, casual BBQ hall feel, better for groups and kids than a cramped bar. <a href="https://www.pigbeachnyc.com/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=35-37+36th+St%2C+Queens%2C+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Roebling Sporting Club</strong> — Williamsburg. Sports-bar setup with solid food; earlier matches are the safer family window. <a href="https://www.roeblingsportingclub.com/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=225+N+8th+St%2C+Brooklyn%2C+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Black Forest Brooklyn</strong> — Fort Greene / Smith St. German beer-hall style with food and big tables; good for Germany/European matchups. <a href="https://www.blackforestbrooklyn.com/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=733+Fulton+St%2C+Brooklyn%2C+NY" rel="noopener" target="_blank">Map</a></li></ol><p class="tiny-note">Kid strategy: choose afternoon games, arrive early, and avoid the most intense country-specific knockout crowds.</p></div><div class="watch-card"><h3>City / official fan zones</h3><ul><li><strong>Rockefeller Center Fan Village</strong> — Midtown Manhattan · July 6–19. Official NYNJ/Telemundo fan village with live match broadcasts. <a href="https://nynjfwc26.com/fan-events/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Rockefeller+Center+New+York+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Queens Group Stage HQ</strong> — USTA Billie Jean King National Tennis Center · June 11–27. <a href="https://nynjfwc26.com/fan-events/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=USTA+Billie+Jean+King+National+Tennis+Center+Queens+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Brooklyn Fan Zone</strong> — Brooklyn Bridge Park / East River waterfront · select dates June 13–July 19. <a href="https://brooklynbridgepark.org/adidas-home-of-soccer/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Brooklyn+Bridge+Park+Pier+5" rel="noopener" target="_blank">Map</a></li><li><strong>Staten Island Fan Zone</strong> — SIUH Community Park · June 29–July 2. <a href="https://nynjfwc26.com/fan-events/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=SIUH+Community+Park+Staten+Island+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Central Park Final Watch Party</strong> — Great Lawn · July 19 final watch party. <a href="https://www.nyctourism.com/worldcup26/world-cup-fan-zones/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Central+Park+Great+Lawn+New+York+NY" rel="noopener" target="_blank">Map</a></li></ul></div><div class="watch-card"><h3>NYC Soccer Streets watch parties</h3><ul><li><strong>Fri, June 26 · 2 PM</strong> — Osborn Plaza, Brooklyn. Osborn Street from Belmont Ave to dead end. <em>Norway vs France</em>. <a href="https://www.nbcnewyork.com/world-cup/nyc-watch-parties-world-cup-knockout-rounds/6517621/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Osborn+Plaza+Brooklyn+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Thu, July 2 · 2 PM</strong> — Johnny Hartman Plaza, Manhattan. Hamilton Place from W 143rd St to Amsterdam Ave. <em>Spain vs Austria</em>. <a href="https://www.nbcnewyork.com/world-cup/nyc-watch-parties-world-cup-knockout-rounds/6517621/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Johnny+Hartman+Plaza+New+York+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Tue, July 7 · 3 PM</strong> — Kensington Plaza, Brooklyn. Beverley Rd from Church Ave to E 2nd St. <em>Argentina vs Iran</em>. <a href="https://www.nbcnewyork.com/world-cup/nyc-watch-parties-world-cup-knockout-rounds/6517621/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Kensington+Plaza+Brooklyn+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Fri, July 10 · 2 PM</strong> — Brooklyn Bridge Arches Plaza, Manhattan. Rose St from Avenue of the Finest to Frankfort St. <em>Spain vs United States</em>. <a href="https://www.nbcnewyork.com/world-cup/nyc-watch-parties-world-cup-knockout-rounds/6517621/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Brooklyn+Bridge+Arches+Plaza+Rose+Street+New+York+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Wed, July 15 · 1:30 PM</strong> — Corona Plaza, Queens. Roosevelt Ave from National St to 104th St. <em>Brazil vs Argentina</em>. <a href="https://www.nbcnewyork.com/world-cup/nyc-watch-parties-world-cup-knockout-rounds/6517621/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Corona+Plaza+Queens+NY" rel="noopener" target="_blank">Map</a></li></ul><p class="tiny-note">Matchups use the current prediction table in this page for unresolved knockout placeholders.</p></div><div class="watch-card"><h3>Museums &amp; family/culture spots</h3><ul><li><strong>Intrepid Museum / Pier 86</strong> — Free outdoor watch parties for 50+ matches on Pier 86, with large screens and food/drink for purchase. <a href="https://intrepidmuseum.org/free-world-cup-watch-parties-pier-86" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Pier+86+Intrepid+Museum+New+York+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Museum of the Moving Image</strong> — Astoria. World Cup @ MoMI runs June 12–July 17 with watch parties, family programming, hands-on animation activities, and screenings. <a href="https://movingimage.org/series/world-cup-2026-momi/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Museum+of+the+Moving+Image+Queens+NY" rel="noopener" target="_blank">Map</a></li><li><strong>MoMI Football Fridays</strong> — Fridays through July 17, with soccer-themed museum programming. <a href="https://movingimage.org/series/world-cup-2026-momi/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Museum+of+the+Moving+Image+Queens+NY" rel="noopener" target="_blank">Map</a></li><li><strong>Hudson River Park / Pier 86 listing</strong> — Park-facing listing for the Intrepid Pier 86 World Cup watch-party series. <a href="https://hudsonriverpark.org/visit/events/event/world-cup-watch-party-june-28-2026/" rel="noopener" target="_blank">Details</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=Pier+86+Hudson+River+Park+New+York+NY" rel="noopener" target="_blank">Map</a></li></ul></div></div></section><footer>Source basis: updated match snapshot available June 21, 2026. This is a prediction page, not an official FIFA bracket.</footer>
 </main></body></html>
