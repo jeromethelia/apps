@@ -1,8 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>2026 FIFA World Cup — Updated Schedule and Predictions</title>
 <style>
 :root { --bg:#0b1020; --panel:#141b34; --panel2:#10172e; --text:#f5f7fb; --muted:#aab4d4; --line:#2a355c; --accent:#77c8ff; --gold:#ffd36b; --green:#7ce09d; }
@@ -22,99 +23,237 @@ tr.future-game { opacity: 1; }
 .legend .past-swatch { background: rgba(255,255,255,.06); opacity: .5; }
 
 </style>
-</head>
+<style id="team-name-fix-final">
+/* Team-name and matchup layout fixes */
+.team-name {
+  color: var(--accent) !important;
+  font-weight: 800 !important;
+  white-space: nowrap;
+}
+.matchup-cell {
+  white-space: nowrap;
+  min-width: 300px;
+}
+.matchup-cell .vs {
+  color: var(--muted) !important;
+  font-weight: 500 !important;
+  font-size: .92em;
+  white-space: nowrap;
+}
+.scheduled {
+  color: var(--muted) !important;
+  font-weight: 400 !important;
+  font-size: .68rem !important;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  opacity: .72;
+}
+td:has(.scheduled) {
+  white-space: nowrap;
+  width: 1%;
+}
+/* Remove old all-white italic treatment from predicted matchups. */
+em { color: inherit; font-style: italic; }
+/* Make Quarterfinals through Final more prominent in both table and bracket path. */
+tr.late-round td,
+.late-round,
+.bracket .box.late-round {
+  font-size: 1.12rem;
+  line-height: 1.45;
+}
+tr.late-round .team-name,
+.bracket .box.late-round .team-name {
+  font-size: 1.18rem;
+}
+@media (min-width: 900px) {
+  table { table-layout: auto; }
+  th:nth-child(4), td:nth-child(4) { min-width: 330px; }
+}
+@media (max-width: 760px) {
+  .matchup-cell { white-space: normal; min-width: 0; }
+}
+</style>
+<style id="qf-top-and-team-fix">
+  .team-name {
+    color: var(--cyan, #77c8ff) !important;
+    font-weight: 850 !important;
+    white-space: nowrap;
+  }
+  .matchup-cell {
+    white-space: nowrap;
+    min-width: 360px;
+  }
+  .matchup-cell .vs,
+  .vs {
+    color: rgba(255,255,255,.58);
+    font-weight: 500;
+    padding: 0 .25rem;
+  }
+  .scheduled {
+    font-size: .68rem !important;
+    font-weight: 400 !important;
+    color: inherit !important;
+    opacity: .62;
+    letter-spacing: .02em;
+  }
+  #quarterfinal-games-up-top {
+    margin: 1.25rem 0;
+  }
+  #quarterfinal-games-up-top h2 {
+    margin-bottom: .35rem;
+  }
+  .late-knockout,
+  .late-knockout td {
+    font-size: 1.12rem;
+    line-height: 1.45;
+  }
+  .late-knockout .team-name {
+    font-size: 1.18rem;
+  }
+</style>
+<style id="alt-bracket-and-late-round-order">
+  .alt-bracket .alt-pick {
+    border-color: rgba(255,211,107,.75);
+    background: linear-gradient(180deg, rgba(255,211,107,.12), rgba(255,255,255,.04));
+  }
+  tr.late-round td {
+    font-size: 1.35rem !important;
+    line-height: 1.55 !important;
+  }
+  tr.late-round .team-name {
+    font-size: 1.45rem !important;
+  }
+</style>
+<style id="host-city-column-fix">
+.host-city {
+  color: var(--muted);
+  white-space: nowrap;
+  font-weight: 600;
+}
+th:nth-child(4), td:nth-child(4) {
+  min-width: 130px;
+}
+@media (max-width: 760px) {
+  .host-city { white-space: normal; }
+}
+</style><style id="matchup-column-after-host-city-fix">
+td.matchup-cell, .matchup-cell {
+  white-space: nowrap;
+}
+@media (min-width: 900px) {
+  td.matchup-cell, th:nth-child(5), td:nth-child(5) {
+    min-width: 320px;
+  }
+}
+</style><style id="auto-date-and-host-right-fix">
+/* Keep Host city at the far right and allow the matchup column to breathe. */
+.host-city {
+  color: var(--muted);
+  white-space: nowrap;
+  font-weight: 600;
+}
+th:last-child,
+td:last-child {
+  white-space: nowrap;
+}
+td.matchup-cell,
+.matchup-cell {
+  white-space: nowrap;
+}
+
+/* Strong date-aware highlighting driven by each row's data-date attribute. */
+tr.today-game {
+  background: linear-gradient(90deg, rgba(255,211,107,.28), rgba(119,200,255,.12)) !important;
+  outline: 2px solid rgba(255,211,107,.8);
+  outline-offset: -2px;
+}
+tr.today-game td:first-child {
+  font-weight: 900;
+  color: var(--gold);
+}
+tr.today-game td:first-child::after {
+  content: "  TODAY";
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(255,211,107,.24);
+  color: var(--gold);
+  font-size: .72rem;
+  letter-spacing: .04em;
+}
+tr.past-game {
+  opacity: .46;
+  filter: grayscale(.45);
+  background: rgba(255,255,255,.018);
+}
+tr.past-game:hover {
+  opacity: .72;
+  background: rgba(255,255,255,.04);
+}
+</style><style id="summary-and-knockout-date-polish">
+/* Top summary: keep Quarterfinals pill visually like the Semifinals pill. */
+.pill { font-weight: 400; }
+.pill .team-name.champ { font-weight: 800 !important; }
+
+/* Keep knockout schedule dates on a single line. */
+.date-cell-nowrap {
+  white-space: nowrap !important;
+  min-width: 120px;
+}
+
+/* Compact round labels. */
+td:nth-child(3) {
+  white-space: nowrap;
+}
+</style></head>
 <body><main>
 <header>
 <h1>2026 FIFA World Cup</h1>
 <p class="sub">Jerome Update — June 21, 2026 · 5:15 PM ET</p>
-<p class="sub">Games before June 21 removed · Today's games highlighted automatically · Past games gray out automatically · Italic = predicted matchup · Predictions updated from completed results through Belgium 0–0 Iran.</p>
-<p><span class="pill">Predicted champion: <span class="champ">France</span></span><span class="pill">Final: France over Brazil</span><span class="pill">Semifinals: France–Spain · Brazil–Argentina</span></p>
+<p class="sub">Games before June 24 removed · Today's games highlight automatically · Past games gray out automatically · Italic = predicted matchup.</p>
+<p><span class="pill">Predicted champion: <span class="champ team-name">France</span></span><span class="pill">Final: France over Brazil</span><span class="pill">Semifinals: France–Spain · Brazil–Argentina</span><span class="pill">Quarterfinals: France–Netherlands · Spain–United States · Brazil–England · Argentina–Portugal</span></p>
 </header>
-<section class="note"><strong>Big changes from the first pass:</strong> Mexico, USA, Germany, Netherlands, Spain, Brazil, Argentina and England look strong early; Portugal’s draw with DR Congo makes Group K tighter; Japan still projects to advance but now has a tougher path after the Netherlands thrashed Sweden.</section>
-<h2>Predicted group finish</h2><div class="grid"><div class='group-card'><h3>Group A</h3><ol><li>Mexico</li><li>South Korea</li><li>Czechia</li><li>South Africa</li></ol></div>
-<div class='group-card'><h3>Group B</h3><ol><li>Canada</li><li>Switzerland</li><li>Bosnia and Herzegovina</li><li>Qatar</li></ol></div>
-<div class='group-card'><h3>Group C</h3><ol><li>Brazil</li><li>Morocco</li><li>Scotland</li><li>Haiti</li></ol></div>
-<div class='group-card'><h3>Group D</h3><ol><li>United States</li><li>Australia</li><li>Paraguay</li><li>Turkey</li></ol></div>
-<div class='group-card'><h3>Group E</h3><ol><li>Germany</li><li>Ivory Coast</li><li>Ecuador</li><li>Curacao</li></ol></div>
-<div class='group-card'><h3>Group F</h3><ol><li>Netherlands</li><li>Japan</li><li>Sweden</li><li>Tunisia</li></ol></div>
-<div class='group-card'><h3>Group G</h3><ol><li>Belgium</li><li>Iran</li><li>New Zealand</li><li>Egypt</li></ol></div>
-<div class='group-card'><h3>Group H</h3><ol><li>Spain</li><li>Uruguay</li><li>Cape Verde</li><li>Saudi Arabia</li></ol></div>
-<div class='group-card'><h3>Group I</h3><ol><li>France</li><li>Norway</li><li>Senegal</li><li>Iraq</li></ol></div>
-<div class='group-card'><h3>Group J</h3><ol><li>Argentina</li><li>Austria</li><li>Algeria</li><li>Jordan</li></ol></div>
-<div class='group-card'><h3>Group K</h3><ol><li>Portugal</li><li>Colombia</li><li>DR Congo</li><li>Uzbekistan</li></ol></div>
-<div class='group-card'><h3>Group L</h3><ol><li>England</li><li>Ghana</li><li>Croatia</li><li>Panama</li></ol></div></div>
-<h2>Remaining group-stage schedule</h2><div class="legend"><span class="swatch today-swatch"></span>Today's games <span class="swatch past-swatch"></span>Past games</div><table><thead><tr><th>Date</th><th>Time ET</th><th>Group</th><th>Match</th><th>Status</th><th>Why it matters</th></tr></thead><tbody><tr><td>2026-06-21</td><td>12:00 PM</td><td>Group H</td><td>Spain 4 vs Saudi Arabia 0</td><td><span class='final'>Final</span></td><td>Spain strengthened its case for Group H.</td></tr>
-<tr><td>2026-06-21</td><td>3:00 PM</td><td>Group G</td><td>Belgium 0 vs Iran 0</td><td><span class='final'>Final</span></td><td>Group G remains wide open.</td></tr>
-<tr><td>2026-06-21</td><td>6:00 PM</td><td>Group H</td><td>Uruguay vs Cape Verde</td><td><span class='scheduled'>Scheduled</span></td><td>Key match for second place.</td></tr>
-<tr><td>2026-06-21</td><td>9:00 PM</td><td>Group G</td><td>New Zealand vs Egypt</td><td><span class='scheduled'>Scheduled</span></td><td>Every Group G team can still move.</td></tr>
-<tr><td>2026-06-22</td><td>1:00 PM</td><td>Group J</td><td>Argentina vs Austria</td><td><span class='scheduled'>Scheduled</span></td><td>Likely group-decider.</td></tr>
-<tr><td>2026-06-22</td><td>5:00 PM</td><td>Group I</td><td>France vs Iraq</td><td><span class='scheduled'>Scheduled</span></td><td>France can take control of Group I.</td></tr>
-<tr><td>2026-06-22</td><td>8:00 PM</td><td>Group I</td><td>Norway vs Senegal</td><td><span class='scheduled'>Scheduled</span></td><td>Big second-place match.</td></tr>
-<tr><td>2026-06-22</td><td>11:00 PM</td><td>Group J</td><td>Jordan vs Algeria</td><td><span class='scheduled'>Scheduled</span></td><td>Survival match.</td></tr>
-<tr><td>2026-06-23</td><td>1:00 PM</td><td>Group K</td><td>Portugal vs Uzbekistan</td><td><span class='scheduled'>Scheduled</span></td><td>Portugal needs a win after drawing DR Congo.</td></tr>
-<tr><td>2026-06-23</td><td>4:00 PM</td><td>Group L</td><td>England vs Ghana</td><td><span class='scheduled'>Scheduled</span></td><td>Top of Group L on the line.</td></tr>
-<tr><td>2026-06-23</td><td>7:00 PM</td><td>Group L</td><td>Panama vs Croatia</td><td><span class='scheduled'>Scheduled</span></td><td>Croatia needs a response.</td></tr>
-<tr><td>2026-06-23</td><td>10:00 PM</td><td>Group K</td><td>Colombia vs DR Congo</td><td><span class='scheduled'>Scheduled</span></td><td>Colombia can nearly lock up advancement.</td></tr>
-<tr><td>2026-06-24</td><td>3:00 PM</td><td>Group B</td><td>Switzerland vs Canada</td><td><span class='scheduled'>Scheduled</span></td><td>Group B title match.</td></tr>
-<tr><td>2026-06-24</td><td>3:00 PM</td><td>Group B</td><td>Bosnia and Herzegovina vs Qatar</td><td><span class='scheduled'>Scheduled</span></td><td>Third-place implications.</td></tr>
-<tr><td>2026-06-24</td><td>6:00 PM</td><td>Group C</td><td>Scotland vs Brazil</td><td><span class='scheduled'>Scheduled</span></td><td>Brazil controls its path.</td></tr>
-<tr><td>2026-06-24</td><td>6:00 PM</td><td>Group C</td><td>Morocco vs Haiti</td><td><span class='scheduled'>Scheduled</span></td><td>Morocco can seal advancement.</td></tr>
-<tr><td>2026-06-24</td><td>9:00 PM</td><td>Group A</td><td>Czechia vs Mexico</td><td><span class='scheduled'>Scheduled</span></td><td>Mexico can win Group A.</td></tr>
-<tr><td>2026-06-24</td><td>9:00 PM</td><td>Group A</td><td>South Africa vs South Korea</td><td><span class='scheduled'>Scheduled</span></td><td>Korea likely needs a result.</td></tr>
-<tr><td>2026-06-25</td><td>4:00 PM</td><td>Group E</td><td>Ecuador vs Germany</td><td><span class='scheduled'>Scheduled</span></td><td>Germany should win Group E.</td></tr>
-<tr><td>2026-06-25</td><td>4:00 PM</td><td>Group E</td><td>Curacao vs Ivory Coast</td><td><span class='scheduled'>Scheduled</span></td><td>Ivory Coast can secure second.</td></tr>
-<tr><td>2026-06-25</td><td>7:00 PM</td><td>Group F</td><td>Tunisia vs Netherlands</td><td><span class='scheduled'>Scheduled</span></td><td>Netherlands favored to top Group F.</td></tr>
-<tr><td>2026-06-25</td><td>7:00 PM</td><td>Group F</td><td>Japan vs Sweden</td><td><span class='scheduled'>Scheduled</span></td><td>Huge match for Japan and Sweden.</td></tr>
-<tr><td>2026-06-25</td><td>10:00 PM</td><td>Group D</td><td>Turkey vs United States</td><td><span class='scheduled'>Scheduled</span></td><td>USA can finish perfect.</td></tr>
-<tr><td>2026-06-25</td><td>10:00 PM</td><td>Group D</td><td>Paraguay vs Australia</td><td><span class='scheduled'>Scheduled</span></td><td>Likely second-place decider.</td></tr>
-<tr><td>2026-06-26</td><td>3:00 PM</td><td>Group I</td><td>Norway vs France</td><td><span class='scheduled'>Scheduled</span></td><td>Could decide Group I.</td></tr>
-<tr><td>2026-06-26</td><td>3:00 PM</td><td>Group I</td><td>Senegal vs Iraq</td><td><span class='scheduled'>Scheduled</span></td><td>Third-place chase.</td></tr>
-<tr><td>2026-06-26</td><td>8:00 PM</td><td>Group H</td><td>Uruguay vs Spain</td><td><span class='scheduled'>Scheduled</span></td><td>Group H finale.</td></tr>
-<tr><td>2026-06-26</td><td>8:00 PM</td><td>Group H</td><td>Cape Verde vs Saudi Arabia</td><td><span class='scheduled'>Scheduled</span></td><td>Third-place chase.</td></tr>
-<tr><td>2026-06-26</td><td>11:00 PM</td><td>Group G</td><td>New Zealand vs Belgium</td><td><span class='scheduled'>Scheduled</span></td><td>Belgium must finish strong.</td></tr>
-<tr><td>2026-06-26</td><td>11:00 PM</td><td>Group G</td><td>Egypt vs Iran</td><td><span class='scheduled'>Scheduled</span></td><td>Group G advancement match.</td></tr>
-<tr><td>2026-06-27</td><td>5:00 PM</td><td>Group L</td><td>Panama vs England</td><td><span class='scheduled'>Scheduled</span></td><td>England favored.</td></tr>
-<tr><td>2026-06-27</td><td>5:00 PM</td><td>Group L</td><td>Croatia vs Ghana</td><td><span class='scheduled'>Scheduled</span></td><td>Likely second-place decider.</td></tr>
-<tr><td>2026-06-27</td><td>7:30 PM</td><td>Group K</td><td>Colombia vs Portugal</td><td><span class='scheduled'>Scheduled</span></td><td>Could decide Group K.</td></tr>
-<tr><td>2026-06-27</td><td>7:30 PM</td><td>Group K</td><td>DR Congo vs Uzbekistan</td><td><span class='scheduled'>Scheduled</span></td><td>Third-place implications.</td></tr>
-<tr><td>2026-06-27</td><td>10:00 PM</td><td>Group J</td><td>Jordan vs Argentina</td><td><span class='scheduled'>Scheduled</span></td><td>Argentina favored.</td></tr>
-<tr><td>2026-06-27</td><td>10:00 PM</td><td>Group J</td><td>Algeria vs Austria</td><td><span class='scheduled'>Scheduled</span></td><td>Austria likely second.</td></tr></tbody></table>
-<h2>Re-predicted knockout schedule</h2><table><thead><tr><th>Date</th><th>Time ET</th><th>Round</th><th>Predicted matchup</th><th>Predicted winner</th></tr></thead><tbody><tr class=''><td>2026-06-28</td><td>3:00 PM</td><td>Round of 32</td><td><em>South Korea vs Switzerland</em></td><td><strong>Switzerland</strong></td></tr>
-<tr class='watch'><td>2026-06-29</td><td>1:00 PM</td><td>Round of 32</td><td><em>Brazil vs Japan</em></td><td><strong>Brazil</strong></td></tr>
-<tr class=''><td>2026-06-29</td><td>4:30 PM</td><td>Round of 32</td><td><em>Germany vs Paraguay</em></td><td><strong>Germany</strong></td></tr>
-<tr class=''><td>2026-06-29</td><td>9:00 PM</td><td>Round of 32</td><td><em>Netherlands vs Morocco</em></td><td><strong>Netherlands</strong></td></tr>
-<tr class='watch'><td>2026-06-30</td><td>1:00 PM</td><td>Round of 32</td><td><em>Ivory Coast vs Norway</em></td><td><strong>Norway</strong></td></tr>
-<tr class='watch'><td>2026-06-30</td><td>5:00 PM</td><td>Round of 32</td><td><em>France vs Sweden</em></td><td><strong>France</strong></td></tr>
-<tr class='watch'><td>2026-06-30</td><td>9:00 PM</td><td>Round of 32</td><td><em>Mexico vs Senegal</em></td><td><strong>Mexico</strong></td></tr>
-<tr class='watch'><td>2026-07-01</td><td>12:00 PM</td><td>Round of 32</td><td><em>England vs Cape Verde</em></td><td><strong>England</strong></td></tr>
-<tr class=''><td>2026-07-01</td><td>4:00 PM</td><td>Round of 32</td><td><em>Belgium vs Czechia</em></td><td><strong>Belgium</strong></td></tr>
-<tr class='watch'><td>2026-07-01</td><td>8:00 PM</td><td>Round of 32</td><td><em>United States vs Ecuador</em></td><td><strong>United States</strong></td></tr>
-<tr class='watch'><td>2026-07-02</td><td>3:00 PM</td><td>Round of 32</td><td><em>Spain vs Austria</em></td><td><strong>Spain</strong></td></tr>
-<tr class=''><td>2026-07-02</td><td>7:00 PM</td><td>Round of 32</td><td><em>Colombia vs Ghana</em></td><td><strong>Colombia</strong></td></tr>
-<tr class=''><td>2026-07-02</td><td>11:00 PM</td><td>Round of 32</td><td><em>Canada vs New Zealand</em></td><td><strong>Canada</strong></td></tr>
-<tr class=''><td>2026-07-03</td><td>2:00 PM</td><td>Round of 32</td><td><em>Australia vs Iran</em></td><td><strong>Iran</strong></td></tr>
-<tr class='watch'><td>2026-07-03</td><td>6:00 PM</td><td>Round of 32</td><td><em>Argentina vs Uruguay</em></td><td><strong>Argentina</strong></td></tr>
-<tr class='watch'><td>2026-07-03</td><td>9:30 PM</td><td>Round of 32</td><td><em>Portugal vs Croatia</em></td><td><strong>Portugal</strong></td></tr>
-<tr class=''><td>2026-07-04</td><td>1:00 PM</td><td>Round of 16</td><td><em>Switzerland vs Netherlands</em></td><td><strong>Netherlands</strong></td></tr>
-<tr class='watch'><td>2026-07-04</td><td>5:00 PM</td><td>Round of 16</td><td><em>Germany vs France</em></td><td><strong>France</strong></td></tr>
-<tr class='watch'><td>2026-07-05</td><td>4:00 PM</td><td>Round of 16</td><td><em>Brazil vs Norway</em></td><td><strong>Brazil</strong></td></tr>
-<tr class='watch'><td>2026-07-05</td><td>8:00 PM</td><td>Round of 16</td><td><em>Mexico vs England</em></td><td><strong>England</strong></td></tr>
-<tr class='watch'><td>2026-07-06</td><td>3:00 PM</td><td>Round of 16</td><td><em>Colombia vs Spain</em></td><td><strong>Spain</strong></td></tr>
-<tr class='watch'><td>2026-07-06</td><td>8:00 PM</td><td>Round of 16</td><td><em>United States vs Belgium</em></td><td><strong>United States</strong></td></tr>
-<tr class='watch'><td>2026-07-07</td><td>12:00 PM</td><td>Round of 16</td><td><em>Argentina vs Iran</em></td><td><strong>Argentina</strong></td></tr>
-<tr class='watch'><td>2026-07-07</td><td>4:00 PM</td><td>Round of 16</td><td><em>Canada vs Portugal</em></td><td><strong>Portugal</strong></td></tr>
-<tr class='watch'><td>2026-07-09</td><td>4:00 PM</td><td>Quarterfinal</td><td><em>France vs Netherlands</em></td><td><strong>France</strong></td></tr>
-<tr class='watch'><td>2026-07-10</td><td>3:00 PM</td><td>Quarterfinal</td><td><em>Spain vs United States</em></td><td><strong>Spain</strong></td></tr>
-<tr class='watch'><td>2026-07-11</td><td>5:00 PM</td><td>Quarterfinal</td><td><em>Brazil vs England</em></td><td><strong>Brazil</strong></td></tr>
-<tr class='watch'><td>2026-07-11</td><td>9:00 PM</td><td>Quarterfinal</td><td><em>Argentina vs Portugal</em></td><td><strong>Argentina</strong></td></tr>
-<tr class='watch'><td>2026-07-14</td><td>3:00 PM</td><td>Semifinal</td><td><em>France vs Spain</em></td><td><strong>France</strong></td></tr>
-<tr class='watch'><td>2026-07-15</td><td>3:00 PM</td><td>Semifinal</td><td><em>Brazil vs Argentina</em></td><td><strong>Brazil</strong></td></tr>
-<tr class='watch'><td>2026-07-18</td><td>5:00 PM</td><td>Third-place playoff</td><td><em>Spain vs Argentina</em></td><td><strong>Argentina</strong></td></tr>
-<tr class='watch'><td>2026-07-19</td><td>3:00 PM</td><td>Final</td><td><em>France vs Brazil</em></td><td><strong>France</strong></td></tr></tbody></table>
+<h2>Remaining group-stage schedule</h2><div class="legend"><span class="swatch today-swatch"></span>Today's games <span class="swatch past-swatch"></span>Past games</div><table><thead><tr><th>Date</th><th>Time ET</th><th>Group</th><th>Match</th><th>Why it matters</th><th>Host city</th></tr></thead><tbody><tr data-date="2026-06-24"><td>Wed, June 24</td><td>3:00 PM</td><td>Group B</td><td class="matchup-cell"><span class="team-name">Switzerland</span><span class="vs">vs</span><span class="team-name">Canada</span></td><td>Group B title match.</td><td class="host-city">Vancouver</td></tr>
+<tr data-date="2026-06-24"><td>Wed, June 24</td><td>3:00 PM</td><td>Group B</td><td class="matchup-cell"><span class="team-name">Bosnia and Herzegovina</span><span class="vs">vs</span><span class="team-name">Qatar</span></td><td>Third-place implications.</td><td class="host-city">Seattle</td></tr>
+<tr data-date="2026-06-24"><td>Wed, June 24</td><td>6:00 PM</td><td>Group C</td><td class="matchup-cell"><span class="team-name">Scotland</span><span class="vs">vs</span><span class="team-name">Brazil</span></td><td>Brazil controls its path.</td><td class="host-city">Miami</td></tr>
+<tr data-date="2026-06-24"><td>Wed, June 24</td><td>6:00 PM</td><td>Group C</td><td class="matchup-cell"><span class="team-name">Morocco</span><span class="vs">vs</span><span class="team-name">Haiti</span></td><td>Morocco can seal advancement.</td><td class="host-city">Atlanta</td></tr>
+<tr data-date="2026-06-24"><td>Wed, June 24</td><td>9:00 PM</td><td>Group A</td><td class="matchup-cell"><span class="team-name">Czechia</span><span class="vs">vs</span><span class="team-name">Mexico</span></td><td>Mexico can win Group A.</td><td class="host-city">Mexico City</td></tr>
+<tr data-date="2026-06-24"><td>Wed, June 24</td><td>9:00 PM</td><td>Group A</td><td class="matchup-cell"><span class="team-name">South Africa</span><span class="vs">vs</span><span class="team-name">South Korea</span></td><td>Korea likely needs a result.</td><td class="host-city">Monterrey</td></tr>
+<tr data-date="2026-06-25"><td>Thu, June 25</td><td>4:00 PM</td><td>Group E</td><td class="matchup-cell"><span class="team-name">Ecuador</span><span class="vs">vs</span><span class="team-name">Germany</span></td><td>Germany should win Group E.</td><td class="host-city">New York/New Jersey</td></tr>
+<tr data-date="2026-06-25"><td>Thu, June 25</td><td>4:00 PM</td><td>Group E</td><td class="matchup-cell"><span class="team-name">Curacao</span><span class="vs">vs</span><span class="team-name">Ivory Coast</span></td><td>Ivory Coast can secure second.</td><td class="host-city">Philadelphia</td></tr>
+<tr data-date="2026-06-25"><td>Thu, June 25</td><td>7:00 PM</td><td>Group F</td><td class="matchup-cell"><span class="team-name">Tunisia</span><span class="vs">vs</span><span class="team-name">Netherlands</span></td><td>Netherlands favored to top Group F.</td><td class="host-city">Kansas City</td></tr>
+<tr data-date="2026-06-25"><td>Thu, June 25</td><td>7:00 PM</td><td>Group F</td><td class="matchup-cell"><span class="team-name">Japan</span><span class="vs">vs</span><span class="team-name">Sweden</span></td><td>Huge match for Japan and Sweden.</td><td class="host-city">Dallas</td></tr>
+<tr data-date="2026-06-25"><td>Thu, June 25</td><td>10:00 PM</td><td>Group D</td><td class="matchup-cell"><span class="team-name">Turkey</span><span class="vs">vs</span><span class="team-name">United States</span></td><td>USA can finish perfect.</td><td class="host-city">Los Angeles</td></tr>
+<tr data-date="2026-06-25"><td>Thu, June 25</td><td>10:00 PM</td><td>Group D</td><td class="matchup-cell"><span class="team-name">Paraguay</span><span class="vs">vs</span><span class="team-name">Australia</span></td><td>Likely second-place decider.</td><td class="host-city">San Francisco Bay Area</td></tr>
+<tr data-date="2026-06-26"><td>Fri, June 26</td><td>3:00 PM</td><td>Group I</td><td class="matchup-cell"><span class="team-name">Norway</span><span class="vs">vs</span><span class="team-name">France</span></td><td>Could decide Group I.</td><td class="host-city">Boston</td></tr>
+<tr data-date="2026-06-26"><td>Fri, June 26</td><td>3:00 PM</td><td>Group I</td><td class="matchup-cell"><span class="team-name">Senegal</span><span class="vs">vs</span><span class="team-name">Iraq</span></td><td>Third-place chase.</td><td class="host-city">Toronto</td></tr>
+<tr data-date="2026-06-26"><td>Fri, June 26</td><td>8:00 PM</td><td>Group H</td><td class="matchup-cell"><span class="team-name">Uruguay</span><span class="vs">vs</span><span class="team-name">Spain</span></td><td>Group H finale.</td><td class="host-city">Guadalajara</td></tr>
+<tr data-date="2026-06-26"><td>Fri, June 26</td><td>8:00 PM</td><td>Group H</td><td class="matchup-cell"><span class="team-name">Cape Verde</span><span class="vs">vs</span><span class="team-name">Saudi Arabia</span></td><td>Third-place chase.</td><td class="host-city">Houston</td></tr>
+<tr data-date="2026-06-26"><td>Fri, June 26</td><td>11:00 PM</td><td>Group G</td><td class="matchup-cell"><span class="team-name">New Zealand</span><span class="vs">vs</span><span class="team-name">Belgium</span></td><td>Belgium must finish strong.</td><td class="host-city">Vancouver</td></tr>
+<tr data-date="2026-06-26"><td>Fri, June 26</td><td>11:00 PM</td><td>Group G</td><td class="matchup-cell"><span class="team-name">Egypt</span><span class="vs">vs</span><span class="team-name">Iran</span></td><td>Group G advancement match.</td><td class="host-city">Seattle</td></tr>
+<tr data-date="2026-06-27"><td>Sat, June 27</td><td>5:00 PM</td><td>Group L</td><td class="matchup-cell"><span class="team-name">Panama</span><span class="vs">vs</span><span class="team-name">England</span></td><td>England favored.</td><td class="host-city">New York/New Jersey</td></tr>
+<tr data-date="2026-06-27"><td>Sat, June 27</td><td>5:00 PM</td><td>Group L</td><td class="matchup-cell"><span class="team-name">Croatia</span><span class="vs">vs</span><span class="team-name">Ghana</span></td><td>Likely second-place decider.</td><td class="host-city">Philadelphia</td></tr>
+<tr data-date="2026-06-27"><td>Sat, June 27</td><td>7:30 PM</td><td>Group K</td><td class="matchup-cell"><span class="team-name">Colombia</span><span class="vs">vs</span><span class="team-name">Portugal</span></td><td>Could decide Group K.</td><td class="host-city">Miami</td></tr>
+<tr data-date="2026-06-27"><td>Sat, June 27</td><td>7:30 PM</td><td>Group K</td><td class="matchup-cell"><span class="team-name">DR Congo</span><span class="vs">vs</span><span class="team-name">Uzbekistan</span></td><td>Third-place implications.</td><td class="host-city">Atlanta</td></tr>
+<tr data-date="2026-06-27"><td>Sat, June 27</td><td>10:00 PM</td><td>Group J</td><td class="matchup-cell"><span class="team-name">Jordan</span><span class="vs">vs</span><span class="team-name">Argentina</span></td><td>Argentina favored.</td><td class="host-city">Dallas</td></tr>
+<tr data-date="2026-06-27"><td>Sat, June 27</td><td>10:00 PM</td><td>Group J</td><td class="matchup-cell"><span class="team-name">Algeria</span><span class="vs">vs</span><span class="team-name">Austria</span></td><td>Austria likely second.</td><td class="host-city">Kansas City</td></tr></tbody></table>
+<h2>Re-predicted knockout schedule</h2><table><thead><tr><th class="date-cell-nowrap">Date</th><th>Time ET</th><th>Round</th><th>Predicted matchup</th><th>Predicted winner</th><th>Host city</th></tr></thead><tbody>
+<tr class="" data-date="2026-06-28"><td class="date-cell-nowrap">Sun, June 28</td><td>3:00 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">South Korea</span><span class="vs">vs</span><span class="team-name">Switzerland</span></td><td><span class="team-name predicted-winner">Switzerland</span></td><td class="host-city">Los Angeles</td></tr><tr class="watch" data-date="2026-06-29"><td class="date-cell-nowrap">Mon, June 29</td><td>1:00 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">Brazil</span><span class="vs">vs</span><span class="team-name">Japan</span></td><td><span class="team-name predicted-winner">Brazil</span></td><td class="host-city">Houston</td></tr><tr class="" data-date="2026-06-29"><td class="date-cell-nowrap">Mon, June 29</td><td>4:30 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">Germany</span><span class="vs">vs</span><span class="team-name">Paraguay</span></td><td><span class="team-name predicted-winner">Germany</span></td><td class="host-city">Boston</td></tr><tr class="" data-date="2026-06-29"><td class="date-cell-nowrap">Mon, June 29</td><td>9:00 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">Netherlands</span><span class="vs">vs</span><span class="team-name">Morocco</span></td><td><span class="team-name predicted-winner">Netherlands</span></td><td class="host-city">Monterrey</td></tr><tr class="watch" data-date="2026-06-30"><td class="date-cell-nowrap">Tue, June 30</td><td>1:00 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">Ivory Coast</span><span class="vs">vs</span><span class="team-name">Norway</span></td><td><span class="team-name predicted-winner">Norway</span></td><td class="host-city">Dallas</td></tr><tr class="watch" data-date="2026-06-30"><td class="date-cell-nowrap">Tue, June 30</td><td>5:00 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">France</span><span class="vs">vs</span><span class="team-name">Sweden</span></td><td><span class="team-name predicted-winner">France</span></td><td class="host-city">New York/New Jersey</td></tr><tr class="watch" data-date="2026-06-30"><td class="date-cell-nowrap">Tue, June 30</td><td>9:00 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">Mexico</span><span class="vs">vs</span><span class="team-name">Senegal</span></td><td><span class="team-name predicted-winner">Mexico</span></td><td class="host-city">Mexico City</td></tr><tr class="watch" data-date="2026-07-01"><td class="date-cell-nowrap">Wed, July 1</td><td>12:00 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">England</span><span class="vs">vs</span><span class="team-name">Cape Verde</span></td><td><span class="team-name predicted-winner">England</span></td><td class="host-city">Atlanta</td></tr><tr class="" data-date="2026-07-01"><td class="date-cell-nowrap">Wed, July 1</td><td>4:00 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">Belgium</span><span class="vs">vs</span><span class="team-name">Czechia</span></td><td><span class="team-name predicted-winner">Belgium</span></td><td class="host-city">Seattle</td></tr><tr class="watch" data-date="2026-07-01"><td class="date-cell-nowrap">Wed, July 1</td><td>8:00 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">United States</span><span class="vs">vs</span><span class="team-name">Ecuador</span></td><td><span class="team-name predicted-winner">United States</span></td><td class="host-city">San Francisco Bay Area</td></tr><tr class="" data-date="2026-07-02"><td class="date-cell-nowrap">Thu, July 2</td><td>11:00 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">Canada</span><span class="vs">vs</span><span class="team-name">New Zealand</span></td><td><span class="team-name predicted-winner">Canada</span></td><td class="host-city">Vancouver</td></tr><tr class="watch" data-date="2026-07-02"><td class="date-cell-nowrap">Thu, July 2</td><td>3:00 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">Spain</span><span class="vs">vs</span><span class="team-name">Austria</span></td><td><span class="team-name predicted-winner">Spain</span></td><td class="host-city">Los Angeles</td></tr><tr class="" data-date="2026-07-02"><td class="date-cell-nowrap">Thu, July 2</td><td>7:00 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">Colombia</span><span class="vs">vs</span><span class="team-name">Ghana</span></td><td><span class="team-name predicted-winner">Colombia</span></td><td class="host-city">Toronto</td></tr><tr class="" data-date="2026-07-03"><td class="date-cell-nowrap">Fri, July 3</td><td>2:00 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">Australia</span><span class="vs">vs</span><span class="team-name">Iran</span></td><td><span class="team-name predicted-winner">Iran</span></td><td class="host-city">Dallas</td></tr><tr class="watch" data-date="2026-07-03"><td class="date-cell-nowrap">Fri, July 3</td><td>6:00 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">Argentina</span><span class="vs">vs</span><span class="team-name">Uruguay</span></td><td><span class="team-name predicted-winner">Argentina</span></td><td class="host-city">Miami</td></tr><tr class="watch" data-date="2026-07-03"><td class="date-cell-nowrap">Fri, July 3</td><td>9:30 PM</td><td>R32</td><td class="matchup-cell"><span class="team-name">Portugal</span><span class="vs">vs</span><span class="team-name">Croatia</span></td><td><span class="team-name predicted-winner">Portugal</span></td><td class="host-city">Kansas City</td></tr><tr class="" data-date="2026-07-04"><td class="date-cell-nowrap">Sat, July 4</td><td>1:00 PM</td><td>R16</td><td class="matchup-cell"><span class="team-name">Switzerland</span><span class="vs">vs</span><span class="team-name">Netherlands</span></td><td><span class="team-name predicted-winner">Netherlands</span></td><td class="host-city">Houston</td></tr><tr class="watch" data-date="2026-07-04"><td class="date-cell-nowrap">Sat, July 4</td><td>5:00 PM</td><td>R16</td><td class="matchup-cell"><span class="team-name">Germany</span><span class="vs">vs</span><span class="team-name">France</span></td><td><span class="team-name predicted-winner">France</span></td><td class="host-city">Philadelphia</td></tr><tr class="watch" data-date="2026-07-05"><td class="date-cell-nowrap">Sun, July 5</td><td>4:00 PM</td><td>R16</td><td class="matchup-cell"><span class="team-name">Brazil</span><span class="vs">vs</span><span class="team-name">Norway</span></td><td><span class="team-name predicted-winner">Brazil</span></td><td class="host-city">New York/New Jersey</td></tr><tr class="watch" data-date="2026-07-05"><td class="date-cell-nowrap">Sun, July 5</td><td>8:00 PM</td><td>R16</td><td class="matchup-cell"><span class="team-name">Mexico</span><span class="vs">vs</span><span class="team-name">England</span></td><td><span class="team-name predicted-winner">England</span></td><td class="host-city">Mexico City</td></tr><tr class="watch" data-date="2026-07-06"><td class="date-cell-nowrap">Mon, July 6</td><td>3:00 PM</td><td>R16</td><td class="matchup-cell"><span class="team-name">Colombia</span><span class="vs">vs</span><span class="team-name">Spain</span></td><td><span class="team-name predicted-winner">Spain</span></td><td class="host-city">Dallas</td></tr><tr class="watch" data-date="2026-07-06"><td class="date-cell-nowrap">Mon, July 6</td><td>8:00 PM</td><td>R16</td><td class="matchup-cell"><span class="team-name">United States</span><span class="vs">vs</span><span class="team-name">Belgium</span></td><td><span class="team-name predicted-winner">United States</span></td><td class="host-city">Seattle</td></tr><tr class="watch" data-date="2026-07-07"><td class="date-cell-nowrap">Tue, July 7</td><td>12:00 PM</td><td>R16</td><td class="matchup-cell"><span class="team-name">Argentina</span><span class="vs">vs</span><span class="team-name">Iran</span></td><td><span class="team-name predicted-winner">Argentina</span></td><td class="host-city">Atlanta</td></tr><tr class="watch" data-date="2026-07-07"><td class="date-cell-nowrap">Tue, July 7</td><td>4:00 PM</td><td>R16</td><td class="matchup-cell"><span class="team-name">Canada</span><span class="vs">vs</span><span class="team-name">Portugal</span></td><td><span class="team-name predicted-winner">Portugal</span></td><td class="host-city">Vancouver</td></tr><tr class="watch late-round" data-date="2026-07-09"><td class="date-cell-nowrap">Thu, July 9</td><td>4:00 PM</td><td>Quarterfinal</td><td class="matchup-cell"><span class="team-name">France</span><span class="vs">vs</span><span class="team-name">Netherlands</span></td><td><span class="team-name predicted-winner">France</span></td><td class="host-city">Boston</td></tr><tr class="watch late-round" data-date="2026-07-10"><td class="date-cell-nowrap">Fri, July 10</td><td>3:00 PM</td><td>Quarterfinal</td><td class="matchup-cell"><span class="team-name">Spain</span><span class="vs">vs</span><span class="team-name">United States</span></td><td><span class="team-name predicted-winner">Spain</span></td><td class="host-city">Los Angeles</td></tr><tr class="watch late-round" data-date="2026-07-11"><td class="date-cell-nowrap">Sat, July 11</td><td>5:00 PM</td><td>Quarterfinal</td><td class="matchup-cell"><span class="team-name">Brazil</span><span class="vs">vs</span><span class="team-name">England</span></td><td><span class="team-name predicted-winner">Brazil</span></td><td class="host-city">Miami</td></tr><tr class="watch late-round" data-date="2026-07-11"><td class="date-cell-nowrap">Sat, July 11</td><td>9:00 PM</td><td>Quarterfinal</td><td class="matchup-cell"><span class="team-name">Argentina</span><span class="vs">vs</span><span class="team-name">Portugal</span></td><td><span class="team-name predicted-winner">Argentina</span></td><td class="host-city">Kansas City</td></tr><tr class="watch late-round" data-date="2026-07-14"><td class="date-cell-nowrap">Tue, July 14</td><td>3:00 PM</td><td>Semifinal</td><td class="matchup-cell"><span class="team-name">France</span><span class="vs">vs</span><span class="team-name">Spain</span></td><td><span class="team-name predicted-winner">France</span></td><td class="host-city">Dallas</td></tr><tr class="watch late-round" data-date="2026-07-15"><td class="date-cell-nowrap">Wed, July 15</td><td>3:00 PM</td><td>Semifinal</td><td class="matchup-cell"><span class="team-name">Brazil</span><span class="vs">vs</span><span class="team-name">Argentina</span></td><td><span class="team-name predicted-winner">Brazil</span></td><td class="host-city">Atlanta</td></tr><tr class="watch late-round" data-date="2026-07-18"><td class="date-cell-nowrap">Sat, July 18</td><td>5:00 PM</td><td>Third-place playoff</td><td class="matchup-cell"><span class="team-name">Spain</span><span class="vs">vs</span><span class="team-name">Argentina</span></td><td><span class="team-name predicted-winner">Argentina</span></td><td class="host-city">Miami</td></tr><tr class="watch late-round" data-date="2026-07-19"><td class="date-cell-nowrap">Sun, July 19</td><td>3:00 PM</td><td>Final</td><td class="matchup-cell"><span class="team-name">France</span><span class="vs">vs</span><span class="team-name">Brazil</span></td><td><span class="team-name predicted-winner">France</span></td><td class="host-city">New York/New Jersey</td></tr></tbody></table>
 <h2>Bracket path</h2><div class="bracket">
-<div class="box"><div class="stage">Quarterfinal · 2026-07-09 4:00 PM</div><div class="match"><em>France</em> vs <em>Netherlands</em></div><div>Pick: <span class="winner">France</span></div></div><div class="box"><div class="stage">Quarterfinal · 2026-07-10 3:00 PM</div><div class="match"><em>Spain</em> vs <em>United States</em></div><div>Pick: <span class="winner">Spain</span></div></div><div class="box"><div class="stage">Quarterfinal · 2026-07-11 5:00 PM</div><div class="match"><em>Brazil</em> vs <em>England</em></div><div>Pick: <span class="winner">Brazil</span></div></div><div class="box"><div class="stage">Quarterfinal · 2026-07-11 9:00 PM</div><div class="match"><em>Argentina</em> vs <em>Portugal</em></div><div>Pick: <span class="winner">Argentina</span></div></div><div class="box"><div class="stage">Semifinal · 2026-07-14 3:00 PM</div><div class="match"><em>France</em> vs <em>Spain</em></div><div>Pick: <span class="winner">France</span></div></div><div class="box"><div class="stage">Semifinal · 2026-07-15 3:00 PM</div><div class="match"><em>Brazil</em> vs <em>Argentina</em></div><div>Pick: <span class="winner">Brazil</span></div></div><div class="box"><div class="stage">Third-place playoff · 2026-07-18 5:00 PM</div><div class="match"><em>Spain</em> vs <em>Argentina</em></div><div>Pick: <span class="winner">Argentina</span></div></div><div class="box"><div class="stage">Final · 2026-07-19 3:00 PM</div><div class="match"><em>France</em> vs <em>Brazil</em></div><div>Pick: <span class="winner">France</span></div></div>
+<div class="box late-round"><div class="stage">Quarterfinal · 2026-07-09 4:00 PM</div><div class="matchup-cell match"><span class="team-name">France</span><span class="vs">vs</span><span class="team-name">Netherlands</span></div><div>Pick: <span class="winner team-name">France</span></div></div><div class="box late-round"><div class="stage">Quarterfinal · 2026-07-10 3:00 PM</div><div class="matchup-cell match"><span class="team-name">Spain</span><span class="vs">vs</span><span class="team-name">United States</span></div><div>Pick: <span class="winner team-name">Spain</span></div></div><div class="box late-round"><div class="stage">Quarterfinal · 2026-07-11 5:00 PM</div><div class="matchup-cell match"><span class="team-name">Brazil</span><span class="vs">vs</span><span class="team-name">England</span></div><div>Pick: <span class="winner team-name">Brazil</span></div></div><div class="box late-round"><div class="stage">Quarterfinal · 2026-07-11 9:00 PM</div><div class="matchup-cell match"><span class="team-name">Argentina</span><span class="vs">vs</span><span class="team-name">Portugal</span></div><div>Pick: <span class="winner team-name">Argentina</span></div></div><div class="box late-round"><div class="stage">Semifinal · 2026-07-14 3:00 PM</div><div class="matchup-cell match"><span class="team-name">France</span><span class="vs">vs</span><span class="team-name">Spain</span></div><div>Pick: <span class="winner team-name">France</span></div></div><div class="box late-round"><div class="stage">Semifinal · 2026-07-15 3:00 PM</div><div class="matchup-cell match"><span class="team-name">Brazil</span><span class="vs">vs</span><span class="team-name">Argentina</span></div><div>Pick: <span class="winner team-name">Brazil</span></div></div><div class="box late-round"><div class="stage">Third-place playoff · 2026-07-18 5:00 PM</div><div class="matchup-cell match"><span class="team-name">Spain</span><span class="vs">vs</span><span class="team-name">Argentina</span></div><div>Pick: <span class="winner team-name">Argentina</span></div></div><div class="box late-round"><div class="stage">Final · 2026-07-19 3:00 PM</div><div class="matchup-cell match"><span class="team-name">France</span><span class="vs">vs</span><span class="team-name">Brazil</span></div><div>Pick: <span class="winner team-name">France</span></div></div>
 </div>
-
+<h2>Bracket path alt</h2>
+<div class="bracket alt-bracket">
+<div class="box late-round alt-pick"><div class="stage">Quarterfinal · 2026-07-09 4:00 PM</div><div class="matchup-cell match"><span class="team-name">France</span><span class="vs">vs</span><span class="team-name">Netherlands</span></div><div>Alt pick: <span class="winner team-name">Netherlands</span></div></div>
+<div class="box late-round"><div class="stage">Quarterfinal · 2026-07-10 3:00 PM</div><div class="matchup-cell match"><span class="team-name">Spain</span><span class="vs">vs</span><span class="team-name">United States</span></div><div>Pick: <span class="winner team-name">Spain</span></div></div>
+<div class="box late-round"><div class="stage">Quarterfinal · 2026-07-11 5:00 PM</div><div class="matchup-cell match"><span class="team-name">Brazil</span><span class="vs">vs</span><span class="team-name">England</span></div><div>Pick: <span class="winner team-name">Brazil</span></div></div>
+<div class="box late-round"><div class="stage">Quarterfinal · 2026-07-11 9:00 PM</div><div class="matchup-cell match"><span class="team-name">Argentina</span><span class="vs">vs</span><span class="team-name">Portugal</span></div><div>Pick: <span class="winner team-name">Argentina</span></div></div>
+<div class="box late-round alt-pick"><div class="stage">Semifinal · 2026-07-14 3:00 PM</div><div class="matchup-cell match"><span class="team-name">Netherlands</span><span class="vs">vs</span><span class="team-name">Spain</span></div><div>Alt pick: <span class="winner team-name">Spain</span></div></div>
+<div class="box late-round"><div class="stage">Semifinal · 2026-07-15 3:00 PM</div><div class="matchup-cell match"><span class="team-name">Brazil</span><span class="vs">vs</span><span class="team-name">Argentina</span></div><div>Pick: <span class="winner team-name">Brazil</span></div></div>
+<div class="box late-round alt-pick"><div class="stage">Third-place playoff · 2026-07-18 5:00 PM</div><div class="matchup-cell match"><span class="team-name">Netherlands</span><span class="vs">vs</span><span class="team-name">Argentina</span></div><div>Alt pick: <span class="winner team-name">Argentina</span></div></div>
+<div class="box late-round alt-pick"><div class="stage">Final · 2026-07-19 3:00 PM</div><div class="matchup-cell match"><span class="team-name">Spain</span><span class="vs">vs</span><span class="team-name">Brazil</span></div><div>Alt pick: <span class="winner team-name">Spain</span></div></div>
+</div>
 <script>
 (function () {
   function localISODate(d) {
@@ -124,20 +263,27 @@ tr.future-game { opacity: 1; }
     return `${y}-${m}-${day}`;
   }
 
-  const today = localISODate(new Date());
-  document.querySelectorAll('tbody tr').forEach(row => {
-    const firstCell = row.querySelector('td');
-    if (!firstCell) return;
-    const dateText = firstCell.textContent.trim();
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateText)) return;
+  function applyDateClasses() {
+    const today = localISODate(new Date());
+    document.querySelectorAll('tbody tr[data-date]').forEach(row => {
+      const dateText = row.getAttribute('data-date');
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(dateText)) return;
 
-    row.classList.remove('past-game', 'today-game', 'future-game');
-    if (dateText < today) row.classList.add('past-game');
-    else if (dateText === today) row.classList.add('today-game');
-    else row.classList.add('future-game');
-  });
+      row.classList.remove('past-game', 'today-game', 'future-game');
+      if (dateText < today) row.classList.add('past-game');
+      else if (dateText === today) row.classList.add('today-game');
+      else row.classList.add('future-game');
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyDateClasses);
+  } else {
+    applyDateClasses();
+  }
+
+  // Re-check hourly so the highlight rolls forward if the page stays open overnight.
+  setInterval(applyDateClasses, 60 * 60 * 1000);
 })();
-</script>
-
-<footer>Source basis: updated match snapshot available June 21, 2026. This is a prediction page, not an official FIFA bracket.</footer>
+</script><footer>Source basis: updated match snapshot available June 21, 2026. This is a prediction page, not an official FIFA bracket.</footer>
 </main></body></html>
