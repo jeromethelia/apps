@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Strong at 70</title>
+  <style>
+    :root { --navy:#0b2a55; --blue:#154e9b; --green:#2f7d32; --soft:#f5f7fb; --line:#d8e1ee; --text:#172033; --muted:#65738a; --card:#fff; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--soft); color:var(--text); }
+    header { background:linear-gradient(135deg,var(--navy),var(--blue)); color:white; padding:28px 18px; }
+    .wrap { max-width:1120px; margin:0 auto; }
+    h1 { margin:0; font-size:clamp(2rem,5vw,4.2rem); letter-spacing:-.04em; }
+    header p { margin:8px 0 0; font-size:1.1rem; opacity:.92; }
+    nav { position:sticky; top:0; z-index:5; background:white; border-bottom:1px solid var(--line); }
+    nav .wrap { display:flex; gap:8px; overflow:auto; padding:10px 14px; }
+    nav a { white-space:nowrap; text-decoration:none; color:var(--navy); background:#eef4ff; padding:8px 12px; border-radius:999px; font-weight:650; }
+    main { padding:18px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px; box-shadow:0 2px 10px rgba(16,38,77,.04); }
+    .card h3 { margin:0 0 8px; color:var(--navy); }
+    .muted { color:var(--muted); }
+    section { margin:28px 0; scroll-margin-top:76px; }
+    h2 { color:var(--navy); font-size:1.8rem; margin:0 0 12px; }
+    .exercise-top { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
+    .badge { display:inline-block; background:#eaf6ed; color:var(--green); border:1px solid #bfe3c5; padding:4px 9px; border-radius:999px; font-weight:750; font-size:.9rem; }
+    ul { margin:8px 0 0; padding-left:20px; }
+    li { margin:4px 0; }
+    .actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+    button,.video { border:0; border-radius:12px; padding:10px 12px; font-weight:750; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
+    button { background:#eef2f7; color:var(--text); }
+    button.done { background:#dbf2df; color:#1f6124; }
+    .video { background:#ffefef; color:#a52626; }
+    .hero-img { width:100%; border-radius:18px; border:1px solid var(--line); background:white; }
+    .week { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; }
+    .checkrow { display:flex; gap:8px; align-items:center; justify-content:space-between; padding:10px 0; border-top:1px solid var(--line); }
+    .small { font-size:.9rem; }
+    .footer { text-align:center; color:var(--muted); padding:32px 12px; }
+    details summary { cursor:pointer; font-weight:750; color:var(--blue); }
+    @media print { nav,.actions,.video,button { display:none!important; } body { background:white; } .card { box-shadow:none; break-inside:avoid; } }
+  </style>
+</head>
+<body>
+<header><div class="wrap"><h1>Strong at 70</h1><p>Hip-friendly strength, daily yoga support, and two simple workouts per week.</p></div></header>
+<nav><div class="wrap"><a href="#overview">Overview</a><a href="#daily-yoga">Daily Yoga</a><a href="#daily-activation">Activation</a><a href="#monday">Monday A</a><a href="#thursday">Thursday B</a><a href="#library">Exercise Library</a></div></nav>
+<main class="wrap">
+<section id="overview">
+  <div class="grid">
+    <div class="card"><h3>The goal</h3><p>Build gradual strength while keeping the right hip and lower back calm. Never chase soreness. Leave every session feeling like you could have done a little more.</p></div>
+    <div class="card"><h3>Equipment</h3><p>Two 30 lb dumbbells, resistance bands, and eventually a used pair of 15 lb dumbbells.</p></div>
+    <div class="card"><h3>Nutrition rhythm</h3><p>Morning smoothie: whey + 5 g creatine + banana + berries + milk or soy milk.</p></div>
+  </div>
+  <br>
+  <img class="hero-img" src="assets/strong-at-70-poster.png" alt="Strong at 70 illustrated workout poster">
+</section>
+<section id="today"><h2>Quick start</h2><div class="week"><div class="card"><h3>Monday – Strength A</h3><div id="quick-a"></div></div><div class="card"><h3>Thursday – Strength B</h3><div id="quick-b"></div></div><div class="card"><h3>Daily activation</h3><div id="quick-daily"></div></div></div></section>
+<div id="sections"></div>
+<section id="library"><h2>Exercise Library</h2><p class="muted">Each exercise links to a demo video. External links open in a new tab.</p><div id="library-cards" class="grid"></div></section>
+</main>
+<div class="footer">Strong today. Strong tomorrow. Strong for life.</div>
+<script>
+const DATA = [{"section": "Daily Yoga", "items": [{"name": "Supported Pigeon Pose", "sets": "4 min each side", "equipment": "blankets / block", "why": "Your key hip-relief stretch. Keep it gentle and supported.", "cues": ["Front hip elevated", "Square pelvis as much as comfortable", "Breathe slowly", "Never force the knee"], "video": "https://www.youtube.com/results?search_query=supported+pigeon+pose+hip+stretch", "videoLabel": "YouTube search: supported pigeon pose"}]}, {"section": "Daily Activation", "items": [{"name": "Glute Bridge", "sets": "2 × 10", "equipment": "bodyweight", "why": "Turns on glutes after hip stretching and supports your low back.", "cues": ["Feet flat", "Ribs down", "Squeeze glutes", "Pause 2 seconds at the top"], "video": "https://www.youtube.com/watch?v=wPM8icPu6H8", "videoLabel": "Well+Good glute bridge demo"}, {"name": "Band Lateral Walk", "sets": "2 × 10 each direction", "equipment": "mini band or loop band", "why": "Strengthens glute medius for hip and pelvis stability.", "cues": ["Small steps", "Stay in shallow squat", "Keep toes forward", "Keep band tension"], "video": "https://www.youtube.com/watch?v=1LvxZrJFy9Y", "videoLabel": "MedBridge lateral band walk"}, {"name": "Bodyweight Hip Hinge", "sets": "10 slow reps", "equipment": "bodyweight", "why": "Grooves the safe bending pattern that protects your back.", "cues": ["Hips back", "Soft knees", "Neutral spine", "Feel hamstrings stretch"], "video": "https://www.youtube.com/results?search_query=bodyweight+hip+hinge+proper+form", "videoLabel": "YouTube search: hip hinge form"}]}, {"section": "Monday – Strength A", "items": [{"name": "Goblet Squat", "sets": "2 × 8", "equipment": "30 lb dumbbell", "why": "Builds legs while keeping load in front and easy to control.", "cues": ["Chest up", "Knees track over toes", "Stop before pain", "Leave 3–4 reps in reserve"], "video": "https://www.youtube.com/watch?v=9KzZD_n2r64", "videoLabel": "Goblet squat beginner guide"}, {"name": "One-Arm Dumbbell Row", "sets": "2 × 10 each side", "equipment": "30 lb dumbbell", "why": "Builds upper-back strength for posture and shoulder balance.", "cues": ["Hinge at hips", "Brace with free hand", "Pull elbow toward hip", "No twisting"], "video": "https://www.youtube.com/watch?v=PgpQ4-jHiq4", "videoLabel": "Bodybuilding.com row demo"}, {"name": "Romanian Deadlift", "sets": "2 × 10", "equipment": "two 30 lb dumbbells", "why": "The key hip-hinge strength movement for glutes, hamstrings, and back resilience.", "cues": ["Soft knees", "Hips back", "Dumbbells close to legs", "Stop when hamstrings stretch"], "video": "https://www.youtube.com/watch?v=hQgFixeXdZo", "videoLabel": "Dumbbell RDL technique"}, {"name": "Farmer Carry", "sets": "3 × 30–45 sec", "equipment": "two 30 lb dumbbells", "why": "Builds grip, trunk stability, posture, and real-world strength.", "cues": ["Stand tall", "Ribs stacked over pelvis", "Walk slow", "Do not lean"], "video": "https://www.youtube.com/results?search_query=dumbbell+farmer+carry+proper+form", "videoLabel": "YouTube search: farmer carry"}, {"name": "Band Face Pull", "sets": "2 × 15", "equipment": "resistance band + anchor", "why": "Shoulder-health staple for rear delts, rotator cuff, and upper back.", "cues": ["Anchor at eye height", "Pull toward face", "Elbows high", "Squeeze shoulder blades"], "video": "https://www.youtube.com/watch?v=AlTGQrDOd98", "videoLabel": "Banded face pull tutorial"}]}, {"section": "Thursday – Strength B", "items": [{"name": "Split Squat", "sets": "2 × 8 each side", "equipment": "bodyweight first", "why": "Single-leg strength and hip control without heavy spinal loading.", "cues": ["Front foot flat", "Tall posture", "Small range at first", "Progress slowly"], "video": "https://www.youtube.com/watch?v=4bNQITw0VdY", "videoLabel": "E3 Rehab split squat guide"}, {"name": "Standing Overhead Press", "sets": "2 × 10", "equipment": "band now / 15 lb DBs later", "why": "Builds shoulders without needing your 30s too soon.", "cues": ["Ribs down", "Glutes lightly squeezed", "Press straight up", "No back arch"], "video": "https://www.youtube.com/results?search_query=standing+dumbbell+overhead+press+proper+form", "videoLabel": "YouTube search: overhead press"}, {"name": "Pallof Press", "sets": "2 × 10 each side", "equipment": "resistance band + anchor", "why": "Anti-rotation core work that helps protect your lower back.", "cues": ["Band at chest height", "Stand sideways to anchor", "Do not rotate", "Press straight out"], "video": "https://www.youtube.com/watch?v=_2xWmYNnFS8", "videoLabel": "Pallof press form"}, {"name": "Dumbbell Curl", "sets": "2 × 12", "equipment": "future 15 lb DBs", "why": "Simple arm strength and elbow-friendly accessory work.", "cues": ["Elbows close", "No swinging", "Control down", "Stop before strain"], "video": "https://www.youtube.com/results?search_query=standing+dumbbell+curl+proper+form", "videoLabel": "YouTube search: dumbbell curl"}, {"name": "Band Triceps Pressdown", "sets": "2 × 12", "equipment": "resistance band + high anchor", "why": "Triceps work without heavy weights or shoulder stress.", "cues": ["Elbows near ribs", "Anchor high", "Press down smoothly", "Control the return"], "video": "https://www.youtube.com/results?search_query=band+triceps+pressdown+proper+form", "videoLabel": "YouTube search: triceps pressdown"}]}];
+function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
+function checked(id){ return localStorage.getItem(id)==='1'; }
+function toggle(id, el){ const now=!checked(id); localStorage.setItem(id, now?'1':'0'); el.classList.toggle('done',now); el.textContent=now?'✓ Done':'Mark done'; }
+function exerciseCard(item, sectionName){
+  const id=slug(sectionName+'-'+item.name);
+  return `<div class="card" id="${slug(item.name)}"><div class="exercise"><div><div class="exercise-top"><h3>${item.name}</h3><span class="badge">${item.sets}</span></div><p><strong>Equipment:</strong> ${item.equipment}</p><p>${item.why}</p><details open><summary>Coaching cues</summary><ul>${item.cues.map(c=>`<li>${c}</li>`).join('')}</ul></details></div><div><div class="actions"><a class="video" target="_blank" rel="noopener" href="${item.video}">▶ ${item.videoLabel}</a><button onclick="toggle('${id}', this)" class="${checked(id)?'done':''}">${checked(id)?'✓ Done':'Mark done'}</button></div></div></div></div>`;
+}
+function render(){
+  document.getElementById('sections').innerHTML = DATA.map(sec=>`<section id="${sec.section.includes('Monday')?'monday':sec.section.includes('Thursday')?'thursday':slug(sec.section)}"><h2>${sec.section}</h2><div class="grid">${sec.items.map(i=>exerciseCard(i, sec.section)).join('')}</div></section>`).join('');
+  const all=DATA.flatMap(sec=>sec.items.map(i=>({...i, section:sec.section})));
+  document.getElementById('library-cards').innerHTML = all.map(i=>`<div class="card"><h3>${i.name}</h3><p class="small muted">${i.section} · ${i.sets}</p><p>${i.why}</p><a class="video" target="_blank" rel="noopener" href="${i.video}">▶ Watch demo</a></div>`).join('');
+  const quick=(sectionName,id)=>{ const sec=DATA.find(s=>s.section===sectionName); document.getElementById(id).innerHTML=sec.items.map(i=>{const key=slug(sectionName+'-'+i.name); return `<div class="checkrow"><span>${i.name}</span><button onclick="toggle('${key}', this)" class="${checked(key)?'done':''}">${checked(key)?'✓ Done':'Mark done'}</button></div>`}).join(''); };
+  quick('Monday – Strength A','quick-a'); quick('Thursday – Strength B','quick-b'); quick('Daily Activation','quick-daily');
+}
+render();
+</script>
+</body>
+</html>
