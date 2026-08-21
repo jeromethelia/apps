@@ -1,0 +1,647 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mashrome's Guide — Fall 2026 v16</title><link href="https://fonts.googleapis.com/" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/><link href="./Mashrome's Guide — NYC Summer 2026_files/css2" rel="stylesheet"/><style>
+  :root {
+    --ink: #1a1710;
+    --paper: #f5f0e8;
+    --cream: #ede8dc;
+    --gold: #c8a84b;
+    --rust: #b85c3a;
+    --teal: #2e6b6b;
+    --muted: #7a7468;
+    --border: rgba(26,23,16,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2rem 2rem 1.5rem;
+    border-bottom: 3px solid var(--gold);
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+  header h1 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+  header p {
+    margin-top: 0.4rem;
+    font-size: 12px;
+    color: rgba(245,240,232,0.6);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* LEGEND */
+  .legend {
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 2rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .legend span { display: flex; align-items: center; gap: 4px; }
+
+  /* TABS */
+  .tab-bar {
+    background: var(--ink);
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.25rem;
+    background: transparent;
+    color: rgba(245,240,232,0.5);
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .tab-btn:hover { color: var(--paper); }
+  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* PANELS */
+  .tab-panel { display: none; padding: 1.5rem 2rem 3rem; }
+  .tab-panel.active { display: block; }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin: 1.5rem 0 0.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.3rem;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .section-header span {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* SERIES GRID */
+  .series-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+    margin-top: 1rem;
+  }
+  .series-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .series-card.full-width { grid-column: 1 / -1; max-width: 680px; }
+  .card-head {
+    padding: 10px 14px 8px;
+    border-bottom: 1px solid var(--border);
+    background: var(--cream);
+  }
+  .card-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-bottom: 5px;
+  }
+  .tag-free { background: #d4edda; color: #1a5c2a; }
+  .tag-mixed { background: #fff3cd; color: #7a5500; }
+  .tag-special { background: #d1ecf1; color: #0c5460; }
+  .tag-indie { background: #e8d5f0; color: #4a1a6a; }
+  .tag-lunatico { background: #fde8d8; color: #7a2e0a; }
+
+  .card-head h3 { font-size: 13px; font-weight: 500; color: var(--ink); margin: 0 0 2px; }
+  .card-head p { font-size: 11px; color: var(--muted); }
+
+  /* SHOW ROWS */
+  .show-row {
+    display: grid;
+    grid-template-columns: 70px 1fr auto;
+    gap: 8px;
+    align-items: start;
+    padding: 7px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .show-row:last-child { border-bottom: none; }
+  .show-date { font-size: 11px; font-weight: 500; color: var(--muted); padding-top: 2px; }
+  .show-info { flex: 1; }
+  .show-artist { font-size: 13px; color: var(--ink); line-height: 1.35; }
+  .show-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .show-meta { font-size: 11px; color: var(--teal); font-style: italic; margin-top: 2px; }
+  .show-price {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    white-space: nowrap;
+    text-align: right;
+    padding-top: 2px;
+  }
+  .show-price.free { color: var(--teal); font-weight: 600; }
+  .show-price.sold-out { color: var(--rust); }
+
+  /* BADGES */
+  .badges { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 3px; }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+  .b-free { background: #d4edda; color: #1a5c2a; }
+  .b-rsvp { background: #d1ecf1; color: #0c5460; }
+  .b-ticket { background: #fff3cd; color: #7a5500; }
+  .b-love { font-size: 12px; }
+  .b-like { font-size: 12px; }
+  .b-kid { font-size: 12px; }
+
+  /* SECTION LABELS inside card */
+  .week-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 5px 14px 2px;
+    border-bottom: 1px solid var(--border);
+    background: var(--cream);
+  }
+
+  /* CARD FOOTER */
+  .card-foot {
+    padding: 7px 14px;
+    border-top: 1px solid var(--border);
+    background: var(--cream);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .card-foot a { color: var(--teal); text-decoration: none; }
+  .card-foot a:hover { text-decoration: underline; }
+
+  /* INTRO TEXT */
+  .intro { font-size: 12px; color: var(--muted); margin-bottom: 0.5rem; }
+  .legend-row {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    font-size: 12px; color: var(--muted);
+    margin-bottom: 1rem; padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .note { font-size: 12px; color: var(--muted); margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid var(--border); }
+
+  /* STANDALONE LIST for picked concerts */
+  .picks-list { margin-top: 1rem; }
+  .picks-month {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold);
+    margin: 1.5rem 0 0.5rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .picks-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 90px 80px;
+    gap: 8px;
+    align-items: start;
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--border);
+  }
+  .picks-row:last-child { border-bottom: none; }
+  .p-date { font-size: 12px; font-weight: 500; color: var(--muted); padding-top: 1px; }
+  .p-main { }
+  .p-artist { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .p-venue { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .p-note { font-size: 11px; color: var(--teal); font-style: italic; margin-top: 2px; }
+  .p-time { font-size: 11px; color: var(--muted); padding-top: 2px; }
+  .p-price { font-size: 12px; font-weight: 500; text-align: right; padding-top: 2px; }
+  .p-price.free { color: var(--teal); }
+  .p-price.sold-out { color: var(--rust); }
+  .icons { letter-spacing: 2px; }
+
+
+  /* PARENTS NIGHT OUT */
+  .pno-wrap { margin-top: 1rem; }
+  .pno-key { display:flex; flex-wrap:wrap; gap:6px; margin:.7rem 0 1rem; }
+  .pno-key span, .status-chip { font-size:10px; background:white; border:1px solid var(--border); border-radius:999px; padding:2px 7px; color:var(--muted); }
+  .pno-table { width:100%; border-collapse:collapse; background:white; border:1px solid var(--border); font-size:12px; }
+  .pno-table th { background:var(--cream); color:var(--muted); text-transform:uppercase; letter-spacing:.08em; font-size:10px; text-align:left; padding:7px 8px; border-bottom:1px solid var(--border); }
+  .pno-table td { padding:8px; border-bottom:1px solid var(--border); vertical-align:top; }
+  .pno-table tr:last-child td { border-bottom:none; }
+  .pno-title { font-weight:600; font-size:13px; color:var(--ink); }
+  .pno-desc { color:var(--muted); font-size:11px; line-height:1.35; margin-top:2px; }
+  .pno-links a, .show-artist a { color:var(--teal); text-decoration:none; }
+  .pno-links a:hover, .show-artist a:hover { text-decoration:underline; }
+  .pno-badges { font-size:15px; letter-spacing:2px; white-space:nowrap; }
+  .pno-good { color:var(--teal); font-weight:600; }
+  .pno-warn { color:var(--rust); font-weight:600; }
+  .pno-section { font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--gold); margin:1.5rem 0 .5rem; border-bottom:1px solid var(--border); padding-bottom:.25rem; }
+  @media (max-width: 850px) {
+    .pno-table, .pno-table thead, .pno-table tbody, .pno-table th, .pno-table td, .pno-table tr { display:block; }
+    .pno-table thead { display:none; }
+    .pno-table tr { border-bottom:1px solid var(--border); padding:8px 0; }
+    .pno-table td { border:none; padding:4px 12px; }
+    .pno-table td::before { content:attr(data-label); display:block; font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
+  }
+
+
+  /* DANCING TAB */
+  .dance-top-pick {
+    display:inline-block;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:2px 7px;
+    border-radius:999px;
+    background:#fff3cd;
+    color:#7a5500;
+    white-space:nowrap;
+  }
+
+  .dance-table a, .dance-card a, .dance-watch-list a { color: var(--teal); text-decoration: none; }
+  .dance-table a:hover, .dance-card a:hover, .dance-watch-list a:hover { text-decoration: underline; }
+  .dance-priority { white-space: nowrap; font-size: 14px; }
+
+  .dance-main { max-width: 1100px; }
+  .dance-key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0.9rem 0 1.25rem;
+  }
+  .dance-key span {
+    font-size: 11px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 3px 9px;
+    color: var(--muted);
+  }
+  .dance-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--gold);
+    margin: 1.7rem 0 0.65rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.25rem;
+  }
+  .dance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 14px;
+    margin-top: 0.85rem;
+  }
+  .dance-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .dance-card-head {
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 13px 8px;
+  }
+  .dance-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    background: #fde8d8;
+    color: #7a2e0a;
+  }
+  .dance-tag.favorite { background: #fff3cd; color: #7a5500; }
+  .dance-tag.outdoor { background: #d4edda; color: #1a5c2a; }
+  .dance-tag.late { background: #f8d7da; color: #7a1f2b; }
+  .dance-tag.watch { background: #d1ecf1; color: #0c5460; }
+  .dance-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .dance-meta {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .dance-card-body { padding: 10px 13px 12px; }
+  .dance-card-body p {
+    font-size: 12px;
+    color: var(--ink);
+    margin-bottom: 0.55rem;
+  }
+  .dance-why {
+    font-size: 11px;
+    color: var(--teal);
+    font-style: italic;
+    margin-top: 0.4rem;
+  }
+  .dance-rating {
+    font-size: 15px;
+    letter-spacing: 2px;
+    margin-top: 0.45rem;
+  }
+  .dance-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border: 1px solid var(--border);
+    font-size: 12px;
+    margin-top: 0.7rem;
+  }
+  .dance-table th {
+    background: var(--cream);
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-size: 10px;
+    text-align: left;
+    padding: 8px 9px;
+    border-bottom: 1px solid var(--border);
+  }
+  .dance-table td {
+    padding: 9px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .dance-table tr:last-child td { border-bottom: none; }
+  .dance-title {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .dance-desc {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.35;
+    margin-top: 2px;
+  }
+  .dance-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 1.25rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    border-radius: 5px;
+  }
+  .dance-watch-list {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 0.95rem 1.1rem;
+    border-radius: 5px;
+  }
+  .dance-watch-list ul {
+    columns: 2;
+    list-style: none;
+  }
+  .dance-watch-list li {
+    font-size: 12px;
+    padding: 3px 0;
+    color: var(--ink);
+  }
+  .dance-watch-list li::before {
+    content: "• ";
+    color: var(--gold);
+    font-weight: bold;
+  }
+  @media (max-width: 760px) {
+    .dance-table, .dance-table thead, .dance-table tbody, .dance-table th, .dance-table td, .dance-table tr { display: block; }
+    .dance-table thead { display: none; }
+    .dance-table tr { border-bottom: 1px solid var(--border); padding: 8px 0; }
+    .dance-table td { border: none; padding: 4px 12px; }
+    .dance-watch-list ul { columns: 1; }
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 1.25rem 1rem 1rem; }
+    header h1 { font-size: 1.5rem; }
+    .tab-panel { padding: 1rem 1rem 2rem; }
+    .picks-row { grid-template-columns: 70px 1fr 60px; }
+    .p-time { display: none; }
+    .legend { padding: 0.5rem 1rem; }
+    .series-grid { grid-template-columns: 1fr; }
+  }
+
+.guide-version{
+  font-size:.8rem;
+  opacity:.75;
+  margin-top:-8px;
+  margin-bottom:18px;
+}
+
+  /* NEXT 7 DAYS HIGHLIGHT */
+  .next-week-event {
+    background: #fff8dc !important;
+    border-left: 4px solid var(--gold) !important;
+    box-shadow: inset 0 0 0 1px rgba(200,168,75,0.35);
+  }
+  .next-week-event .show-date,
+  .next-week-event .p-date,
+  .next-week-event td:first-child {
+    color: #7a5500 !important;
+    font-weight: 700;
+  }
+  .next-week-event::after {
+    content: "next 7 days";
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    background: #fff3cd;
+    color: #7a5500;
+    border: 1px solid rgba(122,85,0,.2);
+    border-radius: 999px;
+    padding: 1px 7px;
+    margin: 4px 8px 4px 0;
+    justify-self: end;
+  }
+  tr.next-week-event::after { content: none; }
+  tr.next-week-event td:first-child::after {
+    content: " · next 7 days";
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: #7a5500;
+  }
+  .fresh-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: .5rem;
+    padding: .55rem .75rem;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+
+
+  /* MERGED MOVIE SCHEDULE */
+  .movie-source-chip {
+    display:inline-block;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:2px 7px;
+    border-radius:999px;
+    background:#e8d5f0;
+    color:#4a1a6a;
+    white-space:nowrap;
+  }
+  .movie-table a { color:var(--teal); text-decoration:none; }
+  .movie-table a:hover { text-decoration:underline; }
+  .movie-note { color:var(--teal); font-size:11px; line-height:1.35; }
+
+
+  /* UNIFIED CALENDARS */
+  .calendar-table { width:100%; border-collapse:collapse; background:white; border:1px solid var(--border); font-size:12px; margin-top:.8rem; }
+  .calendar-table th { background:var(--cream); color:var(--muted); text-transform:uppercase; letter-spacing:.08em; font-size:10px; text-align:left; padding:8px 9px; border-bottom:1px solid var(--border); }
+  .calendar-table td { padding:9px; border-bottom:1px solid var(--border); vertical-align:top; }
+  .calendar-table tr:last-child td { border-bottom:none; }
+  .calendar-source { display:inline-block; font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; border:1px solid var(--border); border-radius:999px; padding:1px 7px; color:var(--muted); background:var(--cream); margin-bottom:3px; }
+  .calendar-title { font-weight:600; font-size:13px; color:var(--ink); }
+  .calendar-title a { color:var(--teal); text-decoration:none; }
+  .calendar-title a:hover { text-decoration:underline; }
+  .calendar-desc { color:var(--muted); font-size:11px; line-height:1.35; margin-top:2px; }
+  .calendar-note { font-size:11px; color:var(--teal); font-style:italic; margin-top:2px; }
+  .this-week-summary { margin:.8rem 0 1rem; padding:.75rem .9rem; background:#fff8dc; border:1px solid rgba(200,168,75,.45); border-radius:5px; font-size:12px; color:#7a5500; }
+  .next-week-event .calendar-source { background:#fff3cd; color:#7a5500; border-color:rgba(122,85,0,.2); }
+  @media (max-width: 850px) {
+    .calendar-table, .calendar-table thead, .calendar-table tbody, .calendar-table th, .calendar-table td, .calendar-table tr { display:block; }
+    .calendar-table thead { display:none; }
+    .calendar-table tr { border-bottom:1px solid var(--border); padding:8px 0; }
+    .calendar-table td { border:none; padding:4px 12px; }
+    .calendar-table td::before { content:attr(data-label); display:block; font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
+  }
+</style><style>.priority-box{background:#fff8dc;border:1px solid rgba(200,168,75,.5);padding:12px 14px;border-radius:5px;margin:12px 0}.event-table{width:100%;border-collapse:collapse;background:white;border:1px solid var(--border);font-size:12px;margin:.8rem 0 1.4rem}.event-table th{background:var(--cream);color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:10px;text-align:left;padding:8px}.event-table td{padding:9px;border-bottom:1px solid var(--border);vertical-align:top}.event-table a{color:var(--teal);text-decoration:none}.event-table a:hover{text-decoration:underline}.top{font-weight:700;color:#7a5500}.halloween{background:#fff4e8}.schoolbreak{background:#eef8f4}.watch{color:var(--muted);font-style:italic}.small{font-size:11px;color:var(--muted)}@media(max-width:760px){.event-table,.event-table tbody,.event-table tr,.event-table td{display:block}.event-table thead{display:none}.event-table tr{padding:7px 0;border-bottom:1px solid var(--border)}.event-table td{border:none;padding:3px 12px}.event-table td:first-child{font-weight:700;color:var(--muted)}}</style></head><body><header><h1>Mashrome's Guide <em>Fall 2026</em></h1><div class="guide-version">v18.0 • Updated August 21, 2026 • Aug 21–Nov 10 • all pre–Aug 20 listings removed</div><p>music · movies · talks · museums · kids · halloween · date night drop-off · dancing</p></header><div class="legend"><span>❤️ strongest fit</span><span>💚 worth it</span><span>🧒 Sasha-friendly</span><span>🎃 Halloween</span><span>🏆 top pick</span><span>🆓 free</span></div><nav class="tab-bar"><button class="tab-btn active" onclick="showTab('now',this)">Now → School</button><button class="tab-btn" onclick="showTab('halloween',this)">Halloween + Sasha</button><button class="tab-btn" onclick="showTab('picks',this)">Live Music Picks</button><button class="tab-btn" onclick="showTab('summerstage',this)">SummerStage</button><button class="tab-btn" onclick="showTab('bric',this)">BRIC Brooklyn!</button><button class="tab-btn" onclick="showTab('bryant',this)">Bryant + Outdoors</button><button class="tab-btn" onclick="showTab('lunatico',this)">LunÀtico + Clubs</button><button class="tab-btn" onclick="showTab('dancing',this)">Dancing</button><button class="tab-btn" onclick="showTab('ideas',this)">Ideas & Talks</button><button class="tab-btn" onclick="showTab('museums',this)">Museums + Kids</button><button class="tab-btn" onclick="showTab('movies',this)">Movies</button><button class="tab-btn" onclick="showTab('theater',this)">Theater</button><button class="tab-btn" onclick="showTab('momi',this)">MoMI + Film Culture</button><button class="tab-btn" onclick="showTab('camps',this)">Camps / Days Off</button><button class="tab-btn" onclick="showTab('parentsnight',this)">Date Night Drop-Off</button></nav><div class="tab-panel active" id="tab-now"><div class="section-header"><h2>What to Do Before School Starts</h2><span>verified / refreshed Aug 21</span></div><p class="intro">You’re back, and this is the practical short list for Aug 21 through Wed Sep 9. I prioritized easy Brooklyn outings, water, hands-on activities and a few genuinely special events.</p><div class="priority-box"><b>My first three:</b> Family Kayaking + Angélique Kidjo on Aug 23; a Brooklyn Bridge Park day Aug 22; and CMOM Aug 31–Sep 4 if you want an indoor reset before school.</div><table class="event-table"><thead><tr><th>Date</th><th>Event</th><th>Where</th><th>Why / notes</th><th>Cost</th></tr></thead><tbody><tr class="schoolbreak" data-start="2026-08-21" data-end="2026-08-21"><td>Fri Aug 21</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Salsa Night</a></td><td>Brooklyn Bridge Park</td><td>Tonight: easy re-entry to NYC; waterfront dancing, 6–9 PM.</td><td>Free</td></tr><tr class="schoolbreak" data-start="2026-08-22" data-end="2026-08-22"><td>Sat Aug 22</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Youth Basketball Clinics + Education Center</a></td><td>Brooklyn Bridge Park</td><td>Low-effort Sasha day: basketball 9–11 AM; Environmental Education Center 1–5 PM.</td><td>Free</td></tr><tr class="schoolbreak" data-start="2026-08-22" data-end="2026-08-22"><td>Sat Aug 22</td><td><a href="https://www.wavehill.org/calendar?type=families" target="_blank">Botanical Blueprints</a></td><td>Wave Hill</td><td>Drop-in family art, 10 AM–1 PM; strong day-trip option.</td><td>Free w/ admission</td></tr><tr class="schoolbreak top" data-start="2026-08-23" data-end="2026-08-23"><td>Sun Aug 23</td><td><a href="https://brooklynbridgepark.org/event/family-kayaking-august-23/" target="_blank">Family Kayaking</a></td><td>Brooklyn Bridge Park, Pier 2</td><td>12–2:30 PM; family-specific session. Sasha is 6, so he rides with an adult rather than paddling solo (solo is 7+).</td><td>Free</td></tr><tr class="schoolbreak top" data-start="2026-08-23" data-end="2026-08-23"><td>Sun Aug 23</td><td><a href="https://cityparksfoundation.org/events/angelique-kidjo/" target="_blank">Angélique Kidjo + Cimafunk</a></td><td>SummerStage, Central Park</td><td>🏆 Best family music pick this weekend: huge Afrobeat/funk energy, all ages, 7–10 PM.</td><td>Free</td></tr><tr class="schoolbreak" data-start="2026-08-27" data-end="2026-08-27"><td>Thu Aug 27</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Movies With A View — Public Choice</a></td><td>Brooklyn Bridge Park</td><td>Last regular August waterfront movie; arrive early and picnic.</td><td>Free</td></tr><tr class="schoolbreak" data-start="2026-08-28" data-end="2026-08-28"><td>Fri Aug 28</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Storytime with Brooklyn Public Library</a></td><td>Brooklyn Bridge Park</td><td>4:30–5:30 PM; simple late-afternoon outing.</td><td>Free</td></tr><tr class="schoolbreak" data-start="2026-08-29" data-end="2026-08-29"><td>Sat Aug 29</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Freedom Party Outside</a></td><td>Brooklyn Bridge Park</td><td>6–10 PM; classic NYC party music outdoors; family-friendly earlier portion is the play.</td><td>Free</td></tr><tr class="schoolbreak" data-start="2026-08-29" data-end="2026-08-30"><td>Aug 29–30</td><td><a href="https://www.wavehill.org/calendar?type=families" target="_blank">Rolling Out the Landscape</a></td><td>Wave Hill</td><td>Family Art Project, 10 AM–1 PM both days.</td><td>Free w/ admission</td></tr><tr class="schoolbreak top" data-start="2026-08-31" data-end="2026-09-04"><td>Aug 31–Sep 4</td><td><a href="https://cmom.org/visit/public-programs/" target="_blank">Catching Rays: Last of Summer Break</a></td><td>Children’s Museum of Manhattan</td><td>Daily special school-break programming; makerspace activities for 5+.</td><td>Museum admission</td></tr><tr class="schoolbreak" data-start="2026-09-05" data-end="2026-09-05"><td>Sat Sep 5</td><td><a href="https://www.wavehill.org/calendar/family-art-project-paint-and-fly-with-monarch-butterflies-3" target="_blank">Paint & Fly with Monarch Butterflies</a></td><td>Wave Hill</td><td>Make wearable butterfly wings, 10 AM–1 PM; storytime at 11:30.</td><td>Free w/ admission</td></tr><tr class="schoolbreak" data-start="2026-09-05" data-end="2026-09-05"><td>Sat Sep 5</td><td><a href="https://brooklynbridgepark.org/event/nature-journaling-insect-study/" target="_blank">Nature Journaling: Insect Study</a></td><td>Brooklyn Bridge Park, Pier 6</td><td>10–11:30 AM; adult-oriented but all welcome, good if Sasha likes bugs.</td><td>Free</td></tr><tr class="schoolbreak" data-start="2026-09-06" data-end="2026-09-06"><td>Sun Sep 6</td><td><a href="https://www.wavehill.org/calendar/family-art-project-paint-and-fly-with-monarch-butterflies-3" target="_blank">Paint & Fly with Monarch Butterflies</a></td><td>Wave Hill</td><td>Second chance for the family art project.</td><td>Free w/ admission</td></tr><tr class="schoolbreak" data-start="2026-09-07" data-end="2026-09-07"><td>Mon Sep 7</td><td><a href="https://www.wavehill.org/calendar/page/3?date=all" target="_blank">Labor Day at Wave Hill</a></td><td>Wave Hill</td><td>Open Monday for Labor Day; garden + exhibitions make an easy full outing.</td><td>Admission</td></tr><tr class="schoolbreak" data-start="2026-09-08" data-end="2026-09-08"><td>Tue Sep 8</td><td><a href="https://bricartsmedia.org/" target="_blank">Brooklyn Poetry Slam</a></td><td>BRIC House</td><td>6:30 PM, free; better adult evening than Sasha outing.</td><td>Free</td></tr></tbody></table></div><div class="tab-panel" id="tab-halloween"><div class="section-header"><h2>Halloween + Fall for Sasha</h2><span>verified / refreshed Aug 21</span></div><p class="intro">This gets its own tab now. For Sasha, I’d favor immersive-but-not-terrifying events: zoo/farm/corn-maze energy over commercial haunted houses.</p><table class="event-table"><thead><tr><th>Date</th><th>Event</th><th>Where</th><th>Why / notes</th><th>Cost</th></tr></thead><tbody><tr class="halloween top" data-start="2026-09-27" data-end="2026-10-26"><td>Weekends Sep 27–Oct 26</td><td><a href="https://bronxzoo.com/boo-at-the-zoo" target="_blank">Boo at the Zoo</a></td><td>Bronx Zoo</td><td>🏆 Big-ticket Halloween day: candy trail, costume parades, face painting, spooky stories, magic, crafts, pumpkin garden + animals.</td><td>Zoo admission</td></tr><tr class="halloween" data-start="2026-10-01" data-end="2026-10-31"><td>Oct 1–31</td><td><a href="https://www.queensfarm.org/queens-farm-pumpkin-patch/" target="_blank">Pumpkin Patch</a></td><td>Queens County Farm Museum</td><td>Classic pumpkin outing; weekdays 1–5, weekends 10–5.</td><td>Free entry; pumpkins extra</td></tr><tr class="halloween top" data-start="2026-08-29" data-end="2026-11-01"><td>Weekends Aug 29–Nov 1</td><td><a href="https://www.queensfarm.org/event/amazing-maize-maze-37/" target="_blank">Amazing Maize Maze</a></td><td>Queens County Farm Museum</td><td>Three-acre corn maze; excellent 6-year-old fall adventure.</td><td>$10 child / $17 adult</td></tr><tr class="halloween" data-start="2026-10-10" data-end="2026-10-10"><td>Sat Oct 10</td><td><a href="https://www.nycgovparks.org/events/festivals" target="_blank">Boo Bash in the Bronx</a></td><td>St. James Park</td><td>Free Parks Halloween event, noon–4.</td><td>Free</td></tr><tr class="halloween" data-start="2026-10-17" data-end="2026-10-17"><td>Sat Oct 17</td><td><a href="https://www.nycgovparks.org/events/festivals" target="_blank">Great Pumpkin Spooktacular</a></td><td>Soundview Park</td><td>Free family Halloween event, noon–4.</td><td>Free</td></tr><tr class="halloween top" data-start="2026-10-03" data-end="2026-10-31"><td>Weekends in Oct</td><td><a href="https://www.prospectpark.org/event/spooktober-at-prospect-park-zoo/2025-11-15/" target="_blank">Spooktober!</a></td><td>Prospect Park Zoo</td><td>Spooky trail, extinct-animal tombstones, science and performances; close to home.</td><td>Zoo admission</td></tr><tr class="halloween" data-start="2026-10-24" data-end="2026-10-25"><td>Oct 24–25</td><td><a href="https://www.wavehill.org/calendar/page/3?date=all&type%5B%5D=families" target="_blank">Web Weavers</a></td><td>Wave Hill</td><td>Spider/web-themed family art, 10 AM–1 PM.</td><td>Free w/ admission</td></tr><tr class="halloween top" data-start="2026-10-25" data-end="2026-10-25"><td>Sun Oct 25</td><td><a href="https://www.nycgovparks.org/events/festivals" target="_blank">Autumn Festival</a></td><td>Marine Park, Brooklyn</td><td>Pumpkin giveaways + costume parade; noon–3 PM.</td><td>Free</td></tr><tr class="halloween" data-start="2026-10-25" data-end="2026-10-25"><td>Sun Oct 25</td><td><a href="https://bronxzoo.com/learn/families/family-programs" target="_blank">Sensory Sensitive Spooktacular Morning</a></td><td>Bronx Zoo</td><td>9–10:30 AM; small animal ambassador + early World of Darkness access; costumes encouraged.</td><td>$45 nonmember</td></tr><tr class="halloween top" data-start="2026-10-29" data-end="2026-10-29"><td>Thu Oct 29</td><td><a href="https://www.wavehill.org/calendar/page/3?date=all&type%5B%5D=families" target="_blank">Wave Hill-O-Ween</a></td><td>Wave Hill</td><td>3:30–6:30 PM; a great after-school Halloween warm-up.</td><td>Check listing</td></tr><tr class="halloween top" data-start="2026-10-31" data-end="2026-10-31"><td>Sat Oct 31</td><td><a href="https://www.bam.org/" target="_blank">BAMboo!</a></td><td>BAM, Fort Greene</td><td>🏆 Annual family Halloween celebration: candy, carnival games, arts & crafts and more.</td><td>Free</td></tr><tr class="halloween top" data-start="2026-10-31" data-end="2026-10-31"><td>Sat Oct 31</td><td><a href="https://www.queensfarm.org/event/halloween-on-the-farm-3/" target="_blank">Halloween on the Farm</a></td><td>Queens County Farm Museum</td><td>Ghost stories in the farmhouse, 9 trick-or-treat stations, maze, hayride, pumpkins, animals, cider/donuts. 10–5.</td><td>$25 child / $15 adult</td></tr><tr class="halloween" data-start="2026-10-31" data-end="2026-10-31"><td>Sat Oct 31</td><td><a href="https://www.nycgovparks.org/events/festivals" target="_blank">Hippo Playground Halloween Parade</a></td><td>Riverside Park</td><td>3:30–5:30 PM; costume parade.</td><td>Free</td></tr></tbody></table></div><div class="tab-panel" id="tab-picks"><div class="section-header"><h2>Live Music Picks</h2><span>verified / refreshed Aug 21</span></div><p class="intro">A taste-filtered list rather than every concert in New York: experimental, jazz, global, indie and art-music first.</p><table class="event-table"><thead><tr><th>Date</th><th>Event</th><th>Where</th><th>Why / notes</th><th>Cost</th></tr></thead><tbody><tr class="top" data-start="2026-08-21" data-end="2026-08-21"><td>Fri Aug 21</td><td><a href="https://cityparksfoundation.org/calendar/category/summerstage/2026-08/" target="_blank">The Voice of Miles: A Symphonic Celebration</a></td><td>Marcus Garvey Park</td><td>Miles Davis documentary brought to life with orchestra; a strong free jazz pick.</td><td>Free</td></tr><tr class="top" data-start="2026-08-28" data-end="2026-08-30"><td>Aug 28–30</td><td><a href="https://cityparksfoundation.org/calendar/month/2026-08/?tribe_eventcategory%5B0%5D=25" target="_blank">Charlie Parker Jazz Festival</a></td><td>Harlem + East Village</td><td>Joshua Redman, Ravi Coltrane, Kassa Overall and more across the weekend.</td><td>Free</td></tr><tr data-start="2026-09-13" data-end="2026-09-13"><td>Sun Sep 13</td><td><a href="https://roulette.org/calendar-view/" target="_blank">Raven Chacon + Tashi Dorji + Alex Zhang Hungtai</a></td><td>Roulette, Boerum Hill</td><td>Experimental/improvised trio + sound/movement work; very much your art-music lane.</td><td>$25</td></tr><tr class="top" data-start="2026-09-15" data-end="2026-09-15"><td>Tue Sep 15</td><td><a href="https://pioneerworks.org/music" target="_blank">Colin Stetson & Brìghde Chaimbeul + Space Lady + Clarice Jensen</a></td><td>Pioneer Works</td><td>🏆 Stetson + Scottish smallpipes + experimental support; one of the strongest fall picks.</td><td>Check tickets</td></tr><tr class="top" data-start="2026-09-18" data-end="2026-09-19"><td>Sep 18–19</td><td><a href="https://roulette.org/calendar-view/" target="_blank">Red Hook Records 5th Anniversary</a></td><td>Roulette</td><td>Andrew Cyrille, Wadada Leo Smith, Amina Claudine Myers, Jason Moran and more.</td><td>$40</td></tr><tr class="top" data-start="2026-09-19" data-end="2026-09-19"><td>Sat Sep 19</td><td><a href="https://bricartsmedia.org/celebrate-brooklyn/" target="_blank">Liz Phair & Sleater-Kinney</a></td><td>BRIC Celebrate Brooklyn!</td><td>Season finale; excellent 90s indie pairing.</td><td>Check listing</td></tr><tr data-start="2026-09-22" data-end="2026-09-22"><td>Tue Sep 22</td><td><a href="https://roulette.org/calendar-view/" target="_blank">The Monkathon: Miles Okazaki plays Thelonious Monk</a></td><td>Roulette</td><td>Concert film of Okazaki’s complete Monk project.</td><td>$20</td></tr><tr class="top" data-start="2026-09-27" data-end="2026-09-27"><td>Sun Sep 27</td><td><a href="https://roulette.org/calendar-view/" target="_blank">John Zorn — Alea Iacta Est</a></td><td>Roulette</td><td>World premiere; challenging piano concerto, high-priority experimental pick.</td><td>$35</td></tr><tr class="top" data-start="2026-09-28" data-end="2026-09-29"><td>Sep 28–29</td><td><a href="https://pioneerworks.org/music" target="_blank">A Winged Victory for the Sullen + Pan•American</a></td><td>Pioneer Works</td><td>Ambient/post-classical; likely beautiful in the Main Hall.</td><td>Check tickets</td></tr><tr data-start="2026-10-01" data-end="2026-10-02"><td>Oct 1–2</td><td><a href="https://roulette.org/calendar-view/" target="_blank">Us v. Them / Silent Barn celebration</a></td><td>Roulette</td><td>David Longstreth night one; Fiery Furnaces + Skeletons Big Band night two.</td><td>$35 night 2</td></tr><tr class="top" data-start="2026-10-17" data-end="2026-10-18"><td>Oct 17–18</td><td><a href="https://pioneerworks.org/programs/ragas-live-festival-2026" target="_blank">Ragas Live Festival</a></td><td>Pioneer Works</td><td>24 hours, 50+ artists, Indian classical + contemporary crossover.</td><td>Ticketed</td></tr><tr data-start="2026-10-26" data-end="2026-10-26"><td>Mon Oct 26</td><td><a href="https://pioneerworks.org/music" target="_blank">False Harmonics #28</a></td><td>Pioneer Works</td><td>Six pianists + electronics + video; experimental contemporary music.</td><td>Check tickets</td></tr><tr data-start="2026-11-03" data-end="2026-11-03"><td>Tue Nov 3</td><td><a href="https://roulette.org/calendar-view/" target="_blank">Cecilia Lopez’s Filter Four</a></td><td>Roulette</td><td>Experimental electronics / composition.</td><td>$25</td></tr><tr data-start="2026-11-05" data-end="2026-11-05"><td>Thu Nov 5</td><td><a href="https://roulette.org/calendar-view/" target="_blank">Sahba Motallebi & Ensemble</a></td><td>Roulette</td><td>Persian music; tar/setar virtuosity.</td><td>$35</td></tr><tr data-start="2026-11-07" data-end="2026-11-07"><td>Sat Nov 7</td><td><a href="https://roulette.org/calendar-view/" target="_blank">M3 Festival 2026</a></td><td>Roulette</td><td>Annual new-music festival night.</td><td>Check tickets</td></tr></tbody></table></div><div class="tab-panel" id="tab-summerstage"><div class="section-header"><h2>SummerStage — Final Stretch</h2><span>verified / refreshed Aug 21</span></div><p class="intro">The summer series is nearly over; these are the remaining post–Aug 20 items that stand out.</p><table class="event-table"><thead><tr><th>Date</th><th>Event</th><th>Where</th><th>Why / notes</th><th>Cost</th></tr></thead><tbody><tr class="top" data-start="2026-08-21" data-end="2026-08-21"><td>Fri Aug 21</td><td><a href="https://cityparksfoundation.org/calendar/category/summerstage/2026-08/" target="_blank">The Voice of Miles: A Symphonic Celebration</a></td><td>Marcus Garvey Park</td><td>Miles Davis documentary brought to life with orchestra; a strong free jazz pick.</td><td>Free</td></tr><tr class="top" data-start="2026-08-28" data-end="2026-08-30"><td>Aug 28–30</td><td><a href="https://cityparksfoundation.org/calendar/month/2026-08/?tribe_eventcategory%5B0%5D=25" target="_blank">Charlie Parker Jazz Festival</a></td><td>Harlem + East Village</td><td>Joshua Redman, Ravi Coltrane, Kassa Overall and more across the weekend.</td><td>Free</td></tr><tr data-start="2026-08-22" data-end="2026-08-22"><td>Sat Aug 22</td><td><a href="https://cityparksfoundation.org/calendar/category/summerstage/2026-08/" target="_blank">Run it Back: The Art of the Sample Vol. II</a></td><td>SummerStage</td><td>Harlem-born celebration of Black and brown expression, culture and community.</td><td>Free</td></tr><tr data-start="2026-08-23" data-end="2026-08-23"><td>Sun Aug 23</td><td><a href="https://cityparksfoundation.org/calendar/category/summerstage/2026-08/" target="_blank">Sun Ra: Do the Impossible + James Stewart Quartet</a></td><td>Central Park</td><td>Noon–4:30 PM; film + live jazz, a good daytime bridge to Kidjo.</td><td>Check listing</td></tr></tbody></table></div><div class="tab-panel" id="tab-bric"><div class="section-header"><h2>BRIC Brooklyn!</h2><span>verified / refreshed Aug 21</span></div><p class="intro">Celebrate Brooklyn runs through Sep 19, then BRIC House takes over as the useful fall calendar.</p><table class="event-table"><thead><tr><th>Date</th><th>Event</th><th>Where</th><th>Why / notes</th><th>Cost</th></tr></thead><tbody><tr data-start="2026-08-21" data-end="2026-08-21"><td>Fri Aug 21</td><td><a href="https://bricartsmedia.org/" target="_blank">Sasha Velour’s NightGowns</a></td><td>Lena Horne Bandshell</td><td>Big drag/performance spectacle; free.</td><td>Free</td></tr><tr class="top" data-start="2026-08-28" data-end="2026-08-28"><td>Fri Aug 28</td><td><a href="https://bricartsmedia.org/" target="_blank">Common + special guests honoring Harry Belafonte</a></td><td>Lena Horne Bandshell</td><td>Social-justice legacy celebration; likely strong music + civic program.</td><td>Free</td></tr><tr data-start="2026-08-29" data-end="2026-08-29"><td>Sat Aug 29</td><td><a href="https://bricartsmedia.org/" target="_blank">Dominican Night at the Bandshell</a></td><td>Lena Horne Bandshell</td><td>Free community music night.</td><td>Free</td></tr><tr class="top" data-start="2026-09-12" data-end="2026-09-12"><td>Sat Sep 12</td><td><a href="https://bricartsmedia.org/" target="_blank">BRIC Family: Back to School!</a></td><td>BRIC House</td><td>🏆 Free family event, noon; perfectly timed for Sasha’s first school weekend.</td><td>Free</td></tr><tr class="top" data-start="2026-09-19" data-end="2026-09-19"><td>Sat Sep 19</td><td><a href="https://bricartsmedia.org/celebrate-brooklyn/" target="_blank">Liz Phair & Sleater-Kinney</a></td><td>Lena Horne Bandshell</td><td>Celebrate Brooklyn season finale.</td><td>Check listing</td></tr></tbody></table></div><div class="tab-panel" id="tab-bryant"><div class="section-header"><h2>Bryant Park + Outdoor NYC</h2><span>verified / refreshed Aug 21</span></div><p class="intro">Bryant’s summer programming is tapering off, so this tab now catches the strongest remaining outdoor city programming rather than padding it with expired listings.</p><table class="event-table"><thead><tr><th>Date</th><th>Event</th><th>Where</th><th>Why / notes</th><th>Cost</th></tr></thead><tbody><tr data-start="2026-08-22" data-end="2026-08-22"><td>Sat Aug 22</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Bargemusic Concert</a></td><td>Brooklyn Bridge Park</td><td>2–3 PM waterfront concert.</td><td>Free</td></tr><tr class="top" data-start="2026-08-23" data-end="2026-08-23"><td>Sun Aug 23</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Bollywood + Bhangra Dance Workshop</a></td><td>Brooklyn Bridge Park</td><td>11 AM–noon; all-ages movement before kayaking.</td><td>Free</td></tr><tr data-start="2026-08-27" data-end="2026-08-27"><td>Thu Aug 27</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Movies With A View — Public Choice</a></td><td>Brooklyn Bridge Park</td><td>Outdoor movie, 6–11 PM.</td><td>Free</td></tr><tr class="top" data-start="2026-08-29" data-end="2026-08-29"><td>Sat Aug 29</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Freedom Party Outside</a></td><td>Brooklyn Bridge Park</td><td>6–10 PM; excellent old-school dance-party option.</td><td>Free</td></tr><tr data-start="2026-09-19" data-end="2026-09-19"><td>Sat Sep 19</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Papi Juice Dance Party</a></td><td>Brooklyn Bridge Park</td><td>4–9 PM; outdoor party.</td><td>Free</td></tr><tr class="top" data-start="2026-09-18" data-end="2026-09-18"><td>Fri Sep 18</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">How to Train Your Dragon</a></td><td>Brooklyn Bridge Park</td><td>🏆 Movies With A View special; obvious Sasha pick.</td><td>Free</td></tr></tbody></table></div><div class="tab-panel" id="tab-lunatico"><div class="section-header"><h2>LunÀtico — Next Two Weeks</h2><span>calendar expanded Aug 21</span></div><p class="intro">This is finally useful as a spontaneous-night calendar. Most shows are at 9 PM; LunÀtico typically asks a $10 cash suggested donation and has a full dinner/cocktail menu. The venue posts on a rolling basis, so I’ve filled every currently published date through Aug 31 and will treat September as a watchlist until it posts.</p><div class="priority-box"><b>Best fits:</b> ❤️ BLAKETET tonight for downtown/NYC jazz; ❤️ BIGYUKI × Jharis Yokley Aug 27 for groove-heavy keys/drums; ❤️ Charlie Halloran’s Tropicales Aug 29 for New Orleans/Caribbean dance energy; ❤️ Otherlands Trio Aug 30 for adventurous improvisation. <a href="https://www.barlunatico.com/music" target="_blank">Live LunÀtico calendar ↗</a></div><table class="event-table"><thead><tr><th>Date</th><th>Artist</th><th>Why</th><th>Time / cost</th></tr></thead><tbody>
+<tr class="top" data-start="2026-08-21"><td>Fri Aug 21</td><td>BLAKETET — Michael Blake, Lisa Parrott, Rob Jost, Tony Scherr, Kenny Wollesen ❤️</td><td>Fantastic downtown-jazz personnel; probably the strongest immediate pick.</td><td>9 PM · ~$10 suggested</td></tr>
+<tr data-start="2026-08-22"><td>Sat Aug 22</td><td>Bessie &amp; The Rainbowkidz ft. Russell Hall 💚</td><td>Colorful, soulful ensemble night; worth a spontaneous Saturday.</td><td>9 PM · ~$10</td></tr>
+<tr data-start="2026-08-23"><td>Sun Aug 23</td><td>Anwar Marshall Group ft. KHEMIST 💚</td><td>Drummer-led jazz with spoken-word/hip-hop crossover.</td><td>9 PM · ~$10</td></tr>
+<tr data-start="2026-08-24"><td>Mon Aug 24</td><td>Mike Moreno Trio 💚</td><td>Modern guitar trio; sophisticated but easy late-night choice.</td><td>9 PM · ~$10</td></tr>
+<tr data-start="2026-08-25"><td>Tue Aug 25</td><td>Sheffa Trio — Martin Giorgieff, Nacho Mateu, Juan Chiavassa</td><td>Small-group jazz; lower-priority than the surrounding nights.</td><td>9 PM · ~$10</td></tr>
+<tr data-start="2026-08-26"><td>Wed Aug 26</td><td>Itamar Borochov’s CONTRAFACT 💚</td><td>Trumpet-led jazz with Middle Eastern/North African inflections.</td><td>9 PM · ~$10</td></tr>
+<tr class="top" data-start="2026-08-27"><td>Thu Aug 27</td><td>BIGYUKI × Jharis Yokley ❤️</td><td>Keyboard/drums collision: jazz, hip-hop, electronics and serious groove. Very strong fit.</td><td>9 PM · ~$10</td></tr>
+<tr data-start="2026-08-28"><td>Fri Aug 28</td><td>Anant Pradhan with Larry McDonald 💚</td><td>Saxophone plus veteran Jamaican percussionist McDonald; reggae/Afro-Caribbean pull.</td><td>9 PM · ~$10</td></tr>
+<tr class="top" data-start="2026-08-29"><td>Sat Aug 29</td><td>Charlie Halloran’s Tropicales ❤️</td><td>New Orleans trombone meets Caribbean dance music. This should be a blast.</td><td>9 PM · ~$10</td></tr>
+<tr class="top" data-start="2026-08-30"><td>Sun Aug 30</td><td>Otherlands Trio — Stephan Crump, Darius Jones, Eric McPherson ❤️</td><td>Excellent adventurous improvisers; the artier/jazzier top pick of the run.</td><td>9 PM · ~$10</td></tr>
+<tr data-start="2026-08-31"><td>Mon Aug 31</td><td>Rogério Boccato Quarteto ft. Nando Michelin, Dan Blake, Jay Anderson 💚</td><td>Brazilian percussionist-led quartet; excellent mellow Labor Day-eve option.</td><td>9 PM · ~$10</td></tr>
+</tbody></table><p class="note">September dates were not yet published in a dependable full run when I checked Aug 21. Better to leave them blank than seed the guide with speculative listings.</p></div><div class="tab-panel" id="tab-dancing"><div class="section-header"><h2>Dancing</h2><span>verified / refreshed Aug 21</span></div><p class="intro">Old-school/funk/soul-friendly options first; outdoor while the weather holds.</p><table class="event-table"><thead><tr><th>Date</th><th>Event</th><th>Where</th><th>Why / notes</th><th>Cost</th></tr></thead><tbody><tr class="top" data-start="2026-08-21" data-end="2026-08-21"><td>Fri Aug 21</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Salsa Night</a></td><td>Brooklyn Bridge Park</td><td>Waterfront salsa, 6–9 PM.</td><td>Free</td></tr><tr data-start="2026-08-23" data-end="2026-08-23"><td>Sun Aug 23</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Bollywood + Bhangra Workshop</a></td><td>Brooklyn Bridge Park</td><td>11 AM–noon; family-compatible.</td><td>Free</td></tr><tr class="top" data-start="2026-08-29" data-end="2026-08-29"><td>Sat Aug 29</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Freedom Party Outside</a></td><td>Brooklyn Bridge Park</td><td>🏆 Herbert Holler’s long-running party outdoors, 6–10 PM.</td><td>Free</td></tr><tr data-start="2026-09-19" data-end="2026-09-19"><td>Sat Sep 19</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Papi Juice Dance Party</a></td><td>Brooklyn Bridge Park</td><td>4–9 PM outdoor dance party.</td><td>Free</td></tr><tr class="top" data-start="2026-09-26" data-end="2026-09-26"><td>Sat Sep 26</td><td><a href="https://www.nytransitmuseum.org/location/transit-museum/" target="_blank">Vinyl Nights: Return to ’76</a></td><td>NY Transit Museum</td><td>Disco upstairs, funk + hip-hop on the subway platform, 6–9 PM. Very fun date-night concept.</td><td>$50</td></tr></tbody></table></div><div class="tab-panel" id="tab-ideas"><div class="section-header"><h2>Ideas & Talks</h2><span>verified / refreshed Aug 21</span></div><p class="intro">Fewer filler lectures; these have a concrete reason to go.</p><table class="event-table"><thead><tr><th>Date</th><th>Event</th><th>Where</th><th>Why / notes</th><th>Cost</th></tr></thead><tbody><tr data-start="2026-08-27" data-end="2026-08-27"><td>Thu Aug 27</td><td><a href="https://www.nytransitmuseum.org/location/transit-museum/" target="_blank">Deep Dive: The R46s and the Museum, 1976–2026</a></td><td>NY Transit Museum</td><td>Transit/history nerd night, 6–7:30 PM.</td><td>$10–15</td></tr><tr class="top" data-start="2026-09-11" data-end="2026-09-11"><td>Fri Sep 11</td><td><a href="https://pioneerworks.org/" target="_blank">Pioneer Works Fall Opening Reception</a></td><td>Pioneer Works</td><td>Three exhibitions open together: octopus intelligence, oceanic systems/bioluminescence, and disability-centered exhibition design.</td><td>Free / check RSVP</td></tr><tr class="top" data-start="2026-09-13" data-end="2026-09-13"><td>Sun Sep 13</td><td><a href="https://pioneerworks.org/programs/second-sundays-september-2026" target="_blank">Second Sundays</a></td><td>Pioneer Works</td><td>Open studios, workshops, exhibitions, solar gazing, scavenger hunt, live performance; all ages.</td><td>Free RSVP</td></tr><tr data-start="2026-10-13" data-end="2026-10-13"><td>Tue Oct 13</td><td><a href="https://www.bam.org/" target="_blank">Adam Grant — Vibe</a></td><td>BAM</td><td>Talk on connection and social life, presented with Greenlight.</td><td>Ticketed</td></tr></tbody></table></div><div class="tab-panel" id="tab-museums"><div class="section-header"><h2>Museums + Kids</h2><span>verified / refreshed Aug 21</span></div><p class="intro">Hands-on and age-appropriate wins. Halloween events live in their own tab so this stays useful all fall.</p><table class="event-table"><thead><tr><th>Date</th><th>Event</th><th>Where</th><th>Why / notes</th><th>Cost</th></tr></thead><tbody><tr class="schoolbreak" data-start="2026-08-22" data-end="2026-08-22"><td>Sat Aug 22</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Youth Basketball Clinics + Education Center</a></td><td>Brooklyn Bridge Park</td><td>Low-effort Sasha day: basketball 9–11 AM; Environmental Education Center 1–5 PM.</td><td>Free</td></tr><tr class="schoolbreak" data-start="2026-08-22" data-end="2026-08-22"><td>Sat Aug 22</td><td><a href="https://www.wavehill.org/calendar?type=families" target="_blank">Botanical Blueprints</a></td><td>Wave Hill</td><td>Drop-in family art, 10 AM–1 PM; strong day-trip option.</td><td>Free w/ admission</td></tr><tr class="schoolbreak top" data-start="2026-08-23" data-end="2026-08-23"><td>Sun Aug 23</td><td><a href="https://brooklynbridgepark.org/event/family-kayaking-august-23/" target="_blank">Family Kayaking</a></td><td>Brooklyn Bridge Park, Pier 2</td><td>12–2:30 PM; family-specific session. Sasha is 6, so he rides with an adult rather than paddling solo (solo is 7+).</td><td>Free</td></tr><tr class="schoolbreak top" data-start="2026-08-23" data-end="2026-08-23"><td>Sun Aug 23</td><td><a href="https://cityparksfoundation.org/events/angelique-kidjo/" target="_blank">Angélique Kidjo + Cimafunk</a></td><td>SummerStage, Central Park</td><td>🏆 Best family music pick this weekend: huge Afrobeat/funk energy, all ages, 7–10 PM.</td><td>Free</td></tr><tr class="schoolbreak" data-start="2026-08-29" data-end="2026-08-30"><td>Aug 29–30</td><td><a href="https://www.wavehill.org/calendar?type=families" target="_blank">Rolling Out the Landscape</a></td><td>Wave Hill</td><td>Family Art Project, 10 AM–1 PM both days.</td><td>Free w/ admission</td></tr><tr class="schoolbreak top" data-start="2026-08-31" data-end="2026-09-04"><td>Aug 31–Sep 4</td><td><a href="https://cmom.org/visit/public-programs/" target="_blank">Catching Rays: Last of Summer Break</a></td><td>Children’s Museum of Manhattan</td><td>Daily special school-break programming; makerspace activities for 5+.</td><td>Museum admission</td></tr><tr class="schoolbreak" data-start="2026-09-05" data-end="2026-09-05"><td>Sat Sep 5</td><td><a href="https://www.wavehill.org/calendar/family-art-project-paint-and-fly-with-monarch-butterflies-3" target="_blank">Paint & Fly with Monarch Butterflies</a></td><td>Wave Hill</td><td>Make wearable butterfly wings, 10 AM–1 PM; storytime at 11:30.</td><td>Free w/ admission</td></tr><tr class="schoolbreak" data-start="2026-09-05" data-end="2026-09-05"><td>Sat Sep 5</td><td><a href="https://brooklynbridgepark.org/event/nature-journaling-insect-study/" target="_blank">Nature Journaling: Insect Study</a></td><td>Brooklyn Bridge Park, Pier 6</td><td>10–11:30 AM; adult-oriented but all welcome, good if Sasha likes bugs.</td><td>Free</td></tr><tr class="top" data-start="2026-09-13" data-end="2026-09-13"><td>Sun Sep 13</td><td><a href="https://www.nytransitmuseum.org/programs/category/family-programs/" target="_blank">Movers and Makers: Family Tour + Workshop</a></td><td>NY Transit Museum</td><td>2–3:30 PM; hands-on family museum program.</td><td>$10 kids / $20 adults</td></tr><tr class="top" data-start="2026-09-13" data-end="2026-09-13"><td>Sun Sep 13</td><td><a href="https://pioneerworks.org/programs/second-sundays-september-2026" target="_blank">Second Sundays</a></td><td>Pioneer Works</td><td>Free all-ages open house with scavenger hunt, BioBus, solar gazing and studios.</td><td>Free RSVP</td></tr><tr class="top" data-start="2026-09-12" data-end="2026-11-10"><td>Sep 12–Nov 22</td><td><a href="https://pioneerworks.org/news/pioneer-works-announces-tuomas-a-laitinen-siphon" target="_blank">Siphon</a></td><td>Pioneer Works</td><td>Immersive 8K octopus imagery + sound + glass; potentially fantastic with Sasha.</td><td>Free / donation</td></tr><tr data-start="2026-09-12" data-end="2026-11-10"><td>Sep 12–Dec 20</td><td><a href="https://pioneerworks.org/news/pioneer-works-announces-lajune-mcmillian-child-ren-of-the-bloom" target="_blank">Child/ren of the Bloom</a></td><td>Pioneer Works</td><td>Interactive ocean/bioluminescence installation.</td><td>Free / donation</td></tr><tr data-start="2026-09-26" data-end="2026-09-27"><td>Sep 26–27</td><td><a href="https://www.wavehill.org/calendar/family-art-project-animal-mapmaking-2" target="_blank">Animal Mapmaking</a></td><td>Wave Hill</td><td>Create a map from an animal’s perspective, 10 AM–1 PM.</td><td>Free w/ admission</td></tr></tbody></table></div><div class="tab-panel" id="tab-movies"><div class="section-header"><h2>Movies + Animation</h2><span>expanded Aug 21</span></div><p class="intro">Much deeper now: BAMkids, MoMI, animation-specific events and a few special screenings. I’m prioritizing things that are actually different from simply going to a multiplex.</p><table class="event-table"><thead><tr><th>Date</th><th>Event</th><th>Where</th><th>Why / notes</th><th>Cost</th></tr></thead><tbody>
+<tr data-start="2026-08-27"><td>Thu Aug 27</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">Movies With A View — Public Choice</a></td><td>Brooklyn Bridge Park</td><td>Final August waterfront movie.</td><td>Free</td></tr>
+<tr class="top" data-start="2026-08-27"><td>Thu Aug 27</td><td><a href="https://movingimage.org/whats-on/events/" target="_blank">AKIRA — new 4K restoration</a> ❤️</td><td>MoMI</td><td>Screening preceded by a discussion with AKIRA manga editor Takeshi Katsurada. A terrific animation/cinema event, though intense for Sasha.</td><td>Free w/ RSVP</td></tr>
+<tr data-start="2026-08-26" data-end="2026-09-06"><td>Aug 26–Sep 6</td><td><a href="https://www.bronxworldfilm.org/cycleguide" target="_blank">Bronx World Film Cycle</a></td><td>Various Bronx venues</td><td>International shorts with a surprisingly strong animation component, including new work from Japan and other NYC/US premieres.</td><td>Many free</td></tr>
+<tr class="top" data-start="2026-09-12"><td>Sat Sep 12</td><td><a href="https://www.bam.org/kids/2026/best-of-bkff" target="_blank">Best of BAMkids — Ages 3–5</a> 🧒</td><td>BAM Rose Cinemas</td><td>Tsuru, The Naughty Seat and Lena’s Farm: Full Nest among the audience favorites. Sasha is 6 but this could still be charming.</td><td>$10 child / $14 adult</td></tr>
+<tr data-start="2026-09-13"><td>Sun Sep 13</td><td><a href="https://movingimage.org/whats-on/events/" target="_blank">Junk Dump Film Festival — Day Two</a></td><td>MoMI</td><td>Nine experimental and animated shorts + filmmaker Q&amp;A. More adventurous than kid-programmed, but interesting.</td><td>Check MoMI</td></tr>
+<tr class="top" data-start="2026-09-18"><td>Fri Sep 18</td><td><a href="https://brooklynbridgepark.org/summer/" target="_blank">How to Train Your Dragon</a> 🧒</td><td>Brooklyn Bridge Park</td><td>Outdoor family movie night.</td><td>Free</td></tr>
+<tr class="top" data-start="2026-09-24" data-end="2026-09-27"><td>Sep 24–27</td><td><a href="https://movingimage.org/whats-on/" target="_blank">Jim Henson 90th Birthday Weekend</a> 🧒</td><td>MoMI</td><td>Four days of screenings, puppetry, workshops and events. Includes a free marathon of the ten fan-voted best Muppet Show episodes; Sep 26 has an all-ages Puppet Tea Party.</td><td>Mix of free/admission</td></tr>
+<tr class="top" data-start="2026-09-26"><td>Sat Sep 26</td><td><a href="https://svatheatre.com/calendar/" target="_blank">KPop Demon Hunters — Screening + Q&amp;A</a> 🧒</td><td>SVA Theatre</td><td>Special big-screen screening with Q&amp;A during SVA’s free Alumni Film &amp; Animation Festival. Excellent Sasha candidate if he likes the movie/music.</td><td>Check SVA / typically free</td></tr>
+<tr data-start="2026-08-01" data-end="2026-11-10"><td>Ongoing</td><td><a href="https://www.moma.org/calendar/exhibitions/5920" target="_blank">It’s Alive! A Century of Animation</a> ❤️ 🧒</td><td>MoMA</td><td>Major animation exhibition spanning 100+ years, from Gertie/Felix/Koko onward. Not a screening series, but absolutely belongs in this guide.</td><td>MoMA admission</td></tr>
+<tr data-start="2026-08-06" data-end="2026-11-10"><td>Through Nov 12</td><td><a href="https://movingimage.org/whats-on/exhibitions/" target="_blank">Felix the Cat — restored 1927–28 cartoons</a> 🧒</td><td>MoMI</td><td>Four restored silent-era Felix cartoons presented in the museum; easy add-on to any MoMI visit.</td><td>Museum admission</td></tr>
+<tr data-start="2026-05-15" data-end="2026-10-12"><td>Through Oct 12</td><td><a href="https://movingimage.org/whats-on/exhibitions/" target="_blank">Anime’s Ascendant Decade</a></td><td>MoMI</td><td>Episodes from major Crunchyroll Anime Awards nominees/winners, 2016–present.</td><td>Museum admission</td></tr>
+<tr class="top" data-start="2026-11-14"><td>Sat Nov 14*</td><td><a href="https://www.bam.org/kids/2026/best-of-bkff" target="_blank">Best of BAMkids — Ages 6–8</a> 🧒</td><td>BAM Rose Cinemas</td><td>Perfect age band for Sasha: includes BAMmie animated-short winner <i>Bobel’s Kitchen</i> and honorable mention <i>Snow Bear</i>.</td><td>$10 child / $14 adult</td></tr>
+<tr data-start="2026-12-19"><td>Sat Dec 19*</td><td><a href="https://www.bam.org/kids/2026/best-of-bkff" target="_blank">Best of BAMkids — Ages 9+</a></td><td>BAM Rose Cinemas</td><td>Final fall/winter encore: Feet Up, GLITCH and Mountain Roots among the highlighted films.</td><td>$10 child / $14 adult</td></tr>
+</tbody></table>
+<div class="section-header"><h2>Repertory Cinema — Late Aug + Fall</h2><span>new v18 pass</span></div>
+<p class="intro">A venue-by-venue repertory pass. I’m listing the strongest currently published choices rather than padding this with ordinary first-run titles; several September/October calendars are still incomplete and are marked as watch items.</p>
+<table class="event-table"><thead><tr><th>Date</th><th>Film / series</th><th>Venue</th><th>Why it makes the cut</th></tr></thead><tbody>
+<tr class="top" data-start="2026-08-22"><td>Sat Aug 22</td><td><a href="https://metrograph.com/" target="_blank">Saturday Afternoon Cartoons: Bugs We Love(?)</a> 🧒</td><td>Metrograph</td><td>12:15 PM. Exactly the kind of oddball theatrical animation program we wanted to uncover; a particularly good Sasha matinee.</td></tr>
+<tr class="top" data-start="2026-08-22" data-end="2026-08-23"><td>Aug 22–23</td><td><a href="https://metrograph.com/" target="_blank">When Marnie Was There</a> 🧒</td><td>Metrograph</td><td>Studio Ghibli on the big screen; Sat noon and Sun 12:40. Strongest immediate family-film discovery in the rep scan.</td></tr>
+<tr data-start="2026-08-23" data-end="2026-08-30"><td>Aug 23 &amp; 30</td><td><a href="https://metrograph.com/" target="_blank">E.T. the Extra-Terrestrial</a> 🧒</td><td>Metrograph</td><td>Sunday 11 AM matinees. An ideal Sasha repertory introduction and very much in the <i>Super 8</i>/<i>Jurassic Park</i> lane.</td></tr>
+<tr data-start="2026-08-23" data-end="2026-08-29"><td>Aug 23 &amp; 29</td><td><a href="https://metrograph.com/" target="_blank">Petite Maman</a> 🧒</td><td>Metrograph</td><td>Céline Sciamma’s tiny, magical time-slip film; gentle, emotionally sophisticated family viewing.</td></tr>
+<tr class="top" data-start="2026-08-29"><td>Sat Aug 29</td><td><a href="https://metrograph.com/" target="_blank">Stand by Me</a> 💚</td><td>Metrograph</td><td>3:45 PM. You’d asked about this for Sasha before; big-screen rep is the tempting way to do it, though language/themes make it a parent-call at 6.</td></tr>
+<tr data-start="2026-08-21" data-end="2026-08-30"><td>Aug 21–30</td><td><a href="https://metrograph.com/" target="_blank">House / Bram Stoker’s Dracula / The Others / Raw / Possession</a></td><td>Metrograph</td><td>A surprisingly strong early spooky-season cluster for adults. <i>House</i> is the wildest; <i>The Others</i> the most elegant Halloween warm-up.</td></tr>
+<tr class="top" data-start="2026-08-21" data-end="2026-08-31"><td>Aug 21–31</td><td><a href="https://filmforum.org/" target="_blank">Francis Ford Coppola retrospective</a> ❤️</td><td>Film Forum</td><td>Deep run including <i>The Conversation</i>, <i>The Godfather</i> I/II, <i>Rumble Fish</i>, <i>One from the Heart</i>, <i>The Cotton Club</i>, <i>Tucker</i> and <i>Bram Stoker’s Dracula</i>.</td></tr>
+<tr data-start="2026-08-25"><td>Tue Aug 25</td><td><a href="https://filmforum.org/" target="_blank">Tracking Shots: Films from the NY Transit Museum Archives</a></td><td>Film Forum</td><td>6 PM archival NYC/transit program — the kind of one-off repertory event that is easy to miss.</td></tr>
+<tr data-start="2026-09-01"><td>Tue Sep 1</td><td><a href="https://filmforum.org/" target="_blank">The Warriors — NYC in Transit</a></td><td>Film Forum</td><td>9 PM; part of Film Forum/Transit Museum’s NYC transit series.</td></tr>
+<tr class="top" data-start="2026-08-28"><td>Opens Fri Aug 28</td><td><a href="https://www.ifccenter.com/films/gandahar/" target="_blank">Gandahar</a> ❤️</td><td>IFC Center</td><td>René Laloux’s French animated science-fiction cult film. This is the most interesting animation discovery at IFC; more adult/strange than BAMkids.</td></tr>
+<tr data-start="2026-08-28" data-end="2026-09-12"><td>Aug 28–Sep 12</td><td><a href="https://www.ifccenter.com/series/staff-picks-2026/" target="_blank">IFC Staff Picks: Clue / Bully / Mac and Me</a></td><td>IFC Center</td><td>Late shows: <i>Clue</i> Aug 28–29, <i>Bully</i> Sep 4–5, <i>Mac and Me</i> Sep 11–12. The latter could be a hilariously strange older-kid cult screening later on.</td></tr>
+<tr class="top" data-start="2026-09-04" data-end="2026-09-05"><td>Sep 4–5</td><td><a href="https://www.ifccenter.com/series/late-night-favorites-summer-2026/" target="_blank">Stop Making Sense</a> ❤️</td><td>IFC Center</td><td>Late-night repertory screening. Given the music side of this guide, this is an automatic inclusion.</td></tr>
+<tr data-start="2026-09-01" data-end="2026-11-10"><td>Fall — watch</td><td><a href="https://anthologyfilmarchives.org/" target="_blank">Anthology Film Archives</a></td><td>East Village</td><td>Keep on the active watchlist for experimental/avant-garde programs; the useful Sep–Oct calendar was not fully surfaced in this pass.</td></tr>
+<tr data-start="2026-09-01" data-end="2026-11-10"><td>Fall — watch</td><td><a href="https://fiaf.org/cine-salon/" target="_blank">FIAF CinéSalon</a></td><td>French Institute</td><td>Especially worth watching for French animation, restored French cinema and family programming as the fall calendar fills in.</td></tr>
+</tbody></table>
+<div class="section-header"><h2>New York Film Festival 64</h2><span>Sep 25–Oct 12 · new v18</span></div>
+<p class="intro">NYFF deserves its own mini-guide. The full screening grid launches in late August, so these are the films I’d flag now from the announced Main Slate, Spotlight and Currents; exact non-gala dates can be added when the schedule drops.</p>
+<div class="priority-box"><b>Ticket timing:</b> general-public single tickets go on sale <b>Tue Sep 15 at noon</b>. The festival runs Sep 25–Oct 12. The full schedule is due in late August, and talent appearances in early September.</div>
+<table class="event-table"><thead><tr><th>Date</th><th>Film</th><th>Why it’s on our shortlist</th><th>Section</th></tr></thead><tbody>
+<tr class="top" data-start="2026-09-25"><td>Fri Sep 25</td><td><a href="https://www.filmlinc.org/nyff/" target="_blank">Paper Tiger — James Gray</a> ❤️</td><td>Opening Night. 1986 Queens/Brooklyn crime drama with Adam Driver, Miles Teller and Scarlett Johansson; extremely NYC and a strong fit for you.</td><td>Opening Night</td></tr>
+<tr class="top" data-start="2026-09-26"><td>Sat Sep 26</td><td><a href="https://www.filmlinc.org/nyff2026/daily/64th-new-york-film-festival-spotlight-announced/" target="_blank">Godzilla Minus Zero — Takashi Yamazaki</a> ❤️</td><td><b>World premiere.</b> Sequel to <i>Godzilla Minus One</i>, set in 1949. Big-screen event movie, but the terror/intensity means I would not automatically treat it as a Sasha film.</td><td>Spotlight Gala</td></tr>
+<tr class="top" data-start="2026-09-25" data-end="2026-10-12"><td>Sep 25–Oct 12 · date TBA</td><td><a href="https://www.filmlinc.org/nyff/nyff64-lineup/" target="_blank">Iron Boy — Louis Clichy</a> 🧒</td><td>🏆 The NYFF animation target: gorgeous hand-painted animated feature and Cannes Un Certain Regard Special Jury Prize winner. Highest-priority Sasha possibility pending age/content details.</td><td>Spotlight</td></tr>
+<tr class="top" data-start="2026-10-02"><td>Fri Oct 2</td><td><a href="https://www.filmlinc.org/nyff2026/daily/tony-gilroys-behemoth-will-world-premiere-as-centerpiece-selection-of-64th-new-york-film-festival/" target="_blank">Behemoth! — Tony Gilroy</a> ❤️</td><td>World premiere; Pedro Pascal as a cellist in Tony Gilroy’s new drama. Centerpiece at Alice Tully Hall.</td><td>Centerpiece</td></tr>
+<tr data-start="2026-09-25" data-end="2026-10-12"><td>Festival · date TBA</td><td><a href="https://www.filmlinc.org/nyff/nyff64-lineup/" target="_blank">Bitter Christmas — Pedro Almodóvar</a> ❤️</td><td>New Almodóvar is an obvious adult priority.</td><td>Main Slate</td></tr>
+<tr data-start="2026-09-25" data-end="2026-10-12"><td>Festival · date TBA</td><td><a href="https://www.filmlinc.org/nyff/nyff64-lineup/" target="_blank">All of a Sudden — Ryûsuke Hamaguchi</a> ❤️</td><td>New Hamaguchi; one of the festival’s major auteur titles.</td><td>Main Slate</td></tr>
+<tr data-start="2026-09-25" data-end="2026-10-12"><td>Festival · date TBA</td><td><a href="https://www.filmlinc.org/nyff/nyff64-lineup/" target="_blank">Possible Love — Lee Chang-dong</a> ❤️</td><td>Lee Chang-dong’s return, built around two married couples colliding across class lines.</td><td>Main Slate</td></tr>
+<tr data-start="2026-09-25" data-end="2026-10-12"><td>Festival · date TBA</td><td><a href="https://www.filmlinc.org/nyff/nyff64-lineup/" target="_blank">Once Upon a Time in Harlem — William &amp; David Greaves</a> ❤️</td><td>Extraordinary archival project begun in 1972 around artists and thinkers of the Harlem Renaissance, finally completed by Greaves’s son.</td><td>Main Slate</td></tr>
+<tr data-start="2026-09-25" data-end="2026-10-12"><td>Festival · date TBA</td><td><a href="https://www.filmlinc.org/nyff2026/daily/64th-new-york-film-festival-spotlight-announced/" target="_blank">Fjord — Cristian Mungiu</a></td><td>2026 Palme d’Or winner; one of the obvious prestige-film targets.</td><td>Spotlight</td></tr>
+<tr data-start="2026-09-25" data-end="2026-10-12"><td>Festival · date TBA</td><td><a href="https://www.filmlinc.org/nyff2026/daily/64th-new-york-film-festival-spotlight-announced/" target="_blank">Bucking Fastard — Werner Herzog</a> 💚</td><td>Herzog returning to NYFF for the first time in more than four decades.</td><td>Spotlight</td></tr>
+<tr data-start="2026-09-25" data-end="2026-10-12"><td>Festival · date TBA</td><td><a href="https://www.filmlinc.org/nyff2026/daily/64th-new-york-film-festival-currents-lineup-announced/" target="_blank">Currents programs</a> ❤️</td><td>15 features + 28 shorts at the experimental/vanguard end of NYFF. Of particular interest for your filmmaking side: <i>Day One</i> is a fully photochemical 35mm short with a photochemical optical soundtrack.</td><td>Currents</td></tr>
+<tr class="top" data-start="2026-10-09"><td>Fri Oct 9</td><td><a href="https://www.filmlinc.org/nyff2026/films/14th/" target="_blank">14th — Ava DuVernay</a></td><td>World premiere; DuVernay’s follow-up of sorts to <i>13th</i>.</td><td>Closing Night</td></tr>
+<tr data-start="2026-09-25" data-end="2026-10-12"><td>Coming soon</td><td><a href="https://www.filmlinc.org/nyff/nyff64-lineup/" target="_blank">NYFF Revivals</a> ❤️</td><td><b>Watch this closely.</b> The Revivals section exists but titles had not yet been posted in the current lineup page. This may ultimately be the most directly relevant NYFF section for the repertory pass.</td><td>Revivals</td></tr>
+</tbody></table>
+<p class="note"><b>NYFF strategy:</b> don’t buy a pass just to solve scheduling yet. The useful move is to wait for the late-August screening grid, rank the 8–12 screenings we actually want, then decide whether membership/pre-sale access is worth it before the Sep 15 public sale.</p>
+<p class="note">*Nov 14 and Dec 19 intentionally extend beyond the guide’s Nov 10 cutoff so the <b>complete BAMkids encore schedule</b> is here. The original 2026 BAMkids Film Festival itself ran Feb 7–8; these are the three fall “Best of” programs.</p></div><div class="tab-panel" id="tab-theater"><div class="section-header"><h2>Theater + Performance</h2><span>verified / refreshed Aug 21</span></div><p class="intro">The old Shakespeare-only summer tab is now a fall performance tab, anchored by BAM Next Wave.</p><table class="event-table"><thead><tr><th>Date</th><th>Event</th><th>Where</th><th>Why / notes</th><th>Cost</th></tr></thead><tbody><tr data-start="2026-09-08" data-end="2026-09-20"><td>Sep 8–20</td><td><a href="https://www.bam.org/" target="_blank">The Ford/Hill Project</a></td><td>BAM</td><td>Waterwell theater project in BAM’s fall season.</td><td>Ticketed</td></tr><tr class="top" data-start="2026-10-07" data-end="2026-10-11"><td>Oct 7–11</td><td><a href="https://www.bam.org/" target="_blank">Hewa Rwanda — Letter to the absent</a></td><td>BAM Next Wave</td><td>Theater/music work by Dorcy Rugamba.</td><td>Ticketed</td></tr><tr data-start="2026-10-13" data-end="2026-10-15"><td>Oct 13–15</td><td><a href="https://www.bam.org/" target="_blank">PRELUDE</a></td><td>BAM / En Garde Arts</td><td>Charles Mee + original songs by the Lazours, adapted/directed by Anne Bogart.</td><td>Ticketed</td></tr><tr data-start="2026-10-21" data-end="2026-10-25"><td>Oct 21–25</td><td><a href="https://www.bam.org/" target="_blank">I Guess It Was My Destiny To Live So Long</a></td><td>BAM</td><td>Poetry series honoring June Jordan, curated by Hanif Abdurraqib.</td><td>Ticketed</td></tr><tr data-start="2026-10-24" data-end="2026-10-30"><td>Oct 24–30</td><td><a href="https://www.bam.org/" target="_blank">Toi, moi, Tituba…</a></td><td>BAM Next Wave</td><td>Dance/theater by Dorothée Munyaneza.</td><td>Ticketed</td></tr><tr data-start="2026-11-04" data-end="2026-11-07"><td>Nov 4–7</td><td><a href="https://www.bam.org/" target="_blank">Turn. Turning. TURNT.</a></td><td>BAM Next Wave</td><td>Dance by Cynthia Oliver.</td><td>Ticketed</td></tr></tbody></table></div><div class="tab-panel" id="tab-momi"><div class="section-header"><h2>MoMI + Film Culture</h2><span>expanded Aug 21</span></div><p class="intro">MoMI actually has quite a bit worth tracking right now, especially animation and Henson. This tab keeps the film-culture/adult side while the most Sasha-friendly animation choices are duplicated in Movies.</p><table class="event-table"><thead><tr><th>Date</th><th>Program</th><th>Why</th></tr></thead><tbody>
+<tr data-start="2026-08-21" data-end="2026-08-30"><td>Through Aug 30</td><td><a href="https://movingimage.org/whats-on/" target="_blank">See It Big: 70mm</a></td><td>70mm prints including <i>Lawrence of Arabia</i>, <i>2001</i>, <i>Amadeus</i>, <i>Hamlet</i>, <i>The Untouchables</i> and <i>It’s a Mad, Mad, Mad, Mad World</i>.</td></tr>
+<tr data-start="2026-08-22" data-end="2026-08-29"><td>Saturdays through Aug 29</td><td><a href="https://movingimage.org/whats-on/" target="_blank">Summer Saturdays with Dolby Atmos</a></td><td>Sound-focused theatrical series — particularly relevant for a filmmaker/colorist household.</td></tr>
+<tr class="top" data-start="2026-08-27"><td>Aug 27</td><td><a href="https://movingimage.org/whats-on/events/" target="_blank">AKIRA — 4K restoration + discussion</a> ❤️</td><td>One of the strongest animation/cinema events on the calendar.</td></tr>
+<tr data-start="2026-09-12"><td>Sep 12</td><td><a href="https://movingimage.org/whats-on/events/" target="_blank">Wiseman’s New York: Ex Libris</a></td><td>Frederick Wiseman’s NYPL documentary, presented with UnionDocs.</td></tr>
+<tr data-start="2026-09-12" data-end="2026-09-13"><td>Sep 12–13</td><td><a href="https://movingimage.org/whats-on/events/" target="_blank">Junk Dump Film Festival</a></td><td>Narrative/doc shorts on Saturday; experimental + animated shorts Sunday, both with filmmaker Q&amp;As.</td></tr>
+<tr data-start="2026-09-18"><td>Sep 18</td><td><a href="https://movingimage.org/whats-on/events/" target="_blank">Climate Film Festival Opening: House of Fish</a></td><td>Screening + director discussion/Q&amp;A + reception.</td></tr>
+<tr class="top" data-start="2026-09-24" data-end="2026-09-27"><td>Sep 24–27</td><td><a href="https://movingimage.org/whats-on/" target="_blank">Celebrating Jim Henson’s 90th Birthday</a> ❤️ 🧒</td><td>Screenings, puppetry workshops, live music, collectibles, Muppet Show marathon, Puppet Prom and family activities. Major weekend.</td></tr>
+<tr data-start="2026-08-06" data-end="2026-11-10"><td>Through Nov 12</td><td><a href="https://movingimage.org/whats-on/exhibitions/" target="_blank">Felix the Cat</a></td><td>Four restored 1927–28 cartoons.</td></tr>
+<tr data-start="2026-07-30" data-end="2026-11-08"><td>Through Nov 8</td><td><a href="https://movingimage.org/whats-on/exhibitions/" target="_blank">Reframing the Slasher: Teenage Sex and Death at Camp Miasma</a></td><td>Props, posters and production material; a nice Halloween-season film-culture stop for adults.</td></tr>
+<tr data-start="2026-05-15" data-end="2026-10-12"><td>Through Oct 12</td><td><a href="https://movingimage.org/whats-on/exhibitions/" target="_blank">Anime’s Ascendant Decade</a></td><td>Crunchyroll Anime Awards–nominated and winning series from the last decade.</td></tr>
+</tbody></table></div><div class="tab-panel" id="tab-camps"><div class="section-header"><h2>Camps + Days Off</h2><span>new Aug 21</span></div><p class="intro">For the gap before school starts, these are the most useful flexible Brooklyn options I found. I’ve separated genuine single-day/drop-in possibilities from week-only camps. Ferox week of Aug 24 is already covered, so the key gap is Aug 31–Sep 9.</p><div class="priority-box"><b>Best flexible bets:</b> 🏆 Ume Ume for true $120 single days Aug 31–Sep 4; 🏆 Homage Skateboard Academy because they explicitly say single days are available by email; and Bouldering Project for Sep 7–9 Adventure Days. World Explorers is the best straightforward full-week backup.</div><table class="event-table"><thead><tr><th>Dates</th><th>Camp</th><th>Age / hours</th><th>Flexibility + notes</th><th>Price</th></tr></thead><tbody>
+<tr class="top schoolbreak" data-start="2026-08-31" data-end="2026-09-04"><td>Aug 31–Sep 4</td><td><a href="https://www.umeumearts.com/drop-in-classes" target="_blank">Ume Ume Music + Arts — Park Slope</a> 🧒</td><td>Ages 3–8 · 9–3</td><td><b>True single-day option.</b> Piano, violin, drums, songwriting, singing, art and movement. Great contrast to a week of Ferox.</td><td>$120/day or $600/week</td></tr>
+<tr class="top schoolbreak" data-start="2026-08-31" data-end="2026-09-04"><td>Aug 31–Sep 4</td><td><a href="https://homageskateboardacademy.com/skateboard-summer-camp/" target="_blank">Homage Skateboard Academy</a> 🧒</td><td>Ages 6–14 · 9–3</td><td><b>Single days available by email.</b> All levels; exactly Sasha’s minimum age. Extended day to 5:30.</td><td>$949/week; ask single-day rate</td></tr>
+<tr class="schoolbreak" data-start="2026-08-31" data-end="2026-09-04"><td>Aug 31–Sep 4</td><td><a href="https://www.worldexplorers.foundation/summer-camp" target="_blank">World Explorers — “The Write Camp”</a> 🧒</td><td>K–5 · 8–3:30</td><td>36 St. Felix St — extremely convenient. Full bonus week with writing/creative focus.</td><td>Check registration</td></tr>
+<tr class="schoolbreak" data-start="2026-08-31" data-end="2026-09-04"><td>Aug 31–Sep 4</td><td><a href="https://www.activekids.com/brooklyn-ny/winter-sports/skiing-camps/week-11-nbw-little-kids-summer-camp-2026" target="_blank">No Bad Weather Academy — Red Hook</a> 🧒</td><td>Ages 4–8 · 9–3</td><td>Outdoor/adventure oriented and a very good age fit. Listed as open for registration when checked.</td><td>Listed from $350 / week page</td></tr>
+<tr data-start="2026-08-31" data-end="2026-09-04"><td>Aug 31–Sep 4</td><td><a href="https://www.aldenmovesbk.com/rhythm--moves.html" target="_blank">Alden Moves — Rhythm &amp; Moves</a></td><td>Ages 4–7 · 9–2:30</td><td>Hip-hop, creative dance, art/costumes and showcase. <b>Waitlist only</b> when checked.</td><td>$672/week</td></tr>
+<tr data-start="2026-08-31" data-end="2026-09-04"><td>Aug 31–Sep 4</td><td><a href="https://www.bkwild.com/summer-classes" target="_blank">Brooklyn Wild</a></td><td>9–3</td><td>Fantastic child-directed outdoor play concept, but <b>sold out / waitlist</b> when checked.</td><td>$740/week</td></tr>
+<tr class="top schoolbreak" data-start="2026-09-07" data-end="2026-09-09"><td>Sep 7–9</td><td><a href="https://boulderingproject.com/brooklyn-summer-adventures/" target="_blank">Brooklyn Bouldering Project — Adventure Days</a> 🧒</td><td>Ages 5–12</td><td>Separate Adventure Days listed Sep 7, 8 and 9. The Aug 31 week is waitlisted, but these individual bridge days are exactly what you need before Thu Sep 10.</td><td>Check booking</td></tr>
+<tr data-start="2026-08-31" data-end="2026-09-04"><td>Aug 31–Sep 4</td><td><a href="https://www.playday.com/" target="_blank">PLAYDAY Cobble Hill</a> 🧒</td><td>Ages 5–12 · up to 9–5</td><td>Art-centered camp with half-day, partial-day and full-day formats. Worth checking for late openings.</td><td>Check booking</td></tr>
+</tbody></table><p class="note"><b>Useful future day-off option:</b> School of Wonder runs single-day camps in Prospect/Fort Greene parks on school holidays; that belongs in the guide for fall closure days even though it is not the best fit for the Aug 31 week.</p></div><div class="tab-panel" id="tab-parentsnight"><div class="section-header"><h2>Date Night Drop-Off</h2><span>verified / refreshed Aug 21</span></div><p class="intro">The clearest currently published fall drop-off dates. Harlem is farther than your old Fulton Street option, but the HSA program is unusually well specified and Sasha fits the K–5 range.</p><table class="event-table"><thead><tr><th>Date</th><th>Event</th><th>Where</th><th>Why / notes</th><th>Cost</th></tr></thead><tbody><tr class="top" data-start="2026-09-25" data-end="2026-09-25"><td>Fri Sep 25</td><td><a href="https://hsanyc.org/parents-night-out/" target="_blank">Parents’ Night Out</a></td><td>Harlem School of the Arts</td><td>K–5, 6–10 PM; arts, games, music, movies, projects + dinner/snacks.</td><td>$60</td></tr><tr data-start="2026-10-17" data-end="2026-10-17"><td>Sat Oct 17</td><td><a href="https://www.jewishforgood.org/kids-classes-and-programs" target="_blank">Kids’ Night Out</a></td><td>Jewish for Good</td><td>Ages 3–10; games, crafts, movie + pizza.</td><td>Check registration</td></tr><tr class="top halloween" data-start="2026-10-23" data-end="2026-10-23"><td>Fri Oct 23</td><td><a href="https://hsanyc.org/parents-night-out/" target="_blank">Parents’ Night Out</a></td><td>Harlem School of the Arts</td><td>Same strong 4-hour format; this one lands perfectly in Halloween season.</td><td>$60</td></tr><tr class="halloween" data-start="2026-10-24" data-end="2026-10-24"><td>Sat Oct 24</td><td><a href="https://www.jewishforgood.org/kids-classes-and-programs" target="_blank">Kids’ Night Out</a></td><td>Jewish for Good</td><td>Second October drop-off date; ages 3–10.</td><td>Check registration</td></tr></tbody></table><p class="note">Also worth watching: NYC Parks piloted a free Parents’ Night Out this August for ages 6–13. No next date has been announced yet, but it is now a program worth keeping on the radar.</p></div><script>function showTab(name,btn){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+name).classList.add('active');btn.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}function hi(){const t=new Date();t.setHours(0,0,0,0);const l=new Date(t);l.setDate(l.getDate()+7);document.querySelectorAll('[data-start]').forEach(r=>{const s=new Date(r.dataset.start+'T00:00:00'),e=new Date((r.dataset.end||r.dataset.start)+'T23:59:59');if(s<=l&&e>=t)r.classList.add('next-week-event')})}hi();</script></body></html>
